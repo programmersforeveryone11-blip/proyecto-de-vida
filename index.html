@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto de Vida - Luizabeth Contreras</title>
+    <!-- Tailwind CSS cargado localmente desde tu archivo -->
+    <script src="tailwind.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+   
+    
+    <style>
+        /* Tipografías personalizadas con fallbacks locales elegantes */
+        .font-kage {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        .font-sans-custom {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Efecto Vidrio Esmerilado (Glassmorphism) */
+        .glass-navbar {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+        }
+
+        /* Vidrio Esmerilado con mayor desenfoque para tarjetas */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Vidrio esmerilado especial para la tabla de metas */
+        .glass-table {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Tarjeta de madera/esmerilado para la sección de graduarme */
+        .wood-glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .wood-glass-card.expanded {
+            background: rgba(255, 255, 255, 0.35);
+            border-color: rgba(234, 179, 8, 0.6); /* Color limón */
+            transform: scale(1.02);
+        }
+
+        /* Animación de caída de letras (Physics/Gravity fall) */
+        .letter {
+            display: inline-block;
+            transform-origin: bottom center;
+            transition: transform 1.2s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity 1s ease-out;
+        }
+
+        .letter.fall {
+            transform: translateY(100vh) rotate(var(--rot, 45deg)) scale(0.8);
+            opacity: 0;
+        }
+
+        /* Animación para el texto de entrada secundario */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.21, 1.02, 0.43, 1.01), transform 1.2s cubic-bezier(0.21, 1.02, 0.43, 1.01);
+        }
+
+        .fade-in-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos para el selector de idiomas */
+        .lang-dropdown {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
+        }
+
+        /* Animación de flotado suave para los planetas de fondo */
+        @keyframes floatPlanet {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        .animate-float-slow {
+            animation: floatPlanet 6s ease-in-out infinite;
+        }
+        .animate-float-slower {
+            animation: floatPlanet 9s ease-in-out infinite;
+        }
+        .animate-float-fast {
+            animation: floatPlanet 4s ease-in-out infinite;
+        }
+
+        /* Animación de limones cayendo */
+        @keyframes fallLemon {
+            0% {
+                transform: translateY(-10%) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .lemon-falling {
+            position: absolute;
+            animation: fallLemon var(--fall-duration, 8s) linear forwards;
+            cursor: pointer;
+            user-select: none;
+            z-index: 20;
+            transition: transform 0.2s ease;
+        }
+        .lemon-falling:hover {
+            transform: scale(1.3) !important;
+        }
+
+        /* Efecto Splash al exprimir limón */
+        @keyframes lemonSplash {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3.5); opacity: 0; filter: blur(2px); }
+        }
+        .splash-effect {
+            position: absolute;
+            animation: lemonSplash 0.5s ease-out forwards;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* --- ANIMACIONES 3D PARA LAS ESTRELLAS RETRO --- */
+        @keyframes spin3D-left {
+            0% {
+                transform: perspective(1000px) rotateX(18deg) rotateY(15deg) rotateZ(0deg);
+            }
+            100% {
+                transform: perspective(1000px) rotateX(18deg) rotateY(15deg) rotateZ(360deg);
+            }
+        }
+        @keyframes spin3D-right {
+            0% {
+                transform: perspective(1000px) rotateX(-15deg) rotateY(-18deg) rotateZ(360deg);
+            }
+            100% {
+                transform: perspective(1000px) rotateX(-15deg) rotateY(-18deg) rotateZ(0deg);
+            }
+        }
+
+        .star-3d-left {
+            animation: spin3D-left 15s linear infinite;
+            transform-style: preserve-3d;
+            filter: drop-shadow(10px 14px 12px rgba(0,0,0,0.18));
+        }
+
+        .star-3d-right {
+            animation: spin3D-right 18s linear infinite;
+            transform-style: preserve-3d;
+            filter: drop-shadow(-10px 14px 12px rgba(0,0,0,0.18));
+        }
+
+        /* Giro del Vinilo de música */
+        @keyframes spinVinyl {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spinning-vinyl {
+            animation: spinVinyl 3.5s linear infinite;
+        }
+    </style>
+</head>
+<body class="margin-0 padding-0 overflow-x-hidden w-full font-sans-custom select-none bg-sky-200">
+
+    <!-- SECCIÓN 1: PORTADA -->
+    <section class="relative w-full h-screen flex flex-col justify-between items-center px-6 py-8 z-10 overflow-hidden">
+        <!-- FONDO DE LA IMAGEN REAL (Cargada localmente con fallback estilizado en degradado suave) -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <img 
+                src="Where do you want to go_ far, far away_...🌱.jpg" 
+                alt="Fondo Colinas" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #a0c4ff, #e2eafc)';"
+            />
+        </div>
+
+        <!-- BARRA DE NAVEGACIÓN HORIZONTAL -->
+        <header class="w-full max-w-5xl relative z-20">
+            <nav class="glass-navbar rounded-full px-4 md:px-8 py-4 flex justify-between items-center transition-all duration-300">
+                <!-- Links de Navegación -->
+                <div class="flex gap-3 md:gap-8 text-slate-800 font-semibold tracking-wide text-xs md:text-base">
+                    <a href="#identidad-section" id="nav-who" class="hover:text-emerald-950 transition-colors duration-200">Quién soy</a>
+                    <a href="#metas-section" id="nav-goals" class="hover:text-emerald-950 transition-colors duration-200">Metas</a>
+                    <a href="#gustos-section" id="nav-likes" class="hover:text-emerald-950 transition-colors duration-200">Mis gustos</a>
+                    <a href="#emprendimiento-section" id="nav-brand" class="hover:text-emerald-950 transition-colors duration-200">Mi Studio</a>
+                </div>
+
+                <!-- Selector de Idioma Esmerilado -->
+                <div class="relative">
+                    <button id="lang-btn" class="flex items-center gap-2 bg-white/40 hover:bg-white/60 text-slate-800 font-medium px-4 py-2 rounded-full border border-white/40 shadow-sm transition-all text-xs md:text-sm">
+                        <span id="current-lang-flag">🇪🇸</span>
+                        <span id="current-lang-text">Español</span>
+                        <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Menú de opciones de idioma -->
+                    <div id="lang-menu" class="hidden absolute right-0 mt-2 w-36 rounded-2xl shadow-lg border border-white/50 overflow-hidden lang-dropdown z-50">
+                        <button onclick="setLanguage('es')" class="w-full px-4 py-3 text-left text-sm text-slate-800 hover:bg-emerald-50/50 flex items-center gap-2 border-b border-gray-100/30">
+                            <span>🇪🇸</span> Español
+                        </button>
+                        <button onclick="setLanguage('en')" class="w-full px-4 py-3 text-left text-sm text-slate-800 hover:bg-emerald-50/50 flex items-center gap-2 border-b border-gray-100/30">
+                            <span>🇺🇸</span> English
+                        </button>
+                        <button onclick="setLanguage('it')" class="w-full px-4 py-3 text-left text-sm text-slate-800 hover:bg-emerald-50/50 flex items-center gap-2">
+                            <span>🇮🇹</span> Italiano
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- PORTADA: TEXTO CENTRAL ANIMADO (¡Bienvenido! se cae -> A mi proyecto de vida) -->
+        <main class="flex-grow flex items-center justify-center w-full px-4 mb-24 relative z-10">
+            <div class="text-center relative select-none">
+                
+                <!-- Contenedor del Primer Texto: "¡Bienvenido!" -->
+                <h1 id="welcome-container" class="font-kage text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-emerald-950 drop-shadow-sm min-h-[1.2em] flex justify-center items-center">
+                    <!-- Las letras se insertarán dinámicamente mediante JS -->
+                </h1>
+
+                <!-- Contenedor del Segundo Texto: "A mi proyecto de vida" -->
+                <div id="project-container" class="fade-in-up absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <h2 id="project-text" class="font-kage text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-emerald-950 drop-shadow-sm leading-tight max-w-5xl">
+                        a mi proyecto de vida
+                    </h2>
+                </div>
+
+            </div>
+        </main>
+    </section>
+
+
+    <!-- SECCIÓN 2: IDENTIDAD -->
+    <section id="identidad-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-20 px-6 z-10 overflow-hidden">
+        <!-- FONDO DE LA SEGUNDA IMAGEN REAL -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <img 
+                src="uusudhuhs.png" 
+                alt="Fondo Rojo Gradiente" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #780000, #c1121f)';"
+            />
+            <div class="absolute inset-0 bg-black/10"></div>
+        </div>
+
+        <!-- Contenido de Identidad -->
+        <div class="relative z-10 w-full max-w-5xl flex flex-col gap-12">
+            
+            <!-- Título de la Sección -->
+            <div class="text-center">
+                <h2 id="identidad-title" class="font-kage text-5xl sm:text-6xl md:text-7xl text-white drop-shadow-md">
+                    Identidad
+                </h2>
+                <div class="w-24 h-1 bg-white/60 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- TARJETA PRINCIPAL: QUIÊN SOY -->
+            <div class="glass-card rounded-3xl p-8 md:p-10 text-white flex flex-col md:flex-row gap-8 items-center transition-all duration-300 hover:scale-[1.01] hover:border-white/40">
+                
+                <!-- CONTENEDOR DE FOTO DE PERFIL CON DIFUMINADO -->
+                <div class="flex-shrink-0 relative group">
+                    <div class="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-red-600 via-rose-400 to-white blur-md opacity-80 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative w-32 h-32 md:w-36 md:h-36 rounded-full p-1 bg-gradient-to-tr from-red-700 via-rose-300 to-white shadow-2xl flex items-center justify-center overflow-hidden">
+                        <img 
+                            src="Untitled.png" 
+                            alt="Luizabeth Contreras" 
+                            class="w-full h-full object-cover rounded-full border border-white/15"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        />
+                        <div class="hidden w-full h-full rounded-full bg-gradient-to-br from-red-500 to-pink-300 items-center justify-center text-white text-3xl font-bold">
+                            LC
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Texto Biográfico -->
+                <div class="flex-1 text-center md:text-left">
+                    <h3 id="who-title" class="text-3xl font-bold tracking-wide mb-3 text-white/90 font-kage">Quién soy</h3>
+                    <p id="who-desc" class="text-base sm:text-lg text-white/95 leading-relaxed font-medium">
+                        Hola, me llamo Luizabeth Contreras, estudiante de tercer año. Mi pasión por la creación me llevó a construir esta web para mostrar mis habilidades y lo que me gustaría ser de adulta.
+                    </p>
+                </div>
+            </div>
+
+            <!-- TRES TARJETAS DETALLADAS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Tarjeta 1: Fortalezas -->
+                <div class="glass-card rounded-3xl p-6 text-white flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:border-white/40">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">✨</span>
+                            <h4 id="fortalezas-title" class="text-xl font-bold font-kage">Fortalezas</h4>
+                        </div>
+                        <p id="fortalezas-desc" class="text-sm text-white/80 mb-4 italic">
+                            Mis fortalezas son lo que me hacen ser una gran persona. Soy...
+                        </p>
+                    </div>
+                    <ul id="fortalezas-list" class="space-y-2 text-sm font-semibold">
+                        <!-- Generado dinámicamente -->
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 2: Habilidades -->
+                <div class="glass-card rounded-3xl p-6 text-white flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:border-white/40">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🚀</span>
+                            <h4 id="habilidades-title" class="text-xl font-bold font-kage">Habilidades</h4>
+                        </div>
+                        <p id="habilidades-desc" class="text-sm text-white/80 mb-4 italic">
+                            Mis habilidades definen mis capacidades.
+                        </p>
+                    </div>
+                    <ul id="habilidades-list" class="space-y-2 text-sm font-semibold">
+                        <!-- Generado dinámicamente -->
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 3: Debilidades -->
+                <div class="glass-card rounded-3xl p-6 text-white flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:border-white/40">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🌱</span>
+                            <h4 id="debilidades-title" class="text-xl font-bold font-kage">Debilidades</h4>
+                        </div>
+                        <p id="debilidades-desc" class="text-sm text-white/80 mb-4 italic">
+                            Mis debilidades...
+                        </p>
+                    </div>
+                    <ul id="debilidades-list" class="space-y-2 text-sm font-semibold">
+                        <!-- Generado dinámicamente -->
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECCIÓN 3: METAS -->
+    <section id="metas-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-20 px-6 z-10 overflow-hidden">
+        <!-- FONDO DE LA PRIMERA IMAGEN REAL -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <img 
+                src="Where do you want to go_ far, far away_...🌱.jpg" 
+                alt="Fondo Colinas" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #79c1f0, #e0f2fe)';"
+            />
+            <div class="absolute inset-0 bg-slate-950/20 backdrop-blur-[2px]"></div>
+        </div>
+
+        <!-- Contenido de Metas -->
+        <div class="relative z-10 w-full max-w-5xl flex flex-col gap-12">
+            
+            <!-- Título de la Sección -->
+            <div class="text-center">
+                <h2 id="metas-title" class="font-kage text-5xl sm:text-6xl md:text-7xl text-slate-900 drop-shadow-md">
+                    Metas
+                </h2>
+                <div class="w-24 h-1 bg-emerald-800/60 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- TABLA DE METAS (Diseño Glassmorphism de Doble Entrada) -->
+            <div class="glass-table rounded-3xl overflow-hidden shadow-2xl border border-white/30 transition-all duration-300 hover:shadow-emerald-950/5">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-white/30 border-b border-white/40">
+                            <th id="table-header-term" class="p-6 text-lg sm:text-xl font-bold text-slate-900 w-1/3 md:w-1/4 font-kage">Plazo</th>
+                            <th id="table-header-goals" class="p-6 text-lg sm:text-xl font-bold text-slate-900 font-kage">Mis Objetivos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Fila Corto Plazo -->
+                        <tr class="border-b border-white/20 bg-white/5 hover:bg-white/15 transition-colors duration-200">
+                            <td class="p-6 align-top">
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-2xl">🎯</span>
+                                    <span id="corto-title" class="text-lg font-bold text-slate-900 font-kage">Corto Plazo</span>
+                                </div>
+                            </td>
+                            <td class="p-6">
+                                <p id="corto-desc" class="text-sm sm:text-base text-slate-800 italic mb-4 font-semibold">
+                                    Mis metas a corto plazo son pocas pero duras...
+                                </p>
+                                <ul id="corto-list" class="space-y-3">
+                                    <!-- Generado dinámicamente -->
+                                </ul>
+                            </td>
+                        </tr>
+                        <!-- Fila Largo Plazo -->
+                        <tr class="hover:bg-white/15 transition-colors duration-200 bg-white/10">
+                            <td class="p-6 align-top">
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-2xl">🌍</span>
+                                    <span id="largo-title" class="text-lg font-bold text-slate-900 font-kage">Largo Plazo</span>
+                                </div>
+                            </td>
+                            <td class="p-6">
+                                <p id="largo-desc" class="text-sm sm:text-base text-slate-800 italic mb-4 font-semibold">
+                                    Mis metas a largo plazo para construir mi futuro...
+                                </p>
+                                <ul id="largo-list" class="space-y-3">
+                                    <!-- Generado dinámicamente -->
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECCIÓN 4: QUÉ QUIERO ESTUDIAR -->
+    <section id="estudios-section" class="relative w-full min-h-screen flex flex-col items-center justify-center py-24 px-6 z-10 overflow-hidden transition-all duration-700 bg-[#0f172a]">
+        
+        <!-- CONTENEDOR DINÁMICO DE FONDO -->
+        <div id="estudios-bg-container" class="absolute inset-0 z-0 transition-all duration-500 pointer-events-none">
+            <div id="earth-emojis-layer" class="absolute inset-0 opacity-0 transition-opacity duration-700 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-12 p-8 overflow-hidden items-center justify-center">
+                <!-- Inyectado dinámicamente con JS -->
+            </div>
+        </div>
+
+        <!-- Contenido principal interactivo -->
+        <div class="relative z-10 w-full max-w-5xl flex flex-col items-center justify-center">
+            
+            <!-- ESTADO 1: TÍTULO GIGANTE INICIAL -->
+            <div id="estudios-trigger" onclick="revealChoices()" class="text-center cursor-pointer hover:scale-[1.03] transition-all duration-300 py-16 flex flex-col items-center justify-center">
+                <h2 id="estudios-section-title" class="font-kage text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white drop-shadow-2xl leading-none tracking-tight">
+                    ¿Qué quiero estudiar?
+                </h2>
+                <p id="discover-hint" class="text-white/60 text-sm sm:text-base md:text-lg mt-8 tracking-widest uppercase animate-pulse font-semibold">
+                    Toca el texto para descubrirlo
+                </p>
+            </div>
+
+            <!-- ESTADO 2: LAS DOS OPCIONES -->
+            <div id="estudios-choices" class="hidden flex-col gap-6 sm:gap-12 items-center justify-center text-center py-10">
+                <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-16">
+                    <button onclick="selectCareer('abogada')" class="font-kage text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/90 hover:text-red-500 hover:scale-110 transition-all duration-300 tracking-wide">
+                        Abogada
+                    </button>
+                    <span class="text-white/20 text-4xl hidden sm:inline">|</span>
+                    <button onclick="selectCareer('internacionalista')" class="font-kage text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/90 hover:text-blue-400 hover:scale-110 transition-all duration-300 tracking-wide">
+                        Internacionalista
+                    </button>
+                </div>
+                
+                <!-- Botón para volver al Título Gigante -->
+                <button onclick="resetToTitle()" id="btn-back-to-title" class="mt-8 text-white/50 hover:text-white/80 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 text-xs font-semibold transition-all">
+                    Volver al inicio
+                </button>
+            </div>
+
+            <!-- ESTADO 3: DETALLES DE CADA OPCIÓN -->
+            <div id="estudios-detail" class="hidden w-full flex-col gap-8 max-w-4xl relative">
+                <!-- Botón Volver -->
+                <button onclick="goBackToChoices()" id="back-btn" class="self-start text-white/70 hover:text-white bg-white/10 hover:bg-white/20 px-5 py-2 rounded-full border border-white/10 transition-all text-sm font-semibold mb-2">
+                    ← Volver
+                </button>
+
+                <!-- Detalle de Abogada -->
+                <div id="detail-abogada" class="hidden flex-col gap-8">
+                    <div class="glass-card rounded-3xl p-8 border-red-950/30">
+                        <p id="abogada-text" class="text-base sm:text-lg text-red-50 leading-relaxed font-medium"></p>
+                    </div>
+
+                    <!-- Bloque de 3 imágenes de abogacía con fallbacks refinados -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end justify-center pt-4">
+                        <!-- Imagen 1: Temis -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-64 sm:h-72 w-full flex items-center justify-center p-2 rounded-2xl bg-white/[0.02] border border-white/5 shadow-lg">
+                                <img 
+                                    src="Themis-removebg-preview.png" 
+                                    alt="Estatua Temis" 
+                                    class="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(220,38,38,0.15)]"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                />
+                                <div class="hidden text-center text-4xl">⚖️</div>
+                            </div>
+                        </div>
+
+                        <!-- Imagen 2: Martillo de juez -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-64 sm:h-72 w-full flex items-center justify-center p-2 rounded-2xl bg-white/[0.02] border border-white/5 shadow-lg">
+                                <img 
+                                    src="hhhh-removebg-preview.png" 
+                                    alt="Martillo de Justicia" 
+                                    class="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(255,255,255,0.1)]"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                />
+                                <div class="hidden text-center text-4xl">🔨</div>
+                            </div>
+                        </div>
+
+                        <!-- Imagen 3: Lady of Justice -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-64 sm:h-72 w-full flex items-center justify-center p-2 rounded-2xl bg-white/[0.02] border border-white/5 shadow-lg">
+                                <img 
+                                    src="Lady_of_Justice_stock_image__Image_of_landmark__hessen_-_24084037-removebg-preview.png" 
+                                    alt="Dama de la Justicia" 
+                                    class="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(255,255,255,0.15)]"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                />
+                                <div class="hidden text-center text-4xl">🗽</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalle de Internacionalista -->
+                <div id="detail-internacionalista" class="hidden flex-col gap-8">
+                    <div class="glass-card rounded-3xl p-8 border-blue-400/20 bg-blue-950/30">
+                        <p id="internacionalista-text" class="text-base sm:text-lg text-blue-50 leading-relaxed font-medium"></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECCIÓN 5: COSAS QUE QUIERO HACER ANTES DE GRADUARME -->
+    <section id="graduarme-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-24 px-6 z-10 overflow-hidden">
+        <!-- FONDO DE LA NUEVA IMAGEN REAL -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <img 
+                src="1477812373996410.jpg" 
+                alt="Fondo Césped Sombra" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #134e5e, #71b280)';"
+            />
+            <div class="absolute inset-0 bg-slate-950/20 backdrop-blur-[1px]"></div>
+        </div>
+
+        <!-- Contenido del flujo de limones flotantes -->
+        <div id="lemons-container" class="absolute inset-0 z-20 pointer-events-none overflow-hidden"></div>
+
+        <!-- Contenido -->
+        <div class="relative z-30 w-full max-w-5xl flex flex-col gap-14">
+            
+            <!-- Título de la Sección -->
+            <div class="text-center">
+                <h2 id="graduarme-title" class="font-kage text-4xl sm:text-6xl md:text-7xl text-white drop-shadow-lg leading-tight">
+                    Antes de graduarme
+                </h2>
+                <p id="graduarme-hint" class="text-yellow-100 text-xs sm:text-sm tracking-wider uppercase mt-3 font-semibold drop-shadow-md">
+                    ¡Toca las tarjetas o los limones cayendo para exprimir y revelar! 🍋
+                </p>
+                <div class="w-24 h-1 bg-yellow-400/80 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- TARJETAS DE SUEÑOS Y CURSOS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Tarjeta 1: Idiomas -->
+                <div id="card-idiomas" onclick="toggleCard('card-idiomas')" class="wood-glass-card rounded-3xl p-6 sm:p-8 text-white cursor-pointer flex flex-col justify-start">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl">🇬🇧</span>
+                        <h3 id="idiomas-title" class="text-xl sm:text-2xl font-bold font-kage">Quiero aprender 2 idiomas</h3>
+                    </div>
+                    <div class="expanded-content hidden transition-all duration-500 pt-2 border-t border-white/20 mt-2">
+                        <ul id="idiomas-list" class="space-y-2 font-semibold">
+                            <!-- Inyectado dinámicamente -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Cursos -->
+                <div id="card-cursos" onclick="toggleCard('card-cursos')" class="wood-glass-card rounded-3xl p-6 sm:p-8 text-white cursor-pointer flex flex-col justify-start">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl">💻</span>
+                        <h3 id="cursos-title" class="text-xl sm:text-2xl font-bold font-kage">Quiero hacer tantos cursos como pueda</h3>
+                    </div>
+                    <div class="expanded-content hidden transition-all duration-500 pt-2 border-t border-white/20 mt-2">
+                        <ul id="cursos-list" class="space-y-2 font-semibold">
+                            <!-- Inyectado dinámicamente -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Viajar -->
+                <div id="card-viajar" onclick="toggleCard('card-viajar')" class="wood-glass-card rounded-3xl p-6 sm:p-8 text-white cursor-pointer flex flex-col justify-start">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl">✈️</span>
+                        <h3 id="viajar-title" class="text-xl sm:text-2xl font-bold font-kage">Me gustaría poder viajar lejos</h3>
+                    </div>
+                    <div class="expanded-content hidden transition-all duration-500 pt-2 border-t border-white/20 mt-2">
+                        <p id="viajar-desc" class="text-sm sm:text-base leading-relaxed font-semibold bg-white/10 p-3 rounded-2xl border border-white/10"></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SECCIÓN 6: MI FUTURO TRABAJO -->
+    <section id="futuro-trabajo-section" class="relative w-full min-h-screen flex flex-col items-center justify-center py-24 px-6 z-10 overflow-hidden bg-[#fcfaf6]">
+        
+        <!-- Diapositivas automáticas de fondo con fallbacks de degradados hermosos -->
+        <div class="absolute inset-0 z-0">
+            <!-- Imagen 1 -->
+            <img 
+                src="Instagram.jpg" 
+                alt="Caballo Campo" 
+                class="future-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
+                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #2c3e50, #000000)';"
+            />
+            <!-- Imagen 2 -->
+            <img 
+                src="633600241371512278.jpg" 
+                alt="Cerca Campo" 
+                class="future-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
+                onerror="this.style.display='none';"
+            />
+            <!-- Imagen 3 -->
+            <img 
+                src="yeehaw.jpg" 
+                alt="Yeehaw Campo" 
+                class="future-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
+                onerror="this.style.display='none';"
+            />
+            <div class="absolute inset-0 bg-black/35"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-4xl flex flex-col items-center gap-12">
+            
+            <!-- Título de la Sección -->
+            <div class="text-center">
+                <h2 id="futuro-trabajo-title" class="font-kage text-4xl sm:text-6xl md:text-7xl text-white drop-shadow-md leading-tight">
+                    Mi futuro trabajo
+                </h2>
+                <div class="w-24 h-1 bg-yellow-400/80 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Tarjeta Transparente Esmerilada -->
+            <div class="relative z-10 bg-white/80 backdrop-blur-xl border border-white/60 p-8 sm:p-10 rounded-3xl max-w-2xl text-center shadow-2xl transition-all duration-300 hover:scale-[1.01]">
+                <div class="text-amber-600 text-3xl mb-4">🌾</div>
+                <p id="futuro-trabajo-desc" class="text-base sm:text-lg md:text-xl text-slate-800 leading-relaxed font-semibold font-sans-custom">
+                    En un futuro me veo trabajando en muchas cosas. Me gustaría trabajar como abogada mercantil desde la comodidad de mi casa, siendo Ingeniera Agrónoma en mi propia finca exportando ganado, maíz, quesos, carne y vivir prósperamente en la naturaleza.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- NUEVA SECCIÓN 7: MIS GUSTOS (Retro Canva con Estrellas Giratorias 3D y Reproductor de Música al pasar el ratón) -->
+    <section id="gustos-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-24 px-6 z-10 overflow-hidden bg-[#faf6eb]">
+        
+        <!-- ESTRELLA SUPERIOR IZQUIERDA (Giro 3D Rojo) -->
+        <div class="absolute top-10 left-4 sm:top-16 sm:left-12 lg:left-24 w-24 h-28 sm:w-40 sm:h-44 z-20 pointer-events-none">
+            <svg id="star-red-svg" viewBox="0 0 100 100" class="w-full h-full star-3d-left">
+                <defs>
+                    <radialGradient id="redGradient" cx="45%" cy="45%" r="55%">
+                        <stop offset="0%" stop-color="#ff6b8b" />
+                        <stop offset="70%" stop-color="#ff3b30" />
+                        <stop offset="100%" stop-color="#b31217" />
+                    </radialGradient>
+                </defs>
+                <polygon id="star-red-polygon" fill="url(#redGradient)" stroke="#5c0609" stroke-width="1.5" />
+            </svg>
+        </div>
+
+        <!-- ESTRELLA INFERIOR DERECHA (Giro 3D Verde) -->
+        <div class="absolute bottom-10 right-4 sm:bottom-16 sm:right-12 lg:right-24 w-24 h-28 sm:w-40 sm:h-44 z-20 pointer-events-none">
+            <svg id="star-green-svg" viewBox="0 0 100 100" class="w-full h-full star-3d-right">
+                <defs>
+                    <radialGradient id="greenGradient" cx="45%" cy="45%" r="55%">
+                        <stop offset="0%" stop-color="#34d399" />
+                        <stop offset="70%" stop-color="#10b981" />
+                        <stop offset="100%" stop-color="#047857" />
+                    </radialGradient>
+                </defs>
+                <polygon id="star-green-polygon" fill="url(#greenGradient)" stroke="#022c22" stroke-width="1.5" />
+            </svg>
+        </div>
+
+        <!-- Contenido de la Sección -->
+        <div class="relative z-30 w-full max-w-6xl flex flex-col items-center gap-12 text-center select-none">
+            
+            <!-- Título Principal Canva Retro -->
+            <div class="flex flex-col items-center gap-2">
+                <h2 id="gustos-title" class="font-kage text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-slate-900 drop-shadow-sm tracking-tight leading-none uppercase">
+                    Mis gustos
+                </h2>
+                <p id="likes-instruction" class="text-slate-500 text-xs sm:text-sm md:text-base font-semibold tracking-wider max-w-xl mt-2 uppercase">
+                    Pasa el ratón (o toca) los artistas para reproducir su música 🎵
+                </p>
+                <div class="w-32 h-1.5 bg-slate-950 mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Interfaz Principal de Gustos & Reproductor -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 w-full mt-6 justify-center">
+                
+                <!-- REPRODUCTOR DE VINILO RETRO INTERACTIVO -->
+                <div class="flex flex-col items-center gap-4 bg-white border-4 border-slate-900 rounded-3xl p-8 w-full max-w-sm shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+                    <span id="player-title" class="font-kage text-2xl text-slate-900 tracking-tight">Sintonizando...</span>
+                    
+                    <!-- Disco de Vinilo -->
+                    <div class="relative w-48 h-48 sm:w-56 sm:h-56 bg-slate-950 rounded-full flex items-center justify-center border-4 border-slate-800 shadow-inner group">
+                        <!-- Líneas circulares del vinilo -->
+                        <div class="absolute inset-4 border border-slate-800 rounded-full opacity-60"></div>
+                        <div class="absolute inset-8 border border-slate-800 rounded-full opacity-60"></div>
+                        <div class="absolute inset-12 border border-slate-800 rounded-full opacity-60"></div>
+                        
+                        <!-- Centro del disco dinámico -->
+                        <div id="vinyl-center" class="absolute w-16 h-16 sm:w-20 sm:h-20 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-slate-900 transition-all duration-500">
+                            <span class="text-2xl">✨</span>
+                        </div>
+                    </div>
+
+                    <!-- Ondas del Ecualizador Visual Simulado -->
+                    <div class="flex items-end justify-center gap-1.5 h-10 w-full mt-4">
+                        <div id="eq-bar-1" class="w-2.5 bg-red-500 rounded-full transition-all duration-300 h-2"></div>
+                        <div id="eq-bar-2" class="w-2.5 bg-emerald-500 rounded-full transition-all duration-300 h-2"></div>
+                        <div id="eq-bar-3" class="w-2.5 bg-blue-500 rounded-full transition-all duration-300 h-2"></div>
+                        <div id="eq-bar-4" class="w-2.5 bg-yellow-500 rounded-full transition-all duration-300 h-2"></div>
+                        <div id="eq-bar-5" class="w-2.5 bg-purple-500 rounded-full transition-all duration-300 h-2"></div>
+                        <div id="eq-bar-6" class="w-2.5 bg-pink-500 rounded-full transition-all duration-300 h-2"></div>
+                    </div>
+
+                    <!-- Nombre del artista activo -->
+                    <p id="now-playing" class="text-slate-800 font-bold text-sm tracking-wide mt-2">Silencio</p>
+                </div>
+
+                <!-- LISTA DE ARTISTAS MÚSICA (Configurados exactamente con tus archivos MP3 locales) -->
+                <div class="w-full max-w-xl bg-white border-4 border-slate-900 rounded-3xl p-6 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+                    <div class="flex items-center gap-3 border-b-4 border-slate-900 pb-4 mb-4">
+                        <span class="text-3xl">🎸</span>
+                        <h3 id="music-list-header" class="text-2xl font-bold text-slate-900 font-kage">Mi Playlist Favorita</h3>
+                    </div>
+
+                    <!-- Listado dinámico interactivo con scroll suave de seguridad -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
+                        
+                        <!-- Lista de Artistas con nombres corregidos y archivos locales exactos -->
+                        
+                        </div>
+
+                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-blue-100 hover:scale-[1.02] transition-all" data-artist="The Cure" data-music="Boys Dont Cry.mp3">
+                            <span class="font-bold text-sm text-slate-800">The Cure</span>
+                            <span class="text-xs text-blue-500">🎵</span>
+                        </div>
+
+                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-yellow-100 hover:scale-[1.02] transition-all animate-none" data-artist="Engelbert Humperdinck" data-music="A Man Without Love LYRICS Video Engelbert Humperdinck 1968 Moon Knight Episode 1.mp3">
+                            <span class="font-bold text-xs text-slate-800 leading-tight">Engelbert Humperdinck</span>
+                            <span class="text-xs text-yellow-500">🎵</span>
+                        </div>
+
+                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-purple-100 hover:scale-[1.02] transition-all" data-artist="The Beatles" data-music="Hey Jude Remastered 2015.mp3">
+                            <span class="font-bold text-sm text-slate-800">The Beatles</span>
+                            <span class="text-xs text-purple-500">🎵</span>
+                        </div>
+
+                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-pink-100 hover:scale-[1.02] transition-all" data-artist="Lou Bega" data-music="Lou Bega - Mambo No 5 A Little Bit of.mp3">
+                            <span class="font-bold text-sm text-slate-800">Lou Bega</span>
+                            <span class="text-xs text-pink-500">🎵</span>
+                        </div>
+
+                        
+
+                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-orange-100 hover:scale-[1.02] transition-all" data-artist="esdeekid" data-music="4 Raws.mp3">
+                            <span class="font-bold text-sm text-slate-800">esdeekid</span>
+                            <span class="text-xs text-orange-500">🔥</span>
+                        </div>
+
+                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-indigo-100 hover:scale-[1.02] transition-all animate-none" data-artist="The White Stripes" data-music="The White Stripes - Seven Nation Army Official Music Video.mp3">
+                            <span class="font-bold text-sm text-slate-800">The White Stripes</span>
+                            <span class="text-xs text-indigo-500">🎵</span>
+                        </div>
+
+                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-amber-100 hover:scale-[1.02] transition-all col-span-1 sm:col-span-2" data-artist="Billy Joel" data-music="Billy Joel -  Video.mp3">
+                            <span class="font-bold text-sm text-slate-800">Billy Joel</span>
+                            <span class="text-xs text-amber-500">🎵</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- NUEVA SECCIÓN 8: CONOCE MI EMPRENDIMIENTO (Luizabeth's Studios con logo de fondo, tarjeta clara y estilo Canva Retro) -->
+    <section id="emprendimiento-section" class="relative w-full min-h-screen flex flex-col items-center justify-center py-24 px-6 z-10 overflow-hidden bg-[#faf6eb]">
+        
+        <!-- FONDO DE MARCA DE AGUA GIGANTE DEL LOGO (Sutil, claro y cálido) -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
+            <img 
+                src="Logo Para Marca de Ropa Moderno Blanco y Negro 8.39.44 a. m..png" 
+                alt="Fondo Luizabeth's Studios" 
+                class="w-full h-full object-contain opacity-[0.20] scale-95"
+                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #faf6eb, #f4efe2)';"
+            />
+        </div>
+
+        <!-- Contenido de Emprendimiento -->
+        <div class="relative z-10 w-full max-w-5xl flex flex-col items-center gap-12 select-none">
+            
+            <!-- Título de la Sección -->
+            <div class="text-center">
+                <h2 id="brand-section-title" class="font-kage text-5xl sm:text-6xl md:text-7xl text-slate-900 drop-shadow-sm">
+                    Conoce mi emprendimiento
+                </h2>
+                <div class="w-32 h-1.5 bg-red-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Tarjeta Premium de Vidrio Esmerilado Claro (Light Glassmorphism) sin logo adentro para mantenerlo limpio -->
+            <div class="bg-white/40 backdrop-blur-2xl rounded-3xl p-8 md:p-12 text-slate-800 border-2 border-white/60 shadow-xl max-w-3xl w-full flex flex-col gap-6 items-center transition-all duration-300 hover:scale-[1.01]">
+                
+                <!-- Detalles de la Marca Personal -->
+                <div class="text-center flex flex-col gap-4 w-full">
+                    <h3 class="text-4xl font-extrabold tracking-tight text-slate-900 font-kage">
+                        Luizabeth's Studios
+                    </h3>
+                    <p id="brand-desc" class="text-base sm:text-lg text-slate-700 leading-relaxed font-semibold max-w-2xl mx-auto">
+                        Es mi marca personal donde ofrezco soluciones digitales y creativas hechas a la medida. Me dedico con pasión al desarrollo y diseño de múltiples servicios de alta calidad.
+                    </p>
+
+                    <!-- Lista de Servicios en un Grid Interno -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 max-w-xl mx-auto w-full">
+                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                            <span class="text-2xl">💻</span>
+                            <span id="service-web" class="text-sm font-bold text-slate-800">Webs</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                            <span class="text-2xl">📱</span>
+                            <span id="service-apps" class="text-sm font-bold text-slate-800">Apps</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                            <span class="text-2xl">🤖</span>
+                            <span id="service-bots" class="text-sm font-bold text-slate-800">Bots</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                            <span class="text-2xl">📚</span>
+                            <span id="service-school" class="text-sm font-bold text-slate-800">Trabajos escolares</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Contactos y Redes con diseño de Vidrio Esmerilado Claro en sintonía con la tarjeta principal -->
+            <div class="w-full max-w-4xl bg-white/40 backdrop-blur-2xl border-2 border-white/60 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="text-center lg:text-left">
+                    <h4 id="brand-contact-title" class="text-xl font-bold text-slate-900 font-kage flex items-center gap-2 justify-center lg:justify-start">
+                        <span>📞</span> Contacto & Redes
+                    </h4>
+                    <p id="brand-contact-subtitle" class="text-sm text-slate-600 mt-1 font-semibold">¡Escríbeme para dar vida a tus proyectos!</p>
+                </div>
+
+                <!-- Info Social e Información Contacto Directo con Vidrio Translúcido en los botones -->
+                <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto items-stretch justify-center">
+                    <!-- Número -->
+                    <a href="tel:04228028774" class="flex items-center gap-3 bg-white/50 hover:bg-white/80 border border-white/60 rounded-2xl px-5 py-3 text-slate-800 transition-all hover:scale-[1.03] shadow-sm">
+                        <span class="text-xl">📞</span>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] uppercase text-slate-500 font-extrabold tracking-widest">Número / WhatsApp</span>
+                            <span class="text-sm font-bold">04228028774</span>
+                        </div>
+                    </a>
+
+                    <!-- TikTok / Instagram -->
+                    <a href="https://instagram.com/luizabeths_studios" target="_blank" class="flex items-center gap-3 bg-white/50 hover:bg-white/80 border border-white/60 rounded-2xl px-5 py-3 text-slate-800 transition-all hover:scale-[1.03] shadow-sm">
+                        <span class="text-xl">✨</span>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] uppercase text-slate-500 font-extrabold tracking-widest">Social Media</span>
+                            <span class="text-sm font-bold">@luizabeths_studios</span>
+                        </div>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:luizabethsstudios@gmail.com" class="flex items-center gap-3 bg-white/50 hover:bg-white/80 border border-white/60 rounded-2xl px-5 py-3 text-slate-800 transition-all hover:scale-[1.03] shadow-sm">
+                        <span class="text-xl">📧</span>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] uppercase text-slate-500 font-extrabold tracking-widest">Email</span>
+                            <span class="text-sm font-bold">luizabethsstudios@gmail.com</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // Base de datos de traducciones (Español, Inglés, Italiano)
+        const translations = {
+            es: {
+                who: "Quién soy",
+                goals: "Metas",
+                likes: "Mis gustos",
+                brand: "Mi Studio",
+                welcome: "¡Bienvenido!",
+                project: "a mi proyecto de vida",
+                identidadTitle: "Identidad",
+                whoTitle: "Quién soy",
+                whoDesc: "Hola, me llamo Luizabeth Contreras, estudiante de tercer año. Mi pasión por la creación me llevó a construir esta web para mostrar mis habilidades y lo que me gustaría ser de adulta.",
+                fortalezasTitle: "Fortalezas",
+                fortalezasDesc: "Mis fortalezas son lo que me hacen ser una gran persona. Soy...",
+                fortalezasList: ["Amable", "Paciente", "Respetuosa", "Inteligente"],
+                habilidadesTitle: "Habilidades",
+                habilidadesDesc: "Mis habilidades definen mis capacidades:",
+                habilidadesList: ["Sé silbar muy bien", "Soy buena programando", "Me gusta crear y consumir contenido creativo"],
+                debilidadesTitle: "Debilidades",
+                debilidadesDesc: "Mis debilidades...",
+                debilidadesList: ["Soy sensible", "Una persona muy terca y de carácter fuerte", "Me confundo muy rápido", "Y peleo mucho con mis propias decisiones"],
+                metasTitle: "Metas",
+                tableHeaderTerm: "Plazo",
+                tableHeaderGoals: "Mis Objetivos",
+                cortoTitle: "Corto Plazo",
+                cortoDesc: "mis metas a corto plazo son pocas pero duras...",
+                cortoList: ["Construir mi pequeña empresa creadora de webs", "Terminar la secundaria y lograr entrar a la universidad"],
+                largoTitle: "Largo Plazo",
+                largoDesc: "A largo plazo...",
+                largoList: ["Graduarme", "Lograr salir adelante ejerciendo mi carrera"],
+                estudiosSectionTitle: "¿Qué quiero estudiar?",
+                discoverHint: "Toca el texto para descubrirlo",
+                backBtn: "← Volver",
+                btnBackToTitle: "Volver al inicio",
+                abogadaText: "Ser abogada es increíble porque tienes el poder de hablar por quienes no pueden hacerlo, defender la verdad y hacer que la justicia funcione. Me apasiona resolver problemas complejos, debatir con elegancia y usar las leyes como herramientas para construir un mundo más ordenado y equitativo. ¡Es una profesión llena de liderazgo, fuerza y pasión!",
+                internacionalistaText: "Quiero estudiar Estudios Internacionales y Negocios Internacionales porque me apasiona comprender el funcionamiento del mundo globalizado, conectar culturas y diseñar estrategias comerciales que trasciendan fronteras. Los negocios globales nos permiten unir naciones a través del intercambio y la cooperación, abriendo oportunidades increíbles para innovar, viajar y generar un impacto positivo en la sociedad internacional.",
+                graduarmeTitle: "Antes de graduarme",
+                graduarmeHint: "¡Toca las tarjetas o los limones cayendo para exprimir y revelar! 🍋",
+                idiomasTitle: "Quiero aprender 2 idiomas:",
+                idiomasList: ["Inglés", "Italiano"],
+                cursosTitle: "Quiero hacer tantos cursos como pueda:",
+                cursosList: ["FreeCodeCamp", "Cisco", "Skilo", "Hoy Aprendo", "Conecta Empleo"],
+                viajarTitle: "Me gustaría poder viajar lejos:",
+                viajarDesc: "Me gustaría viajar de nuevo a mi tierra de nacimiento a Barinas 🇻🇪",
+                futuroTrabajoTitle: "Mi futuro trabajo",
+                futuroTrabajoDesc: "En un futuro me veo trabajando en muchas cosas. Me gustaría trabajar como abogada mercantil desde la comodidad de mi casa, siendo Ingeniera Agrónoma en mi propia finca exportando ganado, maíz, quesos, carne y vivir prósperamente en la naturaleza.",
+                likesTitle: "Mis gustos",
+                likesInstruction: "Pasa el ratón (o toca) los artistas para reproducir su música 🎵",
+                playerTitle: "Sintonizando...",
+                nowPlayingSilence: "Silencio",
+                playlistHeader: "Mi Playlist Favorita",
+                brandSectionTitle: "Conoce mi emprendimiento",
+                brandDesc: "Es mi marca personal donde ofrezco soluciones digitales y creativas hechas a la medida. Me dedico con pasión al desarrollo y diseño de múltiples servicios de alta calidad.",
+                serviceWeb: "Webs",
+                serviceApps: "Apps",
+                serviceBots: "Bots",
+                serviceSchool: "Trabajos escolares",
+                brandContactTitle: "Contacto & Redes",
+                brandContactSubtitle: "¡Escríbeme para dar vida a tus proyectos!"
+            },
+            en: {
+                who: "Who I am",
+                goals: "Goals",
+                likes: "My tastes",
+                brand: "My Studio",
+                welcome: "Welcome!",
+                project: "to my life project",
+                identidadTitle: "Identity",
+                whoTitle: "Who I Am",
+                whoDesc: "Hello, my name is Luizabeth Contreras, a third-year student. My passion for creation led me to build this website to showcase my skills and what I would like to be as an adult.",
+                fortalezasTitle: "Strengths",
+                fortalezasDesc: "My strengths are what make me a great person. I am...",
+                fortalezasList: ["Kind", "Patient", "Respectful", "Intelligent"],
+                habilidadesTitle: "Skills",
+                habilidadesDesc: "My skills define my capabilities:",
+                habilidadesList: ["I can whistle very well", "I am good at programming", "I like to create and consume creative content"],
+                debilidadesTitle: "Weaknesses",
+                debilidadesDesc: "My weaknesses...",
+                debilidadesList: ["I am sensitive", "A very stubborn person with a strong character", "I get confused very quickly", "And I struggle a lot with my own decisions"],
+                metasTitle: "Goals",
+                tableHeaderTerm: "Term",
+                tableHeaderGoals: "My Objectives",
+                cortoTitle: "Short Term",
+                cortoDesc: "my short-term goals are few but tough...",
+                cortoList: ["Build my small web creation company", "Finish high school and manage to get into college"],
+                largoTitle: "Long Term",
+                largoDesc: "In the long term...",
+                largoList: ["Graduate", "Manage to get ahead by practicing my career"],
+                estudiosSectionTitle: "What do I want to study?",
+                discoverHint: "Tap the text to discover",
+                backBtn: "← Go Back",
+                btnBackToTitle: "Go back to start",
+                abogadaText: "Being a lawyer is amazing because you have the power to speak for those who cannot, defend the truth, and make justice work. I am passionate about solving complex problems, debating elegantly, and using laws as tools to build a more orderly and fair world. It is a profession full of leadership, strength, and passion!",
+                internacionalistaText: "I want to study International Studies and International Business because I am passionate about understanding how our globalized world works, connecting cultures, and designing business strategies that cross borders. Global business allows us to unite nations through exchange and cooperation, opening incredible opportunities to innovate, travel, and make a positive impact on international society.",
+                graduarmeTitle: "Before I graduate",
+                graduarmeHint: "Tap the cards or falling lemons to squeeze and reveal! 🍋",
+                idiomasTitle: "I want to learn 2 languages:",
+                idiomasList: ["English", "Italian"],
+                cursosTitle: "I want to take as many courses as I can:",
+                cursosList: ["FreeCodeCamp", "Cisco", "Skilo", "Hoy Learn", "Conecta Empleo"],
+                viajarTitle: "I would like to be able to travel far:",
+                viajarDesc: "I would like to travel back to my birthplace in Barinas 🇻🇪",
+                futuroTrabajoTitle: "My future work",
+                futuroTrabajoDesc: "In the future, I see myself working in many fields. I would love to work as a commercial lawyer from the comfort of my home, while also being an Agricultural Engineer on my own farm, exporting livestock, corn, cheese, and meat, and living prosperously in nature.",
+                likesTitle: "My tastes",
+                likesInstruction: "Hover or tap on artists to play their music 🎵",
+                playerTitle: "Tuning in...",
+                nowPlayingSilence: "Silence",
+                playlistHeader: "My Favorite Playlist",
+                brandSectionTitle: "Meet my business",
+                brandDesc: "Is my personal brand where I offer customized digital and creative solutions. I am passionately dedicated to developing and designing high-quality services.",
+                serviceWeb: "Webs",
+                serviceApps: "Apps",
+                serviceBots: "Bots",
+                serviceSchool: "School projects",
+                brandContactTitle: "Contact & Networks",
+                brandContactSubtitle: "Write to me to bring your projects to life!"
+            },
+            it: {
+                who: "Chi sono",
+                goals: "Obiettivi",
+                likes: "I miei gusti",
+                brand: "Studio",
+                welcome: "Benvenuto!",
+                project: "al mio progetto di vita",
+                identidadTitle: "Identità",
+                whoTitle: "Chi Sono",
+                whoDesc: "Ciao, mi chiamo Luizabeth Contreras, studentessa del terzo anno. La mia passione per la creazione mi ha portato a costruire questo sito per mostrare le mie capacità e ciò que vorrei essere da adulta.",
+                fortalezasTitle: "Punti di Forza",
+                fortalezasDesc: "I miei punti di forza sono ciò che mi rende una grande persona. Sono...",
+                fortalezasList: ["Gentile", "Paziente", "Rispettosa", "Inteligente"],
+                habilidadesTitle: "Abilità",
+                habilidadesDesc: "Le mie abilità definiscono le mie capacità:",
+                habilidadesList: ["So fischiare molto bene", "Sono brava a programmare", "Mi piace creare e consumare contenuti creativi"],
+                debilidadesTitle: "Debolezze",
+                debilidadesDesc: "Le mie debolezza...",
+                debilidadesList: ["Sono sensibile", "Una persona molto testarda e dal carattere forte", "Mi confondo molto rapidamente", "E lotto molto con le mie stesse decisioni"],
+                metasTitle: "Obiettivi",
+                tableHeaderTerm: "Scadenza",
+                tableHeaderGoals: "I Miei Obiettivi",
+                cortoTitle: "Breve Termine",
+                cortoDesc: "i miei obiettivi a breve termine sono pochi ma difficili...",
+                cortoList: ["Costruire la mia piccola agenzia di creazione web", "Finire la scuola superiore e riuscire ad entrare all'università"],
+                largoTitle: "Lungo Termine",
+                largoDesc: "A lungo termine...",
+                largoList: ["Laurearmi / Diplomarmi", "Riuscire ad andare acquisendo successo esercitando la mia professione"],
+                estudiosSectionTitle: "Cosa voglio studiare?",
+                discoverHint: "Tocca el testo per scoprirlo",
+                backBtn: "← Indietro",
+                btnBackToTitle: "Torna all'inizio",
+                abogadaText: "Essere un avvocato è fantastico perché hai il potere di parlare per coloro que non possono farlo, difendere la verità e far funzionare la giustizia. Mi appassiona risolvere problemi complessi, dibattere con eleganza e usare le leggi como strumenti per costruire un mondo più ordinato ed equo. È una professione ricca di leadership, fuerza e passione!",
+                internacionalistaText: "Voglio studiare Studi Internazionali e Affari Internazionali perché mi appassiona capire come funciona il mondo globalizzato, connettere culture diverse e progettare strategie commerciali oltre i confini nazionali. Il business globale ci permette di unire le nazioni attraverso lo scambio e la cooperazione, aprendo incredibili opportunità per innovare, viaggiare e generare un impatto positivo nella società internazionale.",
+                graduarmeTitle: "Prima di laurearmi",
+                graduarmeHint: "Tocca le carte o i limoni che cadono per spremere e rivelare! 🍋",
+                idiomasTitle: "Voglio imparare 2 lingue:",
+                idiomasList: ["Inglese", "Italiano"],
+                cursosTitle: "Voglio fare quanti più corsi possibile:",
+                cursosList: ["FreeCodeCamp", "Cisco", "Skilo", "Hoy Aprendo", "Conecta Empleo"],
+                viajarTitle: "Mi piacerebbe poter viaggiare lontano:",
+                viajarDesc: "Mi piacerebbe viaggiare di nuovo nella mia terra natale a Barinas 🇻🇪",
+                futuroTrabajoTitle: "Il mio trabajo futuro",
+                futuroTrabajoDesc: "In futuro mi vedo a lavorare in molte cose. Mi piacerebbe lavorare como avvocato commerciale dalla comodità di casa mia, essendo anche un Ingegnere Agronomo nella mia fattoria, esportando bestiame, mais, formaggi e carne, e vivendo prosperamente nella natura.",
+                likesTitle: "I miei gusti",
+                likesInstruction: "Passa il mouse (o tocca) gli artisti per ascoltare la loro musica 🎵",
+                playerTitle: "Sintonizzazione...",
+                nowPlayingSilence: "Silenzio",
+                playlistHeader: "La mia Playlist Preferita",
+                brandSectionTitle: "Scopri il mio progetto",
+                brandDesc: "È il mio marchio personale in cui offro soluzioni digitali e creative personalizzate. Mi dedico con passione allo sviluppo e alla progettazione di molteplici servizi di alta qualità.",
+                serviceWeb: "Webs",
+                serviceApps: "Apps",
+                serviceBots: "Bots",
+                serviceSchool: "Lavori scolastici",
+                brandContactTitle: "Contatto e Social",
+                brandContactSubtitle: "Scrivimi per dare vita ai tuoi progetti!"
+            }
+        };
+
+        let currentLang = 'es';
+        const welcomeContainer = document.getElementById('welcome-container');
+        const projectContainer = document.getElementById('project-container');
+        const projectText = document.getElementById('project-text');
+        
+        // Elementos de la Barra de Navegación
+        const navWho = document.getElementById('nav-who');
+        const navGoals = document.getElementById('nav-goals');
+        const navLikes = document.getElementById('nav-likes');
+        const navBrand = document.getElementById('nav-brand');
+        const langBtn = document.getElementById('lang-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const currentLangFlag = document.getElementById('current-lang-flag');
+        const currentLangText = document.getElementById('current-lang-text');
+
+        // Elementos de la Sección de Identidad
+        const identidadTitle = document.getElementById('identidad-title');
+        const whoTitle = document.getElementById('who-title');
+        const whoDesc = document.getElementById('who-desc');
+        const fortalezasTitle = document.getElementById('fortalezas-title');
+        const fortalezasDesc = document.getElementById('fortalezas-desc');
+        const fortalezasList = document.getElementById('fortalezas-list');
+        const habilidadesTitle = document.getElementById('habilidades-title');
+        const habilidadesDesc = document.getElementById('habilidades-desc');
+        const habilidadesList = document.getElementById('habilidades-list');
+        const debilidadesTitle = document.getElementById('debilidades-title');
+        const debilidadesDesc = document.getElementById('debilidades-desc');
+        const debilidadesList = document.getElementById('debilidades-list');
+
+        // Elementos de la Sección de Metas
+        const metasTitle = document.getElementById('metas-title');
+        const tableHeaderTerm = document.getElementById('table-header-term');
+        const tableHeaderGoals = document.getElementById('table-header-goals');
+        const cortoTitle = document.getElementById('corto-title');
+        const cortoDesc = document.getElementById('corto-desc');
+        const cortoList = document.getElementById('corto-list');
+        const largoTitle = document.getElementById('largo-title');
+        const largoDesc = document.getElementById('largo-desc');
+        const largoList = document.getElementById('largo-list');
+
+        // Elementos de la Sección de Estudios
+        const estudiosSectionTitle = document.getElementById('estudios-section-title');
+        const discoverHint = document.getElementById('discover-hint');
+        const backBtn = document.getElementById('back-btn');
+        const btnBackToTitle = document.getElementById('btn-back-to-title');
+        const abogadaText = document.getElementById('abogada-text');
+        const internacionalistaText = document.getElementById('internacionalista-text');
+
+        // Elementos de la Sección de Graduarme
+        const graduarmeTitle = document.getElementById('graduarme-title');
+        const graduarmeHint = document.getElementById('graduarme-hint');
+        const idiomasTitle = document.getElementById('idiomas-title');
+        const idiomasList = document.getElementById('idiomas-list');
+        const cursosTitle = document.getElementById('cursos-title');
+        const cursosList = document.getElementById('cursos-list');
+        const viajarTitle = document.getElementById('viajar-title');
+        const viajarDesc = document.getElementById('viajar-desc');
+
+        // Elementos de la Sección de Futuro Trabajo
+        const futuroTrabajoTitle = document.getElementById('futuro-trabajo-title');
+        const futuroTrabajoDesc = document.getElementById('futuro-trabajo-desc');
+
+        // Elementos de la Nueva Sección de Gustos
+        const gustosTitle = document.getElementById('gustos-title');
+        const likesInstruction = document.getElementById('likes-instruction');
+        const playerTitle = document.getElementById('player-title');
+        const nowPlaying = document.getElementById('now-playing');
+        const musicListHeader = document.getElementById('music-list-header');
+
+        // Elementos de la Sección de Emprendimiento
+        const brandSectionTitle = document.getElementById('brand-section-title');
+        const brandDesc = document.getElementById('brand-desc');
+        const serviceWeb = document.getElementById('service-web');
+        const serviceApps = document.getElementById('service-apps');
+        const serviceBots = document.getElementById('service-bots');
+        const serviceSchool = document.getElementById('service-school');
+        const brandContactTitle = document.getElementById('brand-contact-title');
+        const brandContactSubtitle = document.getElementById('brand-contact-subtitle');
+
+        const flags = { es: '🇪🇸', en: '🇺🇸', it: '🇮🇹' };
+        const langNames = { es: 'Español', en: 'English', it: 'Italiano' };
+
+        // Mostrar / Ocultar menú de idiomas con soporte para clics y toques
+        function toggleLangMenu(e) {
+            e.stopPropagation();
+            langMenu.classList.toggle('hidden');
+        }
+
+        langBtn.addEventListener('click', toggleLangMenu);
+        langBtn.addEventListener('touchstart', toggleLangMenu);
+
+        function closeLangMenu() {
+            langMenu.classList.add('hidden');
+        }
+
+        document.addEventListener('click', closeLangMenu);
+        document.addEventListener('touchstart', closeLangMenu);
+
+        langMenu.addEventListener('click', (e) => e.stopPropagation());
+        langMenu.addEventListener('touchstart', (e) => e.stopPropagation());
+
+        // Configuración de Idioma e inicio de la Animación de entrada
+        function setLanguage(lang) {
+            currentLang = lang;
+            const data = translations[lang];
+            
+            closeLangMenu();
+
+            // Actualizar textos de la barra de navegación
+            navWho.textContent = data.who;
+            navGoals.textContent = data.goals;
+            navLikes.textContent = data.likes;
+            navBrand.textContent = data.brand;
+            currentLangFlag.textContent = flags[lang];
+            currentLangText.textContent = langNames[lang];
+
+            // Actualizar contenido de la Sección de Identidad
+            identidadTitle.textContent = data.identidadTitle;
+            whoTitle.textContent = data.whoTitle;
+            whoDesc.textContent = data.whoDesc;
+            
+            fortalezasTitle.textContent = data.fortalezasTitle;
+            fortalezasDesc.textContent = data.fortalezasDesc;
+            renderList(fortalezasList, data.fortalezasList, "💚");
+
+            habilidadesTitle.textContent = data.habilidadesTitle;
+            habilidadesDesc.textContent = data.habilidadesDesc;
+            renderList(habilidadesList, data.habilidadesList, "⚡");
+
+            debilidadesTitle.textContent = data.debilidadesTitle;
+            debilidadesDesc.textContent = data.debilidadesDesc;
+            renderList(debilidadesList, data.debilidadesList, "💪");
+
+            // Actualizar contenido de la Sección de Metas
+            metasTitle.textContent = data.metasTitle;
+            tableHeaderTerm.textContent = data.tableHeaderTerm;
+            tableHeaderGoals.textContent = data.tableHeaderGoals;
+            cortoTitle.textContent = data.cortoTitle;
+            cortoDesc.textContent = data.cortoDesc;
+            largoTitle.textContent = data.largoTitle;
+            largoDesc.textContent = data.largoDesc;
+
+            renderMetasList(cortoList, data.cortoList, "🌱");
+            renderMetasList(largoList, data.largoList, "⭐");
+
+            // Actualizar contenido de la Sección de Estudios
+            estudiosSectionTitle.textContent = data.estudiosSectionTitle;
+            discoverHint.textContent = data.discoverHint;
+            backBtn.textContent = data.backBtn;
+            btnBackToTitle.textContent = data.btnBackToTitle;
+            abogadaText.textContent = data.abogadaText;
+            internacionalistaText.textContent = data.internacionalistaText;
+
+            // Actualizar contenido de la Sección de Graduarme
+            graduarmeTitle.textContent = data.graduarmeTitle;
+            graduarmeHint.textContent = data.graduarmeHint;
+            idiomasTitle.textContent = data.idiomasTitle;
+            cursosTitle.textContent = data.cursosTitle;
+            viajarTitle.textContent = data.viajarTitle;
+            viajarDesc.textContent = data.viajarDesc;
+
+            renderGraduarmeList(idiomasList, data.idiomasList, "🍋");
+            renderGraduarmeList(cursosList, data.cursosList, "🎓");
+
+            // Actualizar contenido de la Sección de Futuro Trabajo
+            futuroTrabajoTitle.textContent = data.futuroTrabajoTitle;
+            futuroTrabajoDesc.textContent = data.futuroTrabajoDesc;
+
+            // Actualizar contenido de la Nueva Sección de Gustos
+            gustosTitle.textContent = data.likesTitle;
+            likesInstruction.textContent = data.likesInstruction;
+            playerTitle.textContent = data.playerTitle;
+            nowPlaying.textContent = data.nowPlayingSilence;
+            musicListHeader.textContent = data.playlistHeader;
+
+            // Actualizar contenido de la Sección de Emprendimiento
+            brandSectionTitle.textContent = data.brandSectionTitle;
+            brandDesc.textContent = data.brandDesc;
+            serviceWeb.textContent = data.serviceWeb;
+            serviceApps.textContent = data.serviceApps;
+            serviceBots.textContent = data.serviceBots;
+            serviceSchool.textContent = data.serviceSchool;
+            brandContactTitle.textContent = data.brandContactTitle;
+            brandContactSubtitle.textContent = data.brandContactSubtitle;
+
+            // Reiniciar y arrancar la animación de transición en la portada
+            startSequence(data.welcome, data.project);
+        }
+
+        // Renderizadores de listas estructuradas
+        function renderList(container, array, bulletIcon) {
+            container.innerHTML = '';
+            array.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-2 bg-white/10 px-3 py-2 rounded-xl border border-white/10 text-white/95 shadow-sm';
+                li.innerHTML = `<span>${bulletIcon}</span> <span>${item}</span>`;
+                container.appendChild(li);
+            });
+        }
+
+        // Renderizadores de metas estructuradas
+        function renderMetasList(container, array, bulletIcon) {
+            container.innerHTML = '';
+            array.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-3 bg-white/40 hover:bg-white/60 transition-colors duration-250 px-4 py-3 rounded-2xl border border-white/50 text-slate-900 shadow-sm font-semibold text-sm sm:text-base';
+                li.innerHTML = `<span class="bg-emerald-100 p-1 rounded-lg text-xs flex items-center justify-center">${bulletIcon}</span> <span>${item}</span>`;
+                container.appendChild(li);
+            });
+        }
+
+        // Genera los puntos matemáticos para una estrella simétrica de N puntas
+        function generateStarburstPoints(peaks, innerRadius, outerRadius) {
+            const totalPoints = peaks * 2;
+            let points = [];
+            for (let i = 0; i < totalPoints; i++) {
+                const angle = (i * Math.PI) / peaks;
+                const r = i % 2 === 0 ? outerRadius : innerRadius;
+                // Centrado en 50,50
+                const x = 50 + r * Math.cos(angle - Math.PI / 2);
+                const y = 50 + r * Math.sin(angle - Math.PI / 2);
+                points.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+            }
+            return points.join(' ');
+        }
+
+        // Construir dinámicamente las estrellas del diseño retro
+        function setupStars() {
+            const redPolygon = document.getElementById('star-red-polygon');
+            const greenPolygon = document.getElementById('star-green-polygon');
+            
+            // Estrella de 14 puntas para imitar el Canva original
+            const starPoints = generateStarburstPoints(14, 20, 50);
+            
+            if (redPolygon) redPolygon.setAttribute('points', starPoints);
+            if (greenPolygon) greenPolygon.setAttribute('points', starPoints);
+        }
+
+        function renderGraduarmeList(container, array, bulletIcon) {
+            container.innerHTML = '';
+            array.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-2 bg-white/20 px-3 py-2 rounded-xl border border-white/25 text-white font-semibold text-sm shadow-sm';
+                li.innerHTML = `<span>${bulletIcon}</span> <span>${item}</span>`;
+                container.appendChild(li);
+            });
+        }
+
+        // Animación de gravedad física de letras
+        function startSequence(welcomeString, projectString) {
+            welcomeContainer.innerHTML = '';
+            projectContainer.classList.remove('active');
+            projectText.textContent = projectString;
+
+            const chars = Array.from(welcomeString);
+            chars.forEach((char) => {
+                const span = document.createElement('span');
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                span.className = 'letter';
+                
+                const randomRot = (Math.random() * 60 - 30) + 'deg';
+                span.style.setProperty('--rot', randomRot);
+                
+                welcomeContainer.appendChild(span);
+            });
+
+            setTimeout(() => {
+                const letters = welcomeContainer.querySelectorAll('.letter');
+                letters.forEach((letter, index) => {
+                    setTimeout(() => {
+                        letter.classList.add('fall');
+                    }, index * 80);
+                });
+
+                const totalFallTime = (letters.length * 80) + 700;
+                setTimeout(() => {
+                    projectContainer.classList.add('active');
+                }, totalFallTime);
+
+            }, 1200);
+        }
+
+        // --- SISTEMA INTERACTIVO DE NAVEGACIÓN Y CARRERAS ---
+        function revealChoices() {
+            document.getElementById('estudios-trigger').classList.add('hidden');
+            const choices = document.getElementById('estudios-choices');
+            choices.classList.remove('hidden');
+            choices.classList.add('flex');
+        }
+
+        // Regresar al selector
+        function resetToTitle() {
+            const choices = document.getElementById('estudios-choices');
+            choices.classList.remove('flex');
+            choices.classList.add('hidden');
+            document.getElementById('estudios-trigger').classList.remove('hidden');
+        }
+
+        function selectCareer(career) {
+            const choices = document.getElementById('estudios-choices');
+            const detail = document.getElementById('estudios-detail');
+            const abogada = document.getElementById('detail-abogada');
+            const internacionalista = document.getElementById('detail-internacionalista');
+            const earthLayer = document.getElementById('earth-emojis-layer');
+            const section = document.getElementById('estudios-section');
+
+            choices.classList.remove('flex');
+            choices.classList.add('hidden');
+            detail.classList.remove('hidden');
+            detail.classList.add('flex');
+
+            if (career === 'abogada') {
+                abogada.classList.remove('hidden');
+                abogada.classList.add('flex');
+                internacionalista.classList.add('hidden');
+                section.style.backgroundColor = '#000000';
+                earthLayer.style.opacity = '0';
+            } else {
+                internacionalista.classList.remove('hidden');
+                internacionalista.classList.add('flex');
+                abogada.classList.remove('flex');
+                abogada.classList.add('hidden');
+                section.style.backgroundColor = '#020617';
+                earthLayer.style.opacity = '1';
+            }
+        }
+
+        function goBackToChoices() {
+            const choices = document.getElementById('estudios-choices');
+            const detail = document.getElementById('estudios-detail');
+            const abogada = document.getElementById('detail-abogada');
+            const internacionalista = document.getElementById('detail-internacionalista');
+            const earthLayer = document.getElementById('earth-emojis-layer');
+            const section = document.getElementById('estudios-section');
+
+            detail.classList.add('hidden');
+            abogada.classList.add('hidden');
+            internacionalista.classList.add('hidden');
+            choices.classList.remove('hidden');
+            choices.classList.add('flex');
+            section.style.backgroundColor = '#0f172a';
+            earthLayer.style.opacity = '0';
+        }
+
+        // Configuración de planetas en movimiento de fondo para internacionalista
+        function setupEarthEmojis() {
+            const container = document.getElementById('earth-emojis-layer');
+            const earthTypes = ['🌎', '🌍', '🌏'];
+            const animationClasses = ['animate-float-slow', 'animate-float-slower', 'animate-float-fast'];
+            
+            for (let i = 0; i < 32; i++) {
+                const div = document.createElement('div');
+                const randomEarth = earthTypes[Math.floor(Math.random() * earthTypes.length)];
+                const randomAnim = animationClasses[Math.floor(Math.random() * animationClasses.length)];
+                const randomDelay = (Math.random() * 5) + 's';
+                const randomScale = (Math.random() * 0.4 + 0.6);
+
+                div.className = `text-4xl sm:text-5xl md:text-6xl text-center opacity-25 select-none pointer-events-none ${randomAnim}`;
+                div.style.animationDelay = randomDelay;
+                div.style.transform = `scale(${randomScale})`;
+                div.textContent = randomEarth;
+
+                container.appendChild(div);
+            }
+        }
+
+        // --- SISTEMA INTERACTIVO DE TARJETAS Y LLUVIA DE LIMONES ---
+        function toggleCard(cardId) {
+            const card = document.getElementById(cardId);
+            const content = card.querySelector('.expanded-content');
+            
+            if (content.classList.contains('hidden')) {
+                // Cerrar las otras primero para efecto fluido
+                document.querySelectorAll('.wood-glass-card').forEach(c => {
+                    c.classList.remove('expanded');
+                    c.querySelector('.expanded-content').classList.add('hidden');
+                });
+                
+                content.classList.remove('hidden');
+                card.classList.add('expanded');
+            } else {
+                content.classList.add('hidden');
+                card.classList.remove('expanded');
+            }
+        }
+
+        // Función para exprimir un limón cayendo y revelar una meta aleatoria
+        function squeezeLemon(event, lemonEl) {
+            event.stopPropagation();
+            
+            const rect = lemonEl.getBoundingClientRect();
+            const sectionRect = document.getElementById('graduarme-section').getBoundingClientRect();
+            
+            // Crear salpicadura táctil
+            const splash = document.createElement('div');
+            splash.className = 'splash-effect text-4xl';
+            splash.style.left = (rect.left - sectionRect.left) + 'px';
+            splash.style.top = (rect.top - sectionRect.top) + 'px';
+            splash.textContent = '💦';
+            document.getElementById('graduarme-section').appendChild(splash);
+            
+            setTimeout(() => { splash.remove(); }, 500);
+            lemonEl.remove();
+
+            // Abrir una tarjeta al azar con destaque
+            const cards = ['card-idiomas', 'card-cursos', 'card-viajar'];
+            const randomCardId = cards[Math.floor(Math.random() * cards.length)];
+            toggleCard(randomCardId);
+        }
+
+        function startLemonRain() {
+            const container = document.getElementById('lemons-container');
+            
+            setInterval(() => {
+                if (container.childElementCount > 10) return;
+
+                const lemon = document.createElement('div');
+                lemon.className = 'lemon-falling text-3xl sm:text-4xl';
+                lemon.textContent = '🍋';
+                
+                const randomX = Math.random() * 90;
+                lemon.style.left = `${randomX}%`;
+                
+                const duration = (Math.random() * 4 + 5) + 's';
+                const randomScale = Math.random() * 0.4 + 0.8;
+                
+                lemon.style.setProperty('--fall-duration', duration);
+                lemon.style.transform = `scale(${randomScale})`;
+                
+                lemon.addEventListener('click', (e) => squeezeLemon(e, lemon));
+                lemon.addEventListener('touchstart', (e) => squeezeLemon(e, lemon));
+
+                container.appendChild(lemon);
+
+                setTimeout(() => {
+                    if (lemon.parentElement) {
+                        lemon.remove();
+                    }
+                }, parseFloat(duration) * 1000);
+
+            }, 2500);
+        }
+
+        // --- DIAPOSITIVAS DE TRABAJO FUTURO ---
+        let currentFutureSlideIndex = 0;
+        function cycleFutureSlides() {
+            const slides = document.querySelectorAll('.future-slide');
+            if (slides.length === 0) return;
+
+            slides[currentFutureSlideIndex].classList.remove('opacity-100');
+            slides[currentFutureSlideIndex].classList.add('opacity-0');
+
+            currentFutureSlideIndex = (currentFutureSlideIndex + 1) % slides.length;
+
+            slides[currentFutureSlideIndex].classList.remove('opacity-0');
+            slides[currentFutureSlideIndex].classList.add('opacity-100');
+        }
+
+        setInterval(cycleFutureSlides, 4500);
+
+        // --- SISTEMA INTERACTIVO DE AUDIO PARA ARTISTAS (HOVER & TAP TO PLAY) ---
+        let currentAudio = null;
+        let eqInterval = null;
+
+        function startEqualizer() {
+            if (eqInterval) clearInterval(eqInterval);
+            eqInterval = setInterval(() => {
+                for (let i = 1; i <= 6; i++) {
+                    const bar = document.getElementById(`eq-bar-${i}`);
+                    if (bar) {
+                        const randomHeight = Math.floor(Math.random() * 32) + 8; // Altura aleatoria de 8px a 40px
+                        bar.style.height = `${randomHeight}px`;
+                    }
+                }
+            }, 100);
+        }
+
+        function stopEqualizer() {
+            if (eqInterval) clearInterval(eqInterval);
+            for (let i = 1; i <= 6; i++) {
+                const bar = document.getElementById(`eq-bar-${i}`);
+                if (bar) bar.style.height = '8px'; // Resetea a barra baja de descanso
+            }
+        }
+
+        function playArtistMusic(artistName, audioSrc) {
+            // Detener el audio que se esté reproduciendo previamente
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            // Crear y configurar el nuevo elemento de audio
+            currentAudio = new Audio(audioSrc);
+            currentAudio.volume = 0.5; // Volumen moderado y sano
+            currentAudio.loop = true;
+
+            // Intentar reproducir el audio manejando restricciones de Autoplay del navegador
+            currentAudio.play().then(() => {
+                // Si la reproducción tiene éxito, activa las animaciones
+                const vinyl = document.querySelector('.spinning-vinyl');
+                if (!vinyl) {
+                    const vinylImg = document.getElementById('vinyl-center').parentElement;
+                    vinylImg.classList.add('spinning-vinyl');
+                }
+                document.getElementById('now-playing').textContent = artistName;
+                document.getElementById('player-title').textContent = currentLang === 'es' ? 'Reproduciendo...' : (currentLang === 'en' ? 'Playing...' : 'In riproduzione...');
+                startEqualizer();
+            }).catch(error => {
+                console.log("Autoplay bloqueado o archivo no encontrado. Haz click para interactuar primero:", error);
+            });
+        }
+
+        // Detener la reproducción de música
+        function stopArtistMusic() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            const vinylImg = document.getElementById('vinyl-center').parentElement;
+            vinylImg.classList.remove('spinning-vinyl');
+            document.getElementById('now-playing').textContent = translations[currentLang].nowPlayingSilence;
+            document.getElementById('player-title').textContent = translations[currentLang].playerTitle;
+            stopEqualizer();
+        }
+
+        // Configurar los eventos de ratón y táctiles para cada artista de la lista
+        function setupAudioEvents() {
+            const items = document.querySelectorAll('.artist-item');
+            items.forEach(item => {
+                const artist = item.getAttribute('data-artist');
+                const src = item.getAttribute('data-music');
+
+                // Soporte para PC (Paso del ratón / Hover)
+                item.addEventListener('mouseenter', () => playArtistMusic(artist, src));
+                item.addEventListener('mouseleave', () => stopArtistMusic());
+
+                // Soporte para Móviles y Tablets (Toque de pantalla)
+                item.addEventListener('touchstart', (e) => {
+                    e.preventDefault(); // Evita doble disparo de clics
+                    if (currentAudio && !currentAudio.paused && document.getElementById('now-playing').textContent === artist) {
+                        stopArtistMusic();
+                    } else {
+                        playArtistMusic(artist, src);
+                    }
+                });
+            });
+        }
+
+        // Inicialización al cargar la ventana
+        window.onload = () => {
+            setupStars();
+            setLanguage('es');
+            setupEarthEmojis();
+            startLemonRain();
+            setupAudioEvents();
+        };
+    </script>
+</body>
+</html>
