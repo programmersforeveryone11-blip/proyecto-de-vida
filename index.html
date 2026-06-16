@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luizabeth Contreras - Blog de Lulu</title>
-    <!-- Tailwind CSS cargado localmente desde tu archivo -->
-    <script src="tailwind.min.js"></script>
+    <!-- Enlace original directo a Tailwind CSS de forma estable -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -421,132 +421,144 @@
         // Datos para las ventanas emergentes de las carpetas
         const modalData = {
             projects: {
-                title: "Mis Proyectos de Desarrollo y Hobbies 💻🎮",
+                title: "Mis Hobbies y Pasatiempos 🎨🎮",
                 content: `
                     <div class="space-y-4">
-                        <!-- Navegación por pestañas de Proyectos -->
+                        <!-- Navegación por pestañas de Hobbies -->
                         <div class="flex border-b-2 border-black overflow-x-auto gap-1">
-                            <button onclick="switchTab('tab-git')" id="btn-tab-juegos" class="bg-[#D6FF38] border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] z-10 cursor-pointer">📁 Código GitHub</button>
-                            <button onclick="switchTab('tab-web')" id="btn-tab-musica" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🌐 Webs</button>
-                            <button onclick="switchTab('tab-capturas')" id="btn-tab-libre" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🖼️ Capturas</button>
-                            <button onclick="switchTab('tab-hobbies-retro')" id="btn-tab-hobbies-retro" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🎮 Hobbies (Antiguos)</button>
+                            <button onclick="switchTab('tab-juegos')" id="btn-tab-juegos" class="bg-[#D6FF38] border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] z-10 cursor-pointer">🎮 Juegos</button>
+                            <button onclick="switchTab('tab-musica')" id="btn-tab-musica" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🎵 Música</button>
+                            <button onclick="switchTab('tab-libre')" id="btn-tab-libre" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🌱 Tiempo Libre</button>
                         </div>
 
-                        <!-- PESTAÑA 1: CÓDIGO GITHUB -->
+                        <!-- PESTAÑA: JUEGOS (Restaurada exactamente como antes) -->
                         <div id="tab-juegos" class="space-y-3 pt-2">
-                            <p class="text-[11px] font-bold text-blue-700 bg-blue-50 p-2 rounded border border-blue-200">🛠️ Mis repositorios y códigos abiertos en GitHub:</p>
+                            <p class="text-[11px] font-bold text-purple-700 bg-purple-50 p-2 rounded border border-purple-200">✨ ¡Haz clic en cualquiera para abrir su foto en pantalla! 🎮</p>
                             
                             <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
-                                <!-- Repo 1 -->
-                                <a href="https://github.com/programmersforeveryone11-blip/lulu-es-programadora-de-webs" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
-                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 lulu-es-programadora-de-webs</span>
-                                    <p class="text-[11px] text-gray-600 mt-0.5">Estructura inicial, plantillas y proyectos de aprendizaje frontend.</p>
-                                </a>
-                                <!-- Repo 2 -->
-                                <a href="https://github.com/programmersforeveryone11-blip/red" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
-                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 red</span>
-                                    <p class="text-[11px] text-gray-600 mt-0.5">Código base para plataformas de conexión social y comunicación.</p>
-                                </a>
-                                <!-- Repo 3 -->
-                                <a href="https://github.com/programmersforeveryone11-blip/saas" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
-                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 saas</span>
-                                    <p class="text-[11px] text-gray-600 mt-0.5">Proyectos de software as a service, automatizaciones y herramientas web útiles.</p>
-                                </a>
-                                <!-- Repo 4 -->
-                                <a href="https://github.com/programmersforeveryone11-blip/estudiantes-de-media-tecnica-calasanz" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
-                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 estudiantes-de-media-tecnica-calasanz</span>
-                                    <p class="text-[11px] text-gray-600 mt-0.5">Proyecto educativo para la comunidad escolar del Calasanz.</p>
-                                </a>
+                                <!-- Juego 1 -->
+                                <div onclick="viewGame('Marvel Rivals', 'marvel.jpg', 'siempre juego con la bruja escarlata 🧙‍♀️✨')" 
+                                     class="border-2 border-black p-2.5 rounded bg-red-50/50 flex items-center justify-between cursor-pointer hover:bg-red-100/50 hover:translate-x-1 transition-all duration-150">
+                                    <div class="flex flex-col gap-0.5">
+                                        <span class="text-xs font-bold text-red-600">1. Marvel Rivals ⚔️</span>
+                                        <p class="text-[11px] text-gray-700">"siempre juego con la bruja escarlata"</p>
+                                    </div>
+                                    <span class="text-xs bg-white border border-black px-2 py-1 rounded font-bold shadow-[1px_1px_0px_#000]">Ver 🖼️</span>
+                                </div>
+                                <!-- Juego 2 -->
+                                <div onclick="viewGame('Fallout', 'Fallout Season 2 Set Leak Confirms The Legion Will Be In The Show.jpg', 'no soy nada buena con mis morados ☢️😭')" 
+                                     class="border-2 border-black p-2.5 rounded bg-yellow-50/50 flex items-center justify-between cursor-pointer hover:bg-yellow-100/50 hover:translate-x-1 transition-all duration-150">
+                                    <div class="flex flex-col gap-0.5">
+                                        <span class="text-xs font-bold text-yellow-600">2. Fallout ☢️</span>
+                                        <p class="text-[11px] text-gray-700">"no soy nada buena con mis morados"</p>
+                                    </div>
+                                    <span class="text-xs bg-white border border-black px-2 py-1 rounded font-bold shadow-[1px_1px_0px_#000]">Ver 🖼️</span>
+                                </div>
+                                <!-- Juego 3 -->
+                                <div onclick="viewGame('Fortnite', 'Fornite logo 2024.jpg', 'soy malisa coño 😭🎮')" 
+                                     class="border-2 border-black p-2.5 rounded bg-indigo-50/50 flex items-center justify-between cursor-pointer hover:bg-indigo-100/50 hover:translate-x-1 transition-all duration-150">
+                                    <div class="flex flex-col gap-0.5">
+                                        <span class="text-xs font-bold text-indigo-600">3. Fortnite 🔫</span>
+                                        <p class="text-[11px] text-gray-700">"soy malisa coño"</p>
+                                    </div>
+                                    <span class="text-xs bg-white border border-black px-2 py-1 rounded font-bold shadow-[1px_1px_0px_#000]">Ver 🖼️</span>
+                                </div>
+                                <!-- Juego 4 -->
+                                <div onclick="viewGame('Call of Duty', 'Cover art or packaging material from Call of Duty_ WWII (2017) - MobyGames.jpg', 'siempre lloraré la muerte de soap 😭💔🎖️')" 
+                                     class="border-2 border-black p-2.5 rounded bg-zinc-50 flex items-center justify-between cursor-pointer hover:bg-zinc-200 hover:translate-x-1 transition-all duration-150">
+                                    <div class="flex flex-col gap-0.5">
+                                        <span class="text-xs font-bold text-zinc-800">4. Call of Duty 🎖️</span>
+                                        <p class="text-[11px] text-gray-700">"siempre lloraré la muerte de soap"</p>
+                                    </div>
+                                    <span class="text-xs bg-white border border-black px-2 py-1 rounded font-bold shadow-[1px_1px_0px_#000]">Ver 🖼️</span>
+                                </div>
+                                <!-- Juego 5 -->
+                                <div onclick="viewGame('Roblox', 'Roblox.jpg', 'pierdo mucho tiempo en dress to impress.. 👗💅🎀')" 
+                                     class="border-2 border-black p-2.5 rounded bg-cyan-50/50 flex items-center justify-between cursor-pointer hover:bg-cyan-100/50 hover:translate-x-1 transition-all duration-150">
+                                    <div class="flex flex-col gap-0.5">
+                                        <span class="text-xs font-bold text-cyan-600">5. Roblox 🧸</span>
+                                        <p class="text-[11px] text-gray-700">"pierdo mucho tiempo en dress to impress.."</p>
+                                    </div>
+                                    <span class="text-xs bg-white border border-black px-2 py-1 rounded font-bold shadow-[1px_1px_0px_#000]">Ver 🖼️</span>
+                                </div>
+
+                                <!-- Clásicos -->
+                                <div class="bg-gray-100 p-2.5 rounded border border-gray-400">
+                                    <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wide">Y más clásicos que me encantan:</h4>
+                                    <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                        Fracy, Until Dawn, Resident Evil, Detroit, The Walking Dead, The Last of Us, Fears to Fathom, 
+                                        <strong>Outlast</strong> <span class="bg-black text-[#D6FF38] px-1 text-[10px] rounded">(me recontra cagué pero me encanta este juego 👻)</span>, Dispatch y muchos más.
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- PESTAÑA 2: WEBS EN LÍNEA -->
+                        <!-- PESTAÑA: MÚSICA (Restaurada exactamente como antes) -->
                         <div id="tab-musica" class="hidden space-y-3 pt-2">
-                            <p class="text-[11px] font-bold text-emerald-700 bg-emerald-50 p-2 rounded border border-emerald-200">🌐 Sitios web publicados en producción (Vercel):</p>
+                            <p class="text-[11px] font-bold text-emerald-700 bg-emerald-50 p-2 rounded border border-emerald-200">💿 ¡Haz clic en tu canción favorita para abrir nuestro reproductor retro! 🎶</p>
                             <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
-                                <!-- Web 1 -->
-                                <a href="https://ghc-psi.vercel.app/" target="_blank" class="flex justify-between items-center border-2 border-black p-3 rounded bg-emerald-50/50 hover:bg-emerald-100/50 hover:translate-x-1 transition-all cursor-pointer">
+                                <!-- Canción 1 -->
+                                <div onclick="playMusic('The White Stripes', 'The White Stripes - Seven Nation Army Official Music Video.mp3', 'Seven Nation Army', '💿')" 
+                                     class="flex items-center justify-between border-2 border-black p-3 rounded bg-red-100/30 cursor-pointer hover:bg-red-100/60 hover:translate-x-1 transition-all">
                                     <div class="flex items-center gap-3">
-                                        <span class="text-xl">🚀</span>
+                                        <span class="text-2xl">🔴</span>
                                         <div>
-                                            <h4 class="font-bold text-xs text-black">GHC Psi App</h4>
-                                            <p class="text-[10px] text-gray-500">ghc-psi.vercel.app</p>
+                                            <h4 class="font-bold text-xs text-black">The White Stripes</h4>
+                                            <p class="text-[10px] text-gray-500">Seven Nation Army Official Music Video.mp3</p>
                                         </div>
                                     </div>
-                                    <span class="text-[10px] bg-white border border-black py-0.5 px-2 rounded font-bold shadow-[1px_1px_0px_#000]">Abrir Sitio ↗</span>
-                                </a>
-                                <!-- Web 2 -->
-                                <a href="https://clientes-chi.vercel.app/" target="_blank" class="flex justify-between items-center border-2 border-black p-3 rounded bg-emerald-50/50 hover:bg-emerald-100/50 hover:translate-x-1 transition-all cursor-pointer">
+                                    <span class="text-xs bg-white border border-black px-2.5 py-1 rounded font-bold shadow-[1px_1px_0px_#000] flex items-center gap-1">Reproducir 🎶</span>
+                                </div>
+                                <!-- Canción 2 -->
+                                <div onclick="playMusic('Billy Joel', 'Billy Joel -  Video.mp3', 'Piano Man Classics', '🎹')" 
+                                     class="flex items-center justify-between border-2 border-black p-3 rounded bg-blue-100/30 cursor-pointer hover:bg-blue-100/60 hover:translate-x-1 transition-all">
                                     <div class="flex items-center gap-3">
-                                        <span class="text-xl">👥</span>
+                                        <span class="text-2xl">🎹</span>
                                         <div>
-                                            <h4 class="font-bold text-xs text-black">Clientes Gestión App</h4>
-                                            <p class="text-[10px] text-gray-500">clientes-chi.vercel.app</p>
+                                            <h4 class="font-bold text-xs text-black">Billy Joel</h4>
+                                            <p class="text-[10px] text-gray-500">Billy Joel -  Video.mp3</p>
                                         </div>
                                     </div>
-                                    <span class="text-[10px] bg-white border border-black py-0.5 px-2 rounded font-bold shadow-[1px_1px_0px_#000]">Abrir Sitio ↗</span>
-                                </a>
-                                <!-- Web 3 -->
-                                <a href="https://portafolio-lulu.vercel.app/" target="_blank" class="flex justify-between items-center border-2 border-black p-3 rounded bg-[#D6FF38]/20 hover:bg-[#D6FF38]/40 hover:translate-x-1 transition-all cursor-pointer">
+                                    <span class="text-xs bg-white border border-black px-2.5 py-1 rounded font-bold shadow-[1px_1px_0px_#000] flex items-center gap-1">Reproducir 🎶</span>
+                                </div>
+                                <!-- Canción 3 -->
+                                <div onclick="playMusic('THE CURE', 'Boys Dont Cry.mp3', 'Boys Don\\'t Cry', '🕷️')" 
+                                     class="flex items-center justify-between border-2 border-black p-3 rounded bg-purple-100/30 cursor-pointer hover:bg-purple-100/60 hover:translate-x-1 transition-all">
                                     <div class="flex items-center gap-3">
-                                        <span class="text-xl">🌸</span>
+                                        <span class="text-2xl">🕷️</span>
                                         <div>
-                                            <h4 class="font-bold text-xs text-black">Lulu Portafolio Oficial</h4>
-                                            <p class="text-[10px] text-gray-500">portafolio-lulu.vercel.app</p>
+                                            <h4 class="font-bold text-xs text-black">THE CURE</h4>
+                                            <p class="text-[10px] text-gray-500">Boys Dont Cry.mp3</p>
                                         </div>
                                     </div>
-                                    <span class="text-[10px] bg-white border border-black py-0.5 px-2 rounded font-bold shadow-[1px_1px_0px_#000]">Abrir Sitio ↗</span>
-                                </a>
+                                    <span class="text-xs bg-white border border-black px-2.5 py-1 rounded font-bold shadow-[1px_1px_0px_#000] flex items-center gap-1">Reproducir 🎶</span>
+                                </div>
+
+                                <div class="bg-gray-50 p-3 rounded border border-black/15 text-xs text-gray-600 mt-2">
+                                    <h4 class="font-bold text-gray-700">Otros artistas increíbles en mi lista:</h4>
+                                    <p class="mt-1">Doja Cat, Florence + the Machine, Michael Jackson, Sabrina Carpenter, Los Panchos, Luis Miguel, José José, The Beatles.</p>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- PESTAÑA 3: CAPTURAS DE PROYECTOS -->
+                        <!-- PESTAÑA: TIEMPO LIBRE -->
                         <div id="tab-libre" class="hidden space-y-3 pt-2">
-                            <p class="text-[11px] font-bold text-purple-700 bg-purple-50 p-2 rounded border border-purple-200">🖼️ Capturas de pantalla e imágenes de mis proyectos:</p>
-                            <div class="space-y-3 max-h-72 overflow-y-auto pr-1">
-                                <!-- Captura 1 -->
-                                <div onclick="viewGame('TikTok Mod', 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80', 'Captura de Pantalla 2026-04-04 a la(s) 5.44.11 p. m. - Algunos cambios a tiktok 📱')" 
-                                     class="border-2 border-black p-2.5 rounded bg-purple-50/50 flex items-center justify-between cursor-pointer hover:bg-purple-100/50 transition-all">
-                                    <div>
-                                        <h5 class="text-xs font-bold text-purple-950">TikTok Modificación Visual</h5>
-                                        <p class="text-[10px] text-gray-500 mt-0.5">Captura de Pantalla 2026-04-04 a la(s) 5.44.11 p. m.</p>
-                                        <p class="text-[11px] text-purple-900 mt-1">\"algunos cambios a tiktok\"</p>
-                                    </div>
-                                    <span class="text-[10px] bg-white border border-black py-1 px-2 rounded font-bold shadow-[1.5px_1.5px_0px_#000]">Ver Imagen 🖼️</span>
-                                </div>
-                                
-                                <!-- Captura 2 -->
-                                <div onclick="viewGame('Empresa de Desarrollo Web', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80', 'Logo Para Marca de Ropa Moderno Blanco y Negro 8.39.44 a. m..png - Mi mayor proyecto mi empresa de desarrollo web 🖤🤍💻')" 
-                                     class="border-2 border-black p-2.5 rounded bg-purple-50/50 flex items-center justify-between cursor-pointer hover:bg-purple-100/50 transition-all">
-                                    <div>
-                                        <h5 class="text-xs font-bold text-purple-950">Empresa de Desarrollo Web</h5>
-                                        <p class="text-[10px] text-gray-500 mt-0.5">Logo Para Marca de Ropa Moderno Blanco y Negro 8.39.44 a. m..png</p>
-                                        <p class="text-[11px] text-purple-900 mt-1">\"mi mayor proyecto mi empresa de desarroolo web\"</p>
-                                    </div>
-                                    <span class="text-[10px] bg-white border border-black py-1 px-2 rounded font-bold shadow-[1.5px_1.5px_0px_#000]">Ver Imagen 🖼️</span>
-                                </div>
+                            <div class="border-2 border-black p-4 rounded bg-[#FAF9F5] shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+                                <span class="text-3xl">🧩</span>
+                                <h4 class="font-bold text-sm mt-2 text-black uppercase">¿Qué hago en mis ratos libres?</h4>
+                                <p class="text-xs md:text-sm text-gray-800 mt-2 leading-relaxed">
+                                    "en mi tiempo libre hago muchas cosas raras jugar, leer, escuchar musica, o si simplemente ando aburrida limpio mi cuarto y muevo todo o hago manualidades"
+                                </p>
                             </div>
                         </div>
 
-                        <!-- PESTAÑA 4: HOBBIES RETRO -->
-                        <div id="tab-hobbies-retro" class="hidden space-y-3 pt-2">
-                            <p class="text-[11px] font-bold text-orange-700 bg-orange-50 p-2 rounded border border-orange-200">🎮 Mis hobbies favoritos antiguos (Juegos y Música):</p>
-                            <div class="grid grid-cols-2 gap-2 max-h-72 overflow-y-auto pr-1">
-                                <div onclick="viewGame('Marvel Rivals', 'marvel.jpg', 'siempre juego con la bruja escarlata 🧙‍♀️✨')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Marvel Rivals ⚔️</div>
-                                <div onclick="viewGame('Fallout', 'Fallout Season 2 Set Leak Confirms The Legion Will Be In The Show.jpg', 'no soy nada buena con mis morados ☢️😭')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Fallout ☢️</div>
-                                <div onclick="viewGame('Fortnite', 'Fornite logo 2024.jpg', 'soy malisa coño 😭🎮')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Fortnite 🔫</div>
-                                <div onclick="viewGame('Roblox', 'Roblox.jpg', 'pierdo mucho tiempo en dress to impress.. 👗💅🎀')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Roblox 🧸</div>
-                                <div onclick="playMusic('The White Stripes', 'Seven Nation Army Official Music Video.mp3', 'Seven Nation Army', '💿')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50 text-center col-span-2">Reproducir Seven Nation Army 🎶</div>
-                            </div>
-                        </div>
-
-                        <!-- BOTÓN EXTRA -->
+                        <!-- BOTÓN EXTRA: ENVIAR A SUBFOLDER DE PROYECTO DE VIDA -->
                         <div class="border-2 border-black p-4 rounded-lg bg-yellow-50 text-center flex flex-col items-center gap-2.5">
                             <span class="text-2xl">🌱📖</span>
                             <h4 class="font-bold text-xs uppercase text-gray-700 tracking-wide">Planeación a Largo Plazo</h4>
                             <p class="text-[11px] text-gray-600 max-w-sm mx-auto">Explora mi hoja de ruta, metas de crecimiento personal y el camino detallado de mi proyecto de vida.</p>
                             
-                            <a href="proyecto1.html" class="retro-btn bg-[#D6FF38] text-black font-bold py-2 px-6 rounded text-xs inline-flex items-center gap-2 cursor-pointer shadow-[3px_3px_0px_#000]">
+                            <a href="proyecto%20de%20vida/index.html" class="retro-btn bg-[#D6FF38] text-black font-bold py-2 px-6 rounded text-xs inline-flex items-center gap-2 cursor-pointer shadow-[3px_3px_0px_#000]">
                                 <span>MI PROYECTO DE VIDA 📖</span>
                                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
@@ -599,7 +611,7 @@
                                 </label>
 
                                 <!-- Opción 4: Ingeniería Agrónoma -->
-                                <label onclick="selectQuizOption('agronoma')" id="option-card-agronoma" class="flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                <label onclick="selectQuizOption('agronoma')" id="option-card-agronoma" class="flex items-start gap-3 p-3 border-2 border-emerald-600 rounded bg-emerald-50 cursor-pointer transition-all select-none">
                                     <input type="checkbox" id="chk-agronoma" class="mt-1 accent-black cursor-pointer" onclick="event.stopPropagation()">
                                     <div class="flex-grow">
                                         <span class="font-bold text-xs md:text-sm block">4) Ingeniería Agrónoma</span>
@@ -881,13 +893,13 @@
 
         // Función para cambiar de pestañas dentro de Proyectos / Hobbies
         function switchTab(tabId) {
-            const subContainers = ['tab-juegos', 'tab-musica', 'tab-libre', 'tab-hobbies-retro'];
+            const subContainers = ['tab-juegos', 'tab-musica', 'tab-libre'];
             subContainers.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.classList.add('hidden');
             });
 
-            const tabs = ['btn-tab-juegos', 'btn-tab-musica', 'btn-tab-libre', 'btn-tab-hobbies-retro'];
+            const tabs = ['btn-tab-juegos', 'btn-tab-musica', 'btn-tab-libre'];
             tabs.forEach(id => {
                 const btn = document.getElementById(id);
                 if (btn) {
@@ -895,24 +907,11 @@
                 }
             });
 
-            let targetTab = 'tab-juegos'; 
-            let activeBtnId = 'btn-tab-juegos';
-
-            if (tabId === 'tab-web') {
-                targetTab = 'tab-musica'; 
-                activeBtnId = 'btn-tab-musica';
-            } else if (tabId === 'tab-capturas') {
-                targetTab = 'tab-libre'; 
-                activeBtnId = 'btn-tab-libre';
-            } else if (tabId === 'tab-hobbies-retro') {
-                targetTab = 'tab-hobbies-retro';
-                activeBtnId = 'btn-tab-hobbies-retro';
-            }
-
-            const activeEl = document.getElementById(targetTab);
+            const activeEl = document.getElementById(tabId);
             if (activeEl) activeEl.classList.remove('hidden');
 
-            const activeBtn = document.getElementById(activeBtnId);
+            const btnId = `btn-${tabId}`;
+            const activeBtn = document.getElementById(btnId);
             if (activeBtn) activeBtn.className = "bg-[#D6FF38] border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] z-10 cursor-pointer";
         }
 
@@ -1258,37 +1257,6 @@
                 </div>
             `;
         }
-
-        // Función para simular el envío del formulario de contacto
-        function handleSubmit(event) {
-            event.preventDefault();
-            const body = document.getElementById('modal-body');
-            if (body) {
-                body.innerHTML = `
-                    <div class="text-center py-8 space-y-4">
-                        <span class="text-5xl">💌</span>
-                        <h3 class="font-brand-bold text-xl text-black">¡Mensaje Recibido!</h3>
-                        <p class="text-gray-600">¡Muchas gracias por escribirme, Luizabeth! Te responderé muy pronto para que podamos seguir charlando sobre libros y juegos.</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Exportar de forma explícita las funciones al alcance global para evitar ReferenceErrors en cualquier iframe o scope de renderizado
-        window.openAboutMeModal = openAboutMeModal;
-        window.closeAboutMeModal = closeAboutMeModal;
-        window.openModal = openModal;
-        window.closeModal = closeModal;
-        window.switchTab = switchTab;
-        window.viewGame = viewGame;
-        window.playMusic = playMusic;
-        window.togglePlaySimulation = togglePlaySimulation;
-        window.pausePlaySimulation = pausePlaySimulation;
-        window.openMediaViewer = openMediaViewer;
-        window.closeMediaViewer = closeMediaViewer;
-        window.verifyLuluFutureQuiz = verifyLuluFutureQuiz;
-        window.selectQuizOption = selectQuizOption;
-        window.handleSubmit = handleSubmit;
 
         // --- ENLAZAR CLICS DE MANERA ROBUSTA AL CARGAR EL DOM ---
         document.addEventListener('DOMContentLoaded', () => {
