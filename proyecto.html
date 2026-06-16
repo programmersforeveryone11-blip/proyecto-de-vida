@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luizabeth Contreras - Blog de Lulu</title>
+    <!-- Tailwind CSS cargado localmente desde tu archivo -->
+    <script src="tailwind.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-brand-bold {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+        }
+        .font-brand-script {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 800;
+            /* Texto perfilado con borde negro y relleno verde lima retro */
+            color: #D6FF38;
+            -webkit-text-stroke: 1.5px #000000;
+            text-shadow: 2px 2px 0px #000000;
+        }
+        .font-about-script {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 800;
+            color: #D6FF38;
+            -webkit-text-stroke: 1.2px #000000;
+            text-shadow: 1.5px 1.5px 0px #000000;
+        }
+        /* Estilos de ventanas vintage de sistema operativo */
+        .retro-window {
+            border: 2px solid #000000;
+            box-shadow: 4px 4px 0px rgba(0,0,0,1);
+            background-color: #FAF9F5;
+        }
+        .retro-btn {
+            border: 2px solid #000000;
+            box-shadow: 3px 3px 0px rgba(0,0,0,1);
+            transition: all 0.15s ease-in-out;
+        }
+        .retro-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px rgba(0,0,0,1);
+        }
+        .retro-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0px 0px 0px rgba(0,0,0,1);
+        }
+        /* Crop handles estilo editor para la foto central */
+        .crop-handle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            z-index: 20;
+        }
+        /* Animación de rotación del vinilo */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin 6s linear infinite;
+        }
+        /* Estilos de periódico vintage */
+        .newspaper-theme {
+            background-color: #F5F1E6;
+            color: #1A1A1A;
+            border: 1px solid #D2C9B9;
+        }
+        /* Custom scrollbar para mantener la estética */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F5;
+            border-left: 2px solid #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D6FF38;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col justify-between selection:bg-[#D6FF38] selection:text-black">
+
+    <!-- BARRA SUPERIOR ESTILO RETRO -->
+    <header class="bg-[#D6FF38] border-b-2 border-black py-3 px-4 md:px-8 flex justify-between items-center z-10">
+        <span class="font-brand-bold text-xs md:text-sm tracking-wider uppercase text-black">
+            BLOG DE LULU 🌸
+        </span>
+        <span class="font-brand-bold text-xs md:text-sm tracking-wider text-black">
+            2026
+        </span>
+    </header>
+
+    <!-- ÁREA PRINCIPAL / CANVAS CON LA IMAGEN 1 DE FONDO -->
+    <main class="relative flex-grow w-full flex flex-col justify-center items-center py-8 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" 
+          style="background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), url('Where do you want to go_ far, far away_...🌱.jpg');">
+        
+        <!-- Contenedor del Canvas Principal (Relative para que las carpetas absolutas se alineen bien) -->
+        <div class="relative w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 py-4 min-h-[480px]">
+            
+            <!-- VENTANA IZQUIERDA (Contiene Imagen 2: Untitled.png) -->
+            <div class="retro-window w-64 md:w-72 rounded-lg overflow-hidden shrink-0 transform -rotate-2 hover:rotate-0 transition-transform duration-300 z-10">
+                <div class="bg-[#FAF9F5] border-b-2 border-black px-3 py-2 flex items-center justify-between">
+                    <div class="flex gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-red-400 border border-black"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-400 border border-black"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-400 border border-black"></span>
+                    </div>
+                    <span class="text-xs font-bold text-gray-600">lulu_casual.png</span>
+                </div>
+                <div class="p-2 bg-white">
+                    <img src="Untitled.png" alt="Luizabeth Pose" class="w-full h-64 md:h-72 object-cover rounded border border-black" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80';">
+                </div>
+            </div>
+
+            <!-- CARPETAS AZULES FLOTANTES IZQUIERDA (Mi Futuro, Mis Proyectos) -->
+            <div class="absolute left-2 bottom-2 lg:left-6 lg:bottom-6 hidden lg:flex flex-col gap-5 items-center z-30">
+                <!-- Carpeta: Mi Futuro -->
+                <button onclick="openModal('about_me_text')" class="group flex flex-col items-center gap-1.5 focus:outline-none cursor-pointer">
+                    <div class="w-14 h-11 bg-[#7CB7F8] border-2 border-black rounded-tr-lg rounded-b-md relative shadow-[3px_3px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-2px] transition-transform">
+                        <div class="absolute -top-1.5 left-1 w-6 h-2.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                    </div>
+                    <span class="text-xs font-bold bg-[#FAF9F5] px-2 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black">Mi Futuro</span>
+                </button>
+
+                <!-- Carpeta: Mis Proyectos -->
+                <button onclick="openModal('projects')" class="group flex flex-col items-center gap-1.5 focus:outline-none cursor-pointer">
+                    <div class="w-14 h-11 bg-[#7CB7F8] border-2 border-black rounded-tr-lg rounded-b-md relative shadow-[3px_3px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-2px] transition-transform">
+                        <div class="absolute -top-1.5 left-1 w-6 h-2.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                    </div>
+                    <span class="text-xs font-bold bg-[#FAF9F5] px-2 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black">Mis Proyectos</span>
+                </button>
+            </div>
+
+            <!-- SECCIÓN CENTRAL DE TEXTO / NOMBRE DEL CREADOR (z-20) -->
+            <div class="flex flex-col items-center justify-center text-center my-6 lg:my-0 px-2 max-w-lg z-20">
+                <div class="relative">
+                    <!-- Luizabeth en Negrita Imponente -->
+                    <h1 class="font-brand-bold text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-black text-center leading-none drop-shadow-sm select-none">
+                        Luizabeth
+                    </h1>
+                    <!-- Contreras en Cursiva Verde-Lima con borde -->
+                    <h2 class="font-brand-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wide leading-none -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-10 ml-12 select-none">
+                        Contreras
+                    </h2>
+                </div>
+
+                <!-- Botón de Categoría / Acción -->
+                <div class="relative mt-8 md:mt-12 group cursor-pointer animate-bounce" onclick="openAboutMeModal()">
+                    <div class="bg-white text-black font-bold text-sm md:text-base py-3 px-8 rounded-full border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center gap-2 group-hover:bg-[#D6FF38] transition-colors duration-200">
+                        <span class="uppercase">CONOCE MÁS DE MÍ Y MIS HOBBIES ✨</span>
+                    </div>
+                    <!-- Cursor de Mouse Retro -->
+                    <div class="absolute -bottom-6 -right-3 w-8 h-8 pointer-events-none transform group-hover:translate-x-1 group-hover:translate-y-1 transition-transform">
+                        <svg class="w-full h-full drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 3V19.5L9.5 14L14.5 22.5L17.5 20.5L12.5 12L19 11.5L4 3Z" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARPETAS AZULES FLOTANTES DERECHA (Mi Familia, Redes, Contacto) -->
+            <div class="absolute right-2 top-2 lg:right-6 lg:top-6 hidden lg:flex flex-col gap-5 items-center z-30">
+                <!-- Carpeta: Mi Familia -->
+                <button onclick="openModal('family')" class="group flex flex-col items-center gap-1.5 focus:outline-none cursor-pointer">
+                    <div class="w-14 h-11 bg-[#7CB7F8] border-2 border-black rounded-tr-lg rounded-b-md relative shadow-[3px_3px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-2px] transition-transform">
+                        <div class="absolute -top-1.5 left-1 w-6 h-2.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                    </div>
+                    <span class="text-xs font-bold bg-[#FAF9F5] px-2 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black">Mi Familia</span>
+                </button>
+
+                <!-- Carpeta: Redes -->
+                <button onclick="openModal('socials')" class="group flex flex-col items-center gap-1.5 focus:outline-none cursor-pointer">
+                    <div class="w-14 h-11 bg-[#7CB7F8] border-2 border-black rounded-tr-lg rounded-b-md relative shadow-[3px_3px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-2px] transition-transform">
+                        <div class="absolute -top-1.5 left-1 w-6 h-2.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                    </div>
+                    <span class="text-xs font-bold bg-[#FAF9F5] px-2 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black">Redes</span>
+                </button>
+
+                <!-- Carpeta: Contacto -->
+                <button onclick="openModal('contact')" class="group flex flex-col items-center gap-1.5 focus:outline-none cursor-pointer">
+                    <div class="w-14 h-11 bg-[#7CB7F8] border-2 border-black rounded-tr-lg rounded-b-md relative shadow-[3px_3px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-2px] transition-transform">
+                        <div class="absolute -top-1.5 left-1 w-6 h-2.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                    </div>
+                    <span class="text-xs font-bold bg-[#FAF9F5] px-2 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black">Contacto</span>
+                </button>
+            </div>
+
+            <!-- VENTANA DERECHA (Contiene Imagen 3: WhatsApp Image 2026-06-14 at 5.37.10 PM.jpeg) -->
+            <div class="retro-window w-64 md:w-72 rounded-lg overflow-hidden shrink-0 transform rotate-3 hover:rotate-0 transition-transform duration-300 z-10">
+                <div class="bg-[#FAF9F5] border-b-2 border-black px-3 py-2 flex items-center justify-between">
+                    <div class="flex gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-red-400 border border-black"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-400 border border-black"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-400 border border-black"></span>
+                    </div>
+                    <span class="text-xs font-bold text-gray-600">lulu_close.jpeg</span>
+                </div>
+                <div class="p-2 bg-white">
+                    <img src="WhatsApp Image 2026-06-14 at 5.37.10 PM.jpeg" alt="Luizabeth Rostro" class="w-full h-64 md:h-72 object-cover rounded border border-black" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80';">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CARPETAS RESPONSIVAS EN PANTALLAS MÓVILES (Cinco carpetas organizadas) -->
+        <div class="flex flex-wrap lg:hidden gap-4 mt-6 justify-center z-30 max-w-md">
+            <button onclick="openModal('about_me_text')" class="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer">
+                <div class="w-10 h-8 bg-[#7CB7F8] border-2 border-black rounded-tr-md rounded-b-sm relative shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    <div class="absolute -top-1 left-1 w-4 h-1.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                </div>
+                <span class="text-[10px] font-bold bg-[#FAF9F5] px-1.5 py-0.5 rounded border border-black">Mi Futuro</span>
+            </button>
+            <button onclick="openModal('projects')" class="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer">
+                <div class="w-10 h-8 bg-[#7CB7F8] border-2 border-black rounded-tr-md rounded-b-sm relative shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    <div class="absolute -top-1 left-1 w-4 h-1.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                </div>
+                <span class="text-[10px] font-bold bg-[#FAF9F5] px-1.5 py-0.5 rounded border border-black">Proyectos</span>
+            </button>
+            <button onclick="openModal('family')" class="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer">
+                <div class="w-10 h-8 bg-[#7CB7F8] border-2 border-black rounded-tr-md rounded-b-sm relative shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    <div class="absolute -top-1 left-1 w-4 h-1.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                </div>
+                <span class="text-[10px] font-bold bg-[#FAF9F5] px-1.5 py-0.5 rounded border border-black">Mi Familia</span>
+            </button>
+            <button onclick="openModal('socials')" class="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer">
+                <div class="w-10 h-8 bg-[#7CB7F8] border-2 border-black rounded-tr-md rounded-b-sm relative shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    <div class="absolute -top-1 left-1 w-4 h-1.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                </div>
+                <span class="text-[10px] font-bold bg-[#FAF9F5] px-1.5 py-0.5 rounded border border-black">Redes</span>
+            </button>
+            <button onclick="openModal('contact')" class="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer">
+                <div class="w-10 h-8 bg-[#7CB7F8] border-2 border-black rounded-tr-md rounded-b-sm relative shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    <div class="absolute -top-1 left-1 w-4 h-1.5 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-sm"></div>
+                </div>
+                <span class="text-[10px] font-bold bg-[#FAF9F5] px-1.5 py-0.5 rounded border border-black">Contacto</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA CON ESTADÍSTICAS -->
+    <footer class="bg-[#D6FF38] border-t-2 border-black py-6 px-4 md:px-8 z-10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <!-- Canales y Enlaces oficiales -->
+            <div class="flex flex-col text-center md:text-left gap-1">
+                <span class="font-brand-bold text-sm md:text-base tracking-wider text-black">@luizabethsophia</span>
+                <span class="font-brand-bold text-xs md:text-sm tracking-wider text-black opacity-80">portafolio-lulu.vercel.app</span>
+            </div>
+
+            <!-- Datos estadísticos -->
+            <div class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-12">
+                <div class="flex flex-col items-center md:items-start">
+                    <span class="font-brand-bold text-2xl md:text-3xl text-black leading-none">15 Años</span>
+                    <span class="text-[10px] md:text-xs font-bold uppercase text-black tracking-wider">Edad</span>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <span class="font-brand-bold text-2xl md:text-3xl text-black leading-none">100%</span>
+                    <span class="text-[10px] md:text-xs font-bold uppercase text-black tracking-wider">Creatividad</span>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <span class="font-brand-bold text-2xl md:text-3xl text-black leading-none">1 Libro</span>
+                    <span class="text-[10px] md:text-xs font-bold uppercase text-black tracking-wider">En proceso 📖</span>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- MODAL GRANDE DE "ABOUT ME" -->
+    <div id="about-me-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="retro-window w-full max-w-4xl rounded-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-200" id="about-me-container">
+            <!-- Barra superior del sistema operativo -->
+            <div class="bg-[#FAF9F5] border-b-2 border-black px-4 py-3 flex items-center justify-between">
+                <span class="font-brand-bold text-xs md:text-sm tracking-wider uppercase text-black flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-red-400 border border-black inline-block"></span>
+                    SISTEMA DE LULU - ABOUT_ME.EXE
+                </span>
+                <button id="about-me-close-btn" onclick="closeAboutMeModal()" class="w-7 h-7 flex items-center justify-center font-bold text-sm bg-red-400 border-2 border-black rounded-md shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-red-500 transition-colors cursor-pointer">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Cuerpo de la ventana "About Me" (Fondo crema #FAF9F5) -->
+            <div class="bg-[#FAF9F5] p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 justify-between relative">
+                
+                <!-- PARTE IZQUIERDA: Texto gigante "About Me" -->
+                <div class="flex flex-col items-start select-none shrink-0">
+                    <h2 class="font-brand-bold text-7xl md:text-8xl text-black leading-none">
+                        About
+                    </h2>
+                    <h3 class="font-about-script text-6xl md:text-7xl leading-none -mt-3 md:-mt-5 ml-8">
+                        Me
+                    </h3>
+                </div>
+
+                <!-- PARTE CENTRAL: Imagen con marco de edición (crop handles) -->
+                <div class="relative p-4 shrink-0">
+                    <!-- Cuadraditos de redimensionamiento del editor -->
+                    <div class="crop-handle -top-1 -left-1"></div>
+                    <div class="crop-handle -top-1 left-1/2 -translate-x-1/2"></div>
+                    <div class="crop-handle -top-1 -right-1"></div>
+                    <div class="crop-handle top-1/2 -translate-y-1/2 -left-1"></div>
+                    <div class="crop-handle top-1/2 -translate-y-1/2 -right-1"></div>
+                    <div class="crop-handle -bottom-1 -left-1"></div>
+                    <div class="crop-handle -bottom-1 left-1/2 -translate-x-1/2"></div>
+                    <div class="crop-handle -bottom-1 -right-1"></div>
+
+                    <!-- Marco de la foto -->
+                    <div class="border-2 border-black bg-white p-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] w-56 h-64 md:w-64 md:h-72 overflow-hidden relative">
+                        <img src="Untitled.png" alt="Luizabeth" class="w-full h-full object-cover rounded border border-gray-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80';">
+                        <!-- Pequeño sticker retro sobre la foto -->
+                        <span class="absolute bottom-3 right-3 bg-[#D6FF38] text-black font-bold text-[9px] border border-black px-1.5 py-0.5 uppercase tracking-wide rounded shadow-[1px_1px_0px_#000]">
+                            Lulu 15★
+                        </span>
+                    </div>
+                </div>
+
+                <!-- PARTE DERECHA: Título de nombre, mensaje personal y carpetas de acceso directo -->
+                <div class="flex flex-col space-y-4 max-w-sm w-full md:text-left text-center">
+                    <div>
+                        <h4 class="font-brand-bold text-3xl md:text-4xl text-black leading-none flex items-center md:justify-start justify-center gap-3">
+                            I'm Luizabeth
+                        </h4>
+                        <div class="w-16 h-1.5 bg-[#D6FF38] border border-black mt-2 md:mx-auto mx-auto"></div>
+                    </div>
+
+                    <!-- Mensaje personal -->
+                    <p class="text-sm md:text-base text-gray-800 leading-relaxed bg-white/70 p-4 rounded-lg border border-black/10 shadow-sm">
+                        ¡¡¡hola!!! soy luizabeth contreras adolecente de 15 años con grandes deseos y asperaciones a un futuro perfecto y deseando lo mejor para mi y mi familia ✨
+                    </p>
+
+                    <!-- Accesos directos de Carpetas de "Mi Futuro" y "Mis Proyectos" -->
+                    <div class="flex items-center justify-center md:justify-start gap-4 pt-2">
+                        <!-- Carpeta de Mi Futuro -->
+                        <button onclick="openModal('about_me_text')" class="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer">
+                            <div class="w-11 h-9 bg-[#7CB7F8] border-2 border-black rounded-tr-lg rounded-b-md relative shadow-[2px_2px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-2px] transition-transform">
+                                <div class="absolute -top-1 left-1 w-4 h-2 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-xs"></div>
+                            </div>
+                            <span class="text-[10px] font-bold bg-white px-1.5 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000]">Mi Futuro 🚀</span>
+                        </button>
+
+                        <!-- Carpeta de Mis Proyectos -->
+                        <button onclick="openModal('projects')" class="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer">
+                            <div class="w-11 h-9 bg-[#7CB7F8] border-2 border-black rounded-tr-lg rounded-b-md relative shadow-[2px_2px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-2px] transition-transform">
+                                <div class="absolute -top-1 left-1 w-4 h-2 bg-[#7CB7F8] border-t-2 border-x-2 border-black rounded-t-xs"></div>
+                            </div>
+                            <span class="text-[10px] font-bold bg-white px-1.5 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000]">Proyectos 🎮</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- VENTANA EMERGENTE INTERACTIVA GENERAL -->
+    <div id="retro-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-[60] p-4">
+        <div class="retro-window w-full max-w-xl rounded-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-200" id="modal-container">
+            <!-- Barra Superior del Modal -->
+            <div class="bg-[#FAF9F5] border-b-2 border-black px-4 py-3 flex items-center justify-between">
+                <h3 class="font-bold text-black flex items-center gap-2" id="modal-title">
+                    <span class="inline-block w-3.5 h-3.5 bg-yellow-300 border border-black rounded-sm"></span>
+                    Título
+                </h3>
+                <button id="retro-modal-close-btn" onclick="closeModal()" class="w-6 h-6 flex items-center justify-center font-bold text-sm bg-red-400 border border-black rounded-md shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] hover:bg-red-500 transition-colors cursor-pointer">
+                    ✕
+                </button>
+            </div>
+            
+            <!-- Contenido dinámico -->
+            <div class="p-5 bg-white text-black text-sm md:text-base leading-relaxed max-h-[70vh] overflow-y-auto" id="modal-body">
+                <!-- Se rellena con javascript -->
+            </div>
+            
+            <!-- Pie de Ventana -->
+            <div class="bg-[#FAF9F5] border-t-2 border-black px-6 py-3 flex justify-end">
+                <button onclick="closeModal()" class="retro-btn bg-[#D6FF38] text-black font-bold px-4 py-1.5 rounded text-xs md:text-sm cursor-pointer">
+                    Cerrar ventana
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXTRA: MINI MODAL FLOTANTE DE VISUALIZACIÓN MULTIMEDIA (FOTOS Y REPRODUCTOR MP3) -->
+    <div id="media-viewer-modal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-xs flex items-center justify-center z-[70] p-4">
+        <div class="retro-window w-full max-w-md rounded-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-200" id="media-viewer-container">
+            <!-- Barra de Control del Visualizador -->
+            <div class="bg-[#D6FF38] border-b-2 border-black px-4 py-2.5 flex items-center justify-between">
+                <span class="font-brand-bold text-[11px] uppercase tracking-wider text-black flex items-center gap-1.5" id="media-header-title">
+                    💿 REPRODUCTOR MULTIMEDIA
+                </span>
+                <button id="media-viewer-close-btn" onclick="closeMediaViewer()" class="w-6 h-6 flex items-center justify-center font-bold text-xs bg-red-400 border border-black rounded shadow-[1px_1px_0px_#000] hover:bg-red-500 transition-colors cursor-pointer">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Cuerpo del Visualizador / Reproductor -->
+            <div class="p-4 bg-white" id="media-viewer-body">
+                <!-- Se inyecta dinámicamente con JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS DE INTERACTIVIDAD -->
+    <script>
+        // Datos para las ventanas emergentes de las carpetas
+        const modalData = {
+            projects: {
+                title: "Mis Proyectos de Desarrollo y Hobbies 💻🎮",
+                content: `
+                    <div class="space-y-4">
+                        <!-- Navegación por pestañas de Proyectos -->
+                        <div class="flex border-b-2 border-black overflow-x-auto gap-1">
+                            <button onclick="switchTab('tab-git')" id="btn-tab-juegos" class="bg-[#D6FF38] border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] z-10 cursor-pointer">📁 Código GitHub</button>
+                            <button onclick="switchTab('tab-web')" id="btn-tab-musica" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🌐 Webs</button>
+                            <button onclick="switchTab('tab-capturas')" id="btn-tab-libre" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🖼️ Capturas</button>
+                            <button onclick="switchTab('tab-hobbies-retro')" id="btn-tab-hobbies-retro" class="bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer">🎮 Hobbies (Antiguos)</button>
+                        </div>
+
+                        <!-- PESTAÑA 1: CÓDIGO GITHUB -->
+                        <div id="tab-juegos" class="space-y-3 pt-2">
+                            <p class="text-[11px] font-bold text-blue-700 bg-blue-50 p-2 rounded border border-blue-200">🛠️ Mis repositorios y códigos abiertos en GitHub:</p>
+                            
+                            <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
+                                <!-- Repo 1 -->
+                                <a href="https://github.com/programmersforeveryone11-blip/lulu-es-programadora-de-webs" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
+                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 lulu-es-programadora-de-webs</span>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">Estructura inicial, plantillas y proyectos de aprendizaje frontend.</p>
+                                </a>
+                                <!-- Repo 2 -->
+                                <a href="https://github.com/programmersforeveryone11-blip/red" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
+                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 red</span>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">Código base para plataformas de conexión social y comunicación.</p>
+                                </a>
+                                <!-- Repo 3 -->
+                                <a href="https://github.com/programmersforeveryone11-blip/saas" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
+                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 saas</span>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">Proyectos de software as a service, automatizaciones y herramientas web útiles.</p>
+                                </a>
+                                <!-- Repo 4 -->
+                                <a href="https://github.com/programmersforeveryone11-blip/estudiantes-de-media-tecnica-calasanz" target="_blank" class="block border-2 border-black p-2.5 rounded bg-slate-50 cursor-pointer hover:bg-blue-50 hover:translate-x-1 transition-all duration-150">
+                                    <span class="text-xs font-bold text-blue-600 flex items-center gap-1.5">📦 estudiantes-de-media-tecnica-calasanz</span>
+                                    <p class="text-[11px] text-gray-600 mt-0.5">Proyecto educativo para la comunidad escolar del Calasanz.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- PESTAÑA 2: WEBS EN LÍNEA -->
+                        <div id="tab-musica" class="hidden space-y-3 pt-2">
+                            <p class="text-[11px] font-bold text-emerald-700 bg-emerald-50 p-2 rounded border border-emerald-200">🌐 Sitios web publicados en producción (Vercel):</p>
+                            <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
+                                <!-- Web 1 -->
+                                <a href="https://ghc-psi.vercel.app/" target="_blank" class="flex justify-between items-center border-2 border-black p-3 rounded bg-emerald-50/50 hover:bg-emerald-100/50 hover:translate-x-1 transition-all cursor-pointer">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-xl">🚀</span>
+                                        <div>
+                                            <h4 class="font-bold text-xs text-black">GHC Psi App</h4>
+                                            <p class="text-[10px] text-gray-500">ghc-psi.vercel.app</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] bg-white border border-black py-0.5 px-2 rounded font-bold shadow-[1px_1px_0px_#000]">Abrir Sitio ↗</span>
+                                </a>
+                                <!-- Web 2 -->
+                                <a href="https://clientes-chi.vercel.app/" target="_blank" class="flex justify-between items-center border-2 border-black p-3 rounded bg-emerald-50/50 hover:bg-emerald-100/50 hover:translate-x-1 transition-all cursor-pointer">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-xl">👥</span>
+                                        <div>
+                                            <h4 class="font-bold text-xs text-black">Clientes Gestión App</h4>
+                                            <p class="text-[10px] text-gray-500">clientes-chi.vercel.app</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] bg-white border border-black py-0.5 px-2 rounded font-bold shadow-[1px_1px_0px_#000]">Abrir Sitio ↗</span>
+                                </a>
+                                <!-- Web 3 -->
+                                <a href="https://portafolio-lulu.vercel.app/" target="_blank" class="flex justify-between items-center border-2 border-black p-3 rounded bg-[#D6FF38]/20 hover:bg-[#D6FF38]/40 hover:translate-x-1 transition-all cursor-pointer">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-xl">🌸</span>
+                                        <div>
+                                            <h4 class="font-bold text-xs text-black">Lulu Portafolio Oficial</h4>
+                                            <p class="text-[10px] text-gray-500">portafolio-lulu.vercel.app</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] bg-white border border-black py-0.5 px-2 rounded font-bold shadow-[1px_1px_0px_#000]">Abrir Sitio ↗</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- PESTAÑA 3: CAPTURAS DE PROYECTOS -->
+                        <div id="tab-libre" class="hidden space-y-3 pt-2">
+                            <p class="text-[11px] font-bold text-purple-700 bg-purple-50 p-2 rounded border border-purple-200">🖼️ Capturas de pantalla e imágenes de mis proyectos:</p>
+                            <div class="space-y-3 max-h-72 overflow-y-auto pr-1">
+                                <!-- Captura 1 -->
+                                <div onclick="viewGame('TikTok Mod', 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80', 'Captura de Pantalla 2026-04-04 a la(s) 5.44.11 p. m. - Algunos cambios a tiktok 📱')" 
+                                     class="border-2 border-black p-2.5 rounded bg-purple-50/50 flex items-center justify-between cursor-pointer hover:bg-purple-100/50 transition-all">
+                                    <div>
+                                        <h5 class="text-xs font-bold text-purple-950">TikTok Modificación Visual</h5>
+                                        <p class="text-[10px] text-gray-500 mt-0.5">Captura de Pantalla 2026-04-04 a la(s) 5.44.11 p. m.</p>
+                                        <p class="text-[11px] text-purple-900 mt-1">\"algunos cambios a tiktok\"</p>
+                                    </div>
+                                    <span class="text-[10px] bg-white border border-black py-1 px-2 rounded font-bold shadow-[1.5px_1.5px_0px_#000]">Ver Imagen 🖼️</span>
+                                </div>
+                                
+                                <!-- Captura 2 -->
+                                <div onclick="viewGame('Empresa de Desarrollo Web', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80', 'Logo Para Marca de Ropa Moderno Blanco y Negro 8.39.44 a. m..png - Mi mayor proyecto mi empresa de desarrollo web 🖤🤍💻')" 
+                                     class="border-2 border-black p-2.5 rounded bg-purple-50/50 flex items-center justify-between cursor-pointer hover:bg-purple-100/50 transition-all">
+                                    <div>
+                                        <h5 class="text-xs font-bold text-purple-950">Empresa de Desarrollo Web</h5>
+                                        <p class="text-[10px] text-gray-500 mt-0.5">Logo Para Marca de Ropa Moderno Blanco y Negro 8.39.44 a. m..png</p>
+                                        <p class="text-[11px] text-purple-900 mt-1">\"mi mayor proyecto mi empresa de desarroolo web\"</p>
+                                    </div>
+                                    <span class="text-[10px] bg-white border border-black py-1 px-2 rounded font-bold shadow-[1.5px_1.5px_0px_#000]">Ver Imagen 🖼️</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PESTAÑA 4: HOBBIES RETRO -->
+                        <div id="tab-hobbies-retro" class="hidden space-y-3 pt-2">
+                            <p class="text-[11px] font-bold text-orange-700 bg-orange-50 p-2 rounded border border-orange-200">🎮 Mis hobbies favoritos antiguos (Juegos y Música):</p>
+                            <div class="grid grid-cols-2 gap-2 max-h-72 overflow-y-auto pr-1">
+                                <div onclick="viewGame('Marvel Rivals', 'marvel.jpg', 'siempre juego con la bruja escarlata 🧙‍♀️✨')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Marvel Rivals ⚔️</div>
+                                <div onclick="viewGame('Fallout', 'Fallout Season 2 Set Leak Confirms The Legion Will Be In The Show.jpg', 'no soy nada buena con mis morados ☢️😭')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Fallout ☢️</div>
+                                <div onclick="viewGame('Fortnite', 'Fornite logo 2024.jpg', 'soy malisa coño 😭🎮')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Fortnite 🔫</div>
+                                <div onclick="viewGame('Roblox', 'Roblox.jpg', 'pierdo mucho tiempo en dress to impress.. 👗💅🎀')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50">Roblox 🧸</div>
+                                <div onclick="playMusic('The White Stripes', 'Seven Nation Army Official Music Video.mp3', 'Seven Nation Army', '💿')" class="border border-black p-2 rounded bg-slate-50 text-xs font-bold cursor-pointer hover:bg-orange-50 text-center col-span-2">Reproducir Seven Nation Army 🎶</div>
+                            </div>
+                        </div>
+
+                        <!-- BOTÓN EXTRA -->
+                        <div class="border-2 border-black p-4 rounded-lg bg-yellow-50 text-center flex flex-col items-center gap-2.5">
+                            <span class="text-2xl">🌱📖</span>
+                            <h4 class="font-bold text-xs uppercase text-gray-700 tracking-wide">Planeación a Largo Plazo</h4>
+                            <p class="text-[11px] text-gray-600 max-w-sm mx-auto">Explora mi hoja de ruta, metas de crecimiento personal y el camino detallado de mi proyecto de vida.</p>
+                            
+                            <a href="proyecto%20de%20vida/index.html" class="retro-btn bg-[#D6FF38] text-black font-bold py-2 px-6 rounded text-xs inline-flex items-center gap-2 cursor-pointer shadow-[3px_3px_0px_#000]">
+                                <span>MI PROYECTO DE VIDA 📖</span>
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                `
+            },
+            about_me_text: {
+                title: "Mi Futuro - Mis Grandes Aspiraciones 🚀📖",
+                content: `
+                    <div class="space-y-4" id="future-container">
+                        <!-- INTRODUCCIÓN AL INTERACTIVO -->
+                        <div class="border-2 border-black p-4 rounded-lg bg-[#FAF9F5] shadow-[3px_3px_0px_#000]">
+                            <h4 class="font-brand-bold text-sm text-black uppercase tracking-wider mb-2">🎓 El Quiz del Futuro de Lulu</h4>
+                            <p class="text-xs md:text-sm text-gray-700 leading-relaxed">
+                                ¡Bienvenido! Descubramos si realmente conoces las metas y sueños de Luizabeth. Resuelve este cuestionario interactivo seleccionando las carreras que Lulu desea estudiar formalmente en la universidad. ¡Una vez pases la prueba, se revelará una edición impresa de periódico exclusiva!
+                            </p>
+                        </div>
+
+                        <!-- QUIZ CONTAINER -->
+                        <div class="border-2 border-black p-4 md:p-5 rounded-lg bg-white shadow-[4px_4px_0px_#000] space-y-4">
+                            <h3 class="font-bold text-xs md:text-sm text-purple-950 uppercase">Pregunta única: ¿Qué estudiará lulu formalmente en el futuro? (Selecciona las 2 correctas)</h3>
+                            
+                            <div class="space-y-2.5">
+                                <!-- Opción 1: Derecho -->
+                                <label onclick="selectQuizOption('derecho')" id="option-card-derecho" class="flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                    <input type="checkbox" id="chk-derecho" class="mt-1 accent-black cursor-pointer" onclick="event.stopPropagation()">
+                                    <div class="flex-grow">
+                                        <span class="font-bold text-xs md:text-sm block">1) Derecho</span>
+                                        <p id="feedback-derecho" class="text-[11px] text-gray-500 mt-1 hidden"></p>
+                                    </div>
+                                </label>
+
+                                <!-- Opción 2: Coleadora de toros -->
+                                <label onclick="selectQuizOption('coleo')" id="option-card-coleo" class="flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                    <input type="checkbox" id="chk-coleo" class="mt-1 accent-black cursor-pointer" onclick="event.stopPropagation()">
+                                    <div class="flex-grow">
+                                        <span class="font-bold text-xs md:text-sm block">2) Coleadora de Toros (Deporte de Coleo)</span>
+                                        <p id="feedback-coleo" class="text-[11px] text-gray-500 mt-1 hidden"></p>
+                                    </div>
+                                </label>
+
+                                <!-- Opción 3: Ingeniería de Software -->
+                                <label onclick="selectQuizOption('software')" id="option-card-software" class="flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                    <input type="checkbox" id="chk-software" class="mt-1 accent-black cursor-pointer" onclick="event.stopPropagation()">
+                                    <div class="flex-grow">
+                                        <span class="font-bold text-xs md:text-sm block">3) Ingeniería de Software</span>
+                                        <p id="feedback-software" class="text-[11px] text-gray-500 mt-1 hidden"></p>
+                                    </div>
+                                </label>
+
+                                <!-- Opción 4: Ingeniería Agrónoma -->
+                                <label onclick="selectQuizOption('agronoma')" id="option-card-agronoma" class="flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                    <input type="checkbox" id="chk-agronoma" class="mt-1 accent-black cursor-pointer" onclick="event.stopPropagation()">
+                                    <div class="flex-grow">
+                                        <span class="font-bold text-xs md:text-sm block">4) Ingeniería Agrónoma</span>
+                                        <p id="feedback-agronoma" class="text-[11px] text-gray-500 mt-1 hidden"></p>
+                                    </div>
+                                </label>
+
+                                <!-- Opción 5: Veterinaria -->
+                                <label onclick="selectQuizOption('veterinaria')" id="option-card-veterinaria" class="flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                    <input type="checkbox" id="chk-veterinaria" class="mt-1 accent-black cursor-pointer" onclick="event.stopPropagation()">
+                                    <div class="flex-grow">
+                                        <span class="font-bold text-xs md:text-sm block">5) Veterinaria</span>
+                                        <p id="feedback-veterinaria" class="text-[11px] text-gray-500 mt-1 hidden"></p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="pt-2 flex flex-col items-center gap-2">
+                                <button onclick="verifyLuluFutureQuiz()" class="w-full retro-btn bg-[#D6FF38] text-black font-bold py-2 px-4 rounded text-xs md:text-sm cursor-pointer text-center">
+                                    Verificar mi respuesta 🔍
+                                </button>
+                                <span id="quiz-error-msg" class="text-xs font-bold text-red-600 hidden">¡Ups! Aún no has seleccionado la combinación correcta de carreras. ¡Intenta de nuevo!</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            family: {
+                title: "Mi Familia 💖✨",
+                content: `
+                    <div class="space-y-5">
+                        <!-- Casita Estilo Retro en SVG -->
+                        <div class="flex justify-center py-2">
+                            <div class="retro-window p-4 bg-white rounded-lg flex items-center justify-center shadow-[3px_3px_0px_#000] w-24 h-24">
+                                <svg class="w-16 h-16 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje Principal de Familia -->
+                        <div class="border-2 border-black p-5 rounded-lg bg-pink-50 relative overflow-hidden shadow-[4px_4px_0px_#000]">
+                            <span class="absolute top-2 right-3 text-2xl">🏠💝</span>
+                            <h4 class="font-brand-bold text-lg text-pink-950 border-b border-pink-200 pb-1 mb-3">Mi Familia</h4>
+                            
+                            <p class="text-sm md:text-base text-pink-900 leading-relaxed font-sans mb-4 font-semibold">
+                                Mi familia es grande y muy unida, estamos conformados por:
+                            </p>
+
+                            <!-- Lista Detallada de Familiares -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans text-sm md:text-base max-h-60 overflow-y-auto pr-1">
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👵🍬</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Abuela: Carmen</p>
+                                        <p class="text-[10px] text-pink-800 leading-tight">la abuelita más dulce</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👴⭐</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Abuelo: Lucas</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👑💖</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Mi mamá: Yeli</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👔🧔</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Mi papá: Luis</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👩✨</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Tía: Yeni</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👨‍🔧⚙️</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Tío: Jeison</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👦⚽</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Mi hermano: Santi</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">👧🎨</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Mi hermana: Maria</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">🧸🎀</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Mi primita: Dana</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2.5 bg-white/70 p-2.5 rounded border border-pink-200 shadow-xs">
+                                    <span class="text-lg">🐣🍭</span>
+                                    <div>
+                                        <p class="font-bold text-pink-950 text-xs">Mi primita: Ariana</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <blockquote class="border-l-4 border-pink-400 pl-3 italic text-xs md:text-sm text-pink-950 mt-4 bg-white/50 p-2.5 rounded font-semibold text-center">
+                                "¡Mi familia es más grande e unida! 💖"
+                            </blockquote>
+                        </div>
+                    </div>
+                `
+            },
+            contact: {
+                title: "¡Escríbele a Lulu! ✉️",
+                content: `
+                    <div class="space-y-4">
+                        <p class="font-medium text-gray-700">¿Quieres mandarme un saludo, hablar de algún videojuego o darnos ideas sobre libros?</p>
+                        
+                        <!-- Acceso directo a tu WhatsApp -->
+                        <div class="border-2 border-black p-3 rounded-lg bg-emerald-50 flex items-center justify-between shadow-[2px_2px_0px_#000]">
+                            <div class="flex items-center gap-2.5">
+                                <span class="text-2xl">💬</span>
+                                <div>
+                                    <h5 class="text-xs font-bold text-emerald-950 uppercase tracking-wide">WhatsApp Directo</h5>
+                                    <p class="text-[11px] text-emerald-800 font-mono">04263425205</p>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/584263425205" target="_blank" class="retro-btn bg-[#D6FF38] text-black font-bold py-1 px-3 rounded text-[10px] uppercase shadow-[1.5px_1.5px_0px_#000]">
+                                Escríbeme 📲
+                            </a>
+                        </div>
+
+                        <div class="relative flex py-1 items-center">
+                            <div class="flex-grow border-t border-black/20"></div>
+                            <span class="flex-shrink mx-3 text-gray-400 text-xs uppercase tracking-widest font-mono">O envía un formulario</span>
+                            <div class="flex-grow border-t border-black/20"></div>
+                        </div>
+
+                        <form onsubmit="handleSubmit(event)" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold uppercase mb-1">Nombre / Nickname</label>
+                                <input type="text" placeholder="Ej. TuNombre" required class="w-full border-2 border-black p-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-[#D6FF38]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase mb-1">Correo Electrónico (Opcional)</label>
+                                <input type="email" placeholder="ejemplo@correo.com" class="w-full border-2 border-black p-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-[#D6FF38]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase mb-1">Mensaje para Lulu</label>
+                                <textarea rows="3" placeholder="¡Hola Lulu! Me encanta tu blog..." required class="w-full border-2 border-black p-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-[#D6FF38] resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full retro-btn bg-[#D6FF38] text-black font-bold py-2.5 rounded text-sm mt-1 cursor-pointer">
+                                Enviar Mensaje 📮
+                            </button>
+                        </form>
+                    </div>
+                `
+            },
+            socials: {
+                title: "Mis Redes Oficiales 🌐",
+                content: `
+                    <div class="space-y-4">
+                        <p class="font-medium text-gray-700">¡Conéctate conmigo en mis redes oficiales! 📱✨</p>
+                        <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
+                            <!-- Instagram -->
+                            <a href="https://www.instagram.com/luizabethsophia/" target="_blank" class="flex justify-between items-center p-3 border-2 border-black rounded bg-[#FAF9F5] hover:bg-[#D6FF38] transition-colors cursor-pointer">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>📸</span> Instagram
+                                </span>
+                                <span class="text-xs bg-white border border-black py-0.5 px-2 rounded-full font-bold">@luizabethsophia</span>
+                            </a>
+                            <!-- TikTok -->
+                            <a href="https://www.tiktok.com/@sophibarcos" target="_blank" class="flex justify-between items-center p-3 border-2 border-black rounded bg-[#FAF9F5] hover:bg-[#D6FF38] transition-colors cursor-pointer">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>🎵</span> TikTok
+                                </span>
+                                <span class="text-xs bg-white border border-black py-0.5 px-2 rounded-full font-bold">@fifi / @sophibarcos</span>
+                            </a>
+                            <!-- WhatsApp -->
+                            <a href="https://wa.me/584263425205" target="_blank" class="flex justify-between items-center p-3 border-2 border-black rounded bg-[#FAF9F5] hover:bg-[#D6FF38] transition-colors cursor-pointer">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>💬</span> WhatsApp
+                                </span>
+                                <span class="text-xs bg-white border border-black py-0.5 px-2 rounded-full font-bold">04263425205</span>
+                            </a>
+                            <!-- Pinterest -->
+                            <a href="https://www.pinterest.com/sophibarcos/" target="_blank" class="flex justify-between items-center p-3 border-2 border-black rounded bg-[#FAF9F5] hover:bg-[#D6FF38] transition-colors cursor-pointer">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>📌</span> Pinterest
+                                </span>
+                                <span class="text-xs bg-white border border-black py-0.5 px-2 rounded-full font-bold">@sophibarcos</span>
+                            </a>
+                            <!-- GitHub -->
+                            <a href="https://github.com/programmersforeveryone11-blip" target="_blank" class="flex justify-between items-center p-3 border-2 border-black rounded bg-[#FAF9F5] hover:bg-[#D6FF38] transition-colors cursor-pointer">
+                                <span class="font-bold flex items-center gap-2">
+                                    <span>💻</span> GitHub
+                                </span>
+                                <span class="text-xs bg-white border border-black py-0.5 px-2 rounded-full font-bold">programmersforeveryone11-blip</span>
+                            </a>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Funciones del Modal de "About Me" estilo de la Imagen
+        function openAboutMeModal() {
+            const modal = document.getElementById('about-me-modal');
+            const container = document.getElementById('about-me-container');
+
+            if (modal && container) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    container.classList.remove('scale-95', 'opacity-0');
+                    container.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            }
+        }
+
+        function closeAboutMeModal() {
+            const modal = document.getElementById('about-me-modal');
+            const container = document.getElementById('about-me-container');
+
+            if (container && modal) {
+                container.classList.remove('scale-100', 'opacity-100');
+                container.classList.add('scale-95', 'opacity-0');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+
+        // Funciones del Modal General de Carpetas
+        function openModal(key) {
+            const modal = document.getElementById('retro-modal');
+            const container = document.getElementById('modal-container');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            const data = modalData[key];
+            if (!data) return;
+
+            if (title && body && modal && container) {
+                title.innerHTML = `<span class="inline-block w-3.5 h-3.5 bg-yellow-300 border border-black rounded-sm"></span> ${data.title}`;
+                body.innerHTML = data.content;
+
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    container.classList.remove('scale-95', 'opacity-0');
+                    container.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('retro-modal');
+            const container = document.getElementById('modal-container');
+
+            if (container && modal) {
+                container.classList.remove('scale-100', 'opacity-100');
+                container.classList.add('scale-95', 'opacity-0');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+
+        // Función para cambiar de pestañas dentro de Proyectos / Hobbies
+        function switchTab(tabId) {
+            const subContainers = ['tab-juegos', 'tab-musica', 'tab-libre', 'tab-hobbies-retro'];
+            subContainers.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+
+            const tabs = ['btn-tab-juegos', 'btn-tab-musica', 'btn-tab-libre', 'btn-tab-hobbies-retro'];
+            tabs.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    btn.className = "bg-gray-100 border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] hover:bg-gray-50 cursor-pointer";
+                }
+            });
+
+            let targetTab = 'tab-juegos'; 
+            let activeBtnId = 'btn-tab-juegos';
+
+            if (tabId === 'tab-web') {
+                targetTab = 'tab-musica'; 
+                activeBtnId = 'btn-tab-musica';
+            } else if (tabId === 'tab-capturas') {
+                targetTab = 'tab-libre'; 
+                activeBtnId = 'btn-tab-libre';
+            } else if (tabId === 'tab-hobbies-retro') {
+                targetTab = 'tab-hobbies-retro';
+                activeBtnId = 'btn-tab-hobbies-retro';
+            }
+
+            const activeEl = document.getElementById(targetTab);
+            if (activeEl) activeEl.classList.remove('hidden');
+
+            const activeBtn = document.getElementById(activeBtnId);
+            if (activeBtn) activeBtn.className = "bg-[#D6FF38] border-t-2 border-x-2 border-black px-3 py-1.5 text-xs font-bold rounded-t-md -mb-[2px] z-10 cursor-pointer";
+        }
+
+        // --- SISTEMA DE VISUALIZACIÓN DE FOTOS Y REPRODUCTOR MP3 ---
+        let playInterval = null;
+
+        function viewGame(name, imgUrl, quote) {
+            const headerTitle = document.getElementById('media-header-title');
+            const body = document.getElementById('media-viewer-body');
+            
+            if (headerTitle && body) {
+                headerTitle.innerHTML = `🖼️ VISUALIZADOR DE FOTOS - ${name.toUpperCase()}`;
+                
+                body.innerHTML = `
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="border-2 border-black bg-white p-2.5 shadow-[3px_3px_0px_#000] w-full max-h-[320px] overflow-hidden rounded relative">
+                            <img src="${imgUrl}" alt="${name}" class="w-full h-auto max-h-[290px] object-contain rounded border border-gray-200 shadow-sm" 
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80';">
+                            <span class="absolute top-4 right-4 bg-black text-[#D6FF38] text-[9px] font-bold py-0.5 px-2 uppercase rounded border border-[#D6FF38]">
+                                LULU PROYECTOS ★
+                            </span>
+                        </div>
+                        <div class="w-full border-2 border-black p-3 rounded bg-purple-50 text-center">
+                            <p class="text-xs font-semibold text-purple-950 font-mono">"${quote}"</p>
+                        </div>
+                    </div>
+                `;
+                
+                openMediaViewer();
+            }
+        }
+
+        function playMusic(artist, mp3File, trackTitle, emoji) {
+            const headerTitle = document.getElementById('media-header-title');
+            const body = document.getElementById('media-viewer-body');
+            
+            if (headerTitle && body) {
+                headerTitle.innerHTML = `🎵 LULU MP3 PLAYER - AUDIO.EXE`;
+                
+                if (playInterval) clearInterval(playInterval);
+                
+                body.innerHTML = `
+                    <div class="flex flex-col items-center gap-4 py-2">
+                        <div class="relative w-36 h-36 border-4 border-black rounded-full bg-zinc-900 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-2 border border-zinc-800 rounded-full"></div>
+                            <div class="absolute inset-6 border border-zinc-700 rounded-full"></div>
+                            <div id="vinyl-disc" class="w-14 h-14 bg-[#D6FF38] border-2 border-black rounded-full flex items-center justify-center text-xl shadow-inner">
+                                ${emoji}
+                            </div>
+                        </div>
+
+                        <div class="text-center space-y-1 w-full">
+                            <h4 class="font-brand-bold text-lg text-black truncate">${artist}</h4>
+                            <p class="text-xs text-gray-500 truncate font-mono">${mp3File}</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-300">
+                                Estado: Listo para reproducir
+                            </span>
+                        </div>
+
+                        <div class="w-full border-2 border-black p-4 rounded bg-slate-50 space-y-3">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[10px] font-mono text-gray-600">
+                                    <span id="track-time-current">0:00</span>
+                                    <span id="track-time-total">3:15</span>
+                                </div>
+                                <div class="w-full bg-gray-200 border border-black h-2.5 rounded-sm overflow-hidden relative">
+                                    <div id="track-progress" class="bg-[#D6FF38] h-full border-r border-black w-0 transition-all duration-1000"></div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-center gap-4">
+                                <button id="player-play-btn" onclick="togglePlaySimulation()" class="retro-btn bg-[#D6FF38] hover:bg-lime-400 text-xs font-bold py-1.5 px-4 rounded flex items-center gap-1.5 cursor-pointer">
+                                    ▶ Play
+                                </button>
+                                <button id="player-pause-btn" onclick="pausePlaySimulation()" class="retro-btn bg-red-300 hover:bg-red-400 text-xs font-bold py-1.5 px-4 rounded hidden cursor-pointer">
+                                    ⏸ Pausa
+                                </button>
+                            </div>
+
+                            <div class="flex justify-center items-end gap-1 h-8 pt-1" id="music-equalizer">
+                                <span class="w-1.5 bg-black rounded-t-sm h-1"></span>
+                                <span class="w-1.5 bg-black rounded-t-sm h-1"></span>
+                                <span class="w-1.5 bg-black rounded-t-sm h-1"></span>
+                                <span class="w-1.5 bg-black rounded-t-sm h-1"></span>
+                                <span class="w-1.5 bg-black rounded-t-sm h-1"></span>
+                                <span class="w-1.5 bg-black rounded-t-sm h-1"></span>
+                                <span class="w-1.5 bg-black rounded-t-sm h-1"></span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                openMediaViewer();
+            }
+        }
+
+        // Simulación de controles multimedia
+        let currentProgressPercent = 0;
+        let isPlaying = false;
+
+        function togglePlaySimulation() {
+            const vinyl = document.getElementById('vinyl-disc');
+            const playBtn = document.getElementById('player-play-btn');
+            const pauseBtn = document.getElementById('player-pause-btn');
+            const progressBar = document.getElementById('track-progress');
+            const currentTimeLabel = document.getElementById('track-time-current');
+            const eqEl = document.getElementById('music-equalizer');
+            const equalizerBars = eqEl ? eqEl.children : null;
+
+            isPlaying = true;
+            if (playBtn) playBtn.classList.add('hidden');
+            if (pauseBtn) pauseBtn.classList.remove('hidden');
+            
+            if (vinyl) vinyl.classList.add('animate-spin-slow');
+
+            playInterval = setInterval(() => {
+                if (currentProgressPercent < 100) {
+                    currentProgressPercent += 1;
+                    if (progressBar) progressBar.style.width = currentProgressPercent + '%';
+                    
+                    let totalSecs = Math.floor((3.15 * 60) * (currentProgressPercent / 100));
+                    let displayMins = Math.floor(totalSecs / 60);
+                    let displaySecs = totalSecs % 60;
+                    if (currentTimeLabel) currentTimeLabel.innerText = `${displayMins}:${displaySecs < 10 ? '0' : ''}${displaySecs}`;
+
+                    if (equalizerBars) {
+                        for (let bar of equalizerBars) {
+                            let randHeight = Math.floor(Math.random() * 28) + 4;
+                            bar.style.height = randHeight + 'px';
+                            bar.style.backgroundColor = '#D6FF38';
+                        }
+                    }
+                } else {
+                    pausePlaySimulation();
+                    currentProgressPercent = 0;
+                    if (progressBar) progressBar.style.width = '0%';
+                    if (currentTimeLabel) currentTimeLabel.innerText = '0:00';
+                }
+            }, 1000);
+        }
+
+        function pausePlaySimulation() {
+            const vinyl = document.getElementById('vinyl-disc');
+            const playBtn = document.getElementById('player-play-btn');
+            const pauseBtn = document.getElementById('player-pause-btn');
+            const eqEl = document.getElementById('music-equalizer');
+            const equalizerBars = eqEl ? eqEl.children : null;
+
+            isPlaying = false;
+            if (playInterval) clearInterval(playInterval);
+            
+            if (playBtn) playBtn.className = playBtn.className.replace('hidden', '').trim();
+            if (pauseBtn) pauseBtn.classList.add('hidden');
+            if (vinyl) vinyl.classList.remove('animate-spin-slow');
+
+            if (equalizerBars) {
+                for (let bar of equalizerBars) {
+                    bar.style.height = '4px';
+                    bar.style.backgroundColor = '#000000';
+                }
+            }
+        }
+
+        function openMediaViewer() {
+            const modal = document.getElementById('media-viewer-modal');
+            const container = document.getElementById('media-viewer-container');
+            if (modal && container) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    container.classList.remove('scale-95', 'opacity-0');
+                    container.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            }
+        }
+
+        function closeMediaViewer() {
+            const modal = document.getElementById('media-viewer-modal');
+            const container = document.getElementById('media-viewer-container');
+            
+            pausePlaySimulation();
+            currentProgressPercent = 0;
+
+            if (container && modal) {
+                container.classList.remove('scale-100', 'opacity-100');
+                container.classList.add('scale-95', 'opacity-0');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+
+        // --- SISTEMA DEL QUIZ INTERACTIVO Y REACCIONES DE LULU ---
+        function selectQuizOption(optionKey) {
+            const chk = document.getElementById('chk-' + optionKey);
+            if (!chk) return;
+            
+            chk.checked = !chk.checked;
+            
+            const card = document.getElementById('option-card-' + optionKey);
+            const feedback = document.getElementById('feedback-' + optionKey);
+            
+            feedback.classList.remove('hidden');
+            
+            if (optionKey === 'derecho') {
+                if (chk.checked) {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-emerald-600 rounded bg-emerald-50 cursor-pointer transition-all select-none";
+                    feedback.innerHTML = "<strong>Lulu dice:</strong> ¡Siii! Me encantaría ser una gran abogada comercial y de negocios. ⚖️💼";
+                    feedback.className = "text-[11px] text-emerald-800 mt-1";
+                } else {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer transition-all select-none";
+                    feedback.classList.add('hidden');
+                }
+            } 
+            else if (optionKey === 'coleo') {
+                if (chk.checked) {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-yellow-600 rounded bg-yellow-50 cursor-pointer transition-all select-none";
+                    feedback.innerHTML = "<strong>Lulu dice:</strong> ¡Amo el coleo de toros! Pero me gustaría únicamente como un hobbie de fin de semana, ¡no como carrera de tiempo completo! 🐴🤠";
+                    feedback.className = "text-[11px] text-yellow-800 mt-1";
+                } else {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer transition-all select-none";
+                    feedback.classList.add('hidden');
+                }
+            } 
+            else if (optionKey === 'software') {
+                if (chk.checked) {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-blue-600 rounded bg-blue-50 cursor-pointer transition-all select-none";
+                    feedback.innerHTML = "<strong>Lulu dice:</strong> La informática es genial, ¡pero esto lo estudiaría de forma autodidacta por mi cuenta! 💻✨";
+                    feedback.className = "text-[11px] text-blue-800 mt-1";
+                } else {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer transition-all select-none";
+                    feedback.classList.add('hidden');
+                }
+            } 
+            else if (optionKey === 'agronoma') {
+                if (chk.checked) {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-emerald-600 rounded bg-emerald-50 cursor-pointer transition-all select-none";
+                    feedback.innerHTML = "<strong>Lulu dice:</strong> ¡Exacto! Me encanta el campo, la tierra y el desarrollo sustentable. 🌱🚜";
+                    feedback.className = "text-[11px] text-emerald-800 mt-1";
+                } else {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer transition-all select-none";
+                    feedback.classList.add('hidden');
+                }
+            } 
+            else if (optionKey === 'veterinaria') {
+                if (chk.checked) {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-red-600 rounded bg-red-50 cursor-pointer transition-all select-none";
+                    feedback.innerHTML = "<strong>Lulu dice:</strong> ¡Uy, nunca! Soy muy mala con todo lo que tenga que ver con la medicina. 💉🏥";
+                    feedback.className = "text-[11px] text-red-800 mt-1";
+                } else {
+                    card.className = "flex items-start gap-3 p-3 border-2 border-black rounded bg-slate-50 cursor-pointer transition-all select-none";
+                    feedback.classList.add('hidden');
+                }
+            }
+        }
+
+        function verifyLuluFutureQuiz() {
+            const chkDerecho = document.getElementById('chk-derecho');
+            const chkAgronoma = document.getElementById('chk-agronoma');
+            
+            const chkColeo = document.getElementById('chk-coleo');
+            const chkSoftware = document.getElementById('chk-software');
+            const chkVeterinaria = document.getElementById('chk-veterinaria');
+            
+            const errMsg = document.getElementById('quiz-error-msg');
+
+            if (chkDerecho && chkAgronoma && chkDerecho.checked && chkAgronoma.checked && !chkColeo.checked && !chkSoftware.checked && !chkVeterinaria.checked) {
+                errMsg.classList.add('hidden');
+                unlockNewspaperSection();
+            } else {
+                errMsg.classList.remove('hidden');
+            }
+        }
+
+        function unlockNewspaperSection() {
+            const container = document.getElementById('future-container');
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="newspaper-theme p-5 md:p-8 rounded border-2 border-black shadow-[6px_6px_0px_#000] relative space-y-6">
+                    
+                    <div class="absolute top-4 right-4 border border-black/40 px-2 py-0.5 text-[9px] uppercase tracking-widest text-black/50 font-serif rotate-12 select-none">
+                        Edición Certificada ★ Lulu 2026
+                    </div>
+
+                    <div class="text-center border-b-4 border-double border-black pb-4">
+                        <h2 class="font-serif text-3xl md:text-5xl tracking-normal uppercase font-bold text-[#1A1A1A] select-none" style="font-family: 'Playfair Display', serif;">
+                            El Vocero de Lulu
+                        </h2>
+                        <div class="flex justify-between items-center text-[10px] md:text-xs font-serif border-t border-black/40 mt-2 pt-1 px-1">
+                            <span>Año I - Nro. 01</span>
+                            <span class="font-bold uppercase tracking-wider">Edición de Mañana</span>
+                            <span>Junio, 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center space-y-2 py-2">
+                        <h3 class="font-serif text-xl md:text-2xl font-bold leading-tight" style="font-family: 'Playfair Display', serif;">
+                            ¡REVELADO EL DESTINO PROFESIONAL DE LUIZABETH!
+                        </h3>
+                        <p class="text-xs md:text-sm text-gray-700 italic max-w-xl mx-auto">
+                            "Un análisis detallado sobre el Derecho Mercantil, la Ingeniería Agrónoma y la Ingeniería de Software como pilares del futuro de nuestra joven creadora."
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-black/20 text-justify">
+                        
+                        <div class="space-y-2">
+                            <h4 class="font-serif text-sm font-bold uppercase border-b border-black/40 pb-1" style="font-family: 'Playfair Display', serif;">
+                                I. Derecho Mercantil
+                            </h4>
+                            <p class="text-[11px] leading-relaxed text-gray-800">
+                                El <strong>Derecho Mercantil</strong> se erige como el pilar fundamental de la justicia comercial. El sueño de Luizabeth es convertirse en una abogada memorable capaz de regular y potenciar el intercambio de bienes de consumo y proteger legalmente a creadores y corporaciones.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 border-t md:border-t-0 md:border-x border-black/20 md:px-4">
+                            <h4 class="font-serif text-sm font-bold uppercase border-b border-black/40 pb-1" style="font-family: 'Playfair Display', serif;">
+                                II. Ingeniería Agrónoma
+                            </h4>
+                            <p class="text-[11px] leading-relaxed text-gray-800">
+                                El campo y la agronomía representan el sustento del mañana. La <strong>Ingeniería Agrónoma</strong> permitirá a Lulu aplicar principios científicos y tecnológicos avanzados para optimizar la producción alimentaria sostenible en los suelos.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 border-t md:border-t-0 pt-4 md:pt-0">
+                            <h4 class="font-serif text-sm font-bold uppercase border-b border-black/40 pb-1" style="font-family: 'Playfair Display', serif;">
+                                III. Ingeniería de Software
+                            </h4>
+                            <p class="text-[11px] leading-relaxed text-gray-800">
+                                El software es el idioma de la tecnología moderna. Luizabeth ha decidido abordar la <strong>Ingeniería de Software</strong> de manera autodidacta, construyendo sus propios sistemas web interactivos, automatizaciones y portafolios.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="border-t border-black/40 pt-4 text-center">
+                        <span class="text-[10px] font-bold uppercase bg-yellow-100 text-yellow-950 px-2 py-1 border border-yellow-300 rounded">
+                            ¡Felicidades por resolver el quiz! Eres un lector ejemplar 📰⭐
+                        </span>
+                    </div>
+
+                </div>
+            `;
+        }
+
+        // Función para simular el envío del formulario de contacto
+        function handleSubmit(event) {
+            event.preventDefault();
+            const body = document.getElementById('modal-body');
+            if (body) {
+                body.innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <span class="text-5xl">💌</span>
+                        <h3 class="font-brand-bold text-xl text-black">¡Mensaje Recibido!</h3>
+                        <p class="text-gray-600">¡Muchas gracias por escribirme, Luizabeth! Te responderé muy pronto para que podamos seguir charlando sobre libros y juegos.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Exportar de forma explícita las funciones al alcance global para evitar ReferenceErrors en cualquier iframe o scope de renderizado
+        window.openAboutMeModal = openAboutMeModal;
+        window.closeAboutMeModal = closeAboutMeModal;
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        window.switchTab = switchTab;
+        window.viewGame = viewGame;
+        window.playMusic = playMusic;
+        window.togglePlaySimulation = togglePlaySimulation;
+        window.pausePlaySimulation = pausePlaySimulation;
+        window.openMediaViewer = openMediaViewer;
+        window.closeMediaViewer = closeMediaViewer;
+        window.verifyLuluFutureQuiz = verifyLuluFutureQuiz;
+        window.selectQuizOption = selectQuizOption;
+        window.handleSubmit = handleSubmit;
+
+        // --- ENLAZAR CLICS DE MANERA ROBUSTA AL CARGAR EL DOM ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const aboutMeBtn = document.getElementById('about-me-close-btn');
+            const retroModalBtn = document.getElementById('retro-modal-close-btn');
+            const mediaViewerBtn = document.getElementById('media-viewer-close-btn');
+
+            if (aboutMeBtn) aboutMeBtn.addEventListener('click', closeAboutMeModal);
+            if (retroModalBtn) retroModalBtn.addEventListener('click', closeModal);
+            if (mediaViewerBtn) mediaViewerBtn.addEventListener('click', closeMediaViewer);
+
+            document.getElementById('retro-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+            document.getElementById('about-me-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeAboutMeModal();
+            });
+            document.getElementById('media-viewer-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeMediaViewer();
+            });
+        });
+    </script>
+</body>
+</html>
