@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Proyecto de Vida - Luizabeth Contreras</title>
-    <!-- Tailwind CSS cargado localmente desde tu archivo -->
-    <script src="tailwind.min.js"></script>
+    <!-- Cargamos Tailwind CSS desde CDN para que los estilos compilen correctamente en cualquier previsualización -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-   
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght=400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN para iconos hermosos y llamativos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* Tipografías personalizadas con fallbacks locales elegantes */
@@ -139,18 +141,6 @@
             transform: scale(1.3) !important;
         }
 
-        /* Efecto Splash al exprimir limón */
-        @keyframes lemonSplash {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(3.5); opacity: 0; filter: blur(2px); }
-        }
-        .splash-effect {
-            position: absolute;
-            animation: lemonSplash 0.5s ease-out forwards;
-            pointer-events: none;
-            z-index: 30;
-        }
-
         /* --- ANIMACIONES 3D PARA LAS ESTRELLAS RETRO --- */
         @keyframes spin3D-left {
             0% {
@@ -201,7 +191,7 @@
                 src="Where do you want to go_ far, far away_...🌱.jpg" 
                 alt="Fondo Colinas" 
                 class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #a0c4ff, #e2eafc)';"
+                onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #a0c4ff, #e2eafc)'; }"
             />
         </div>
 
@@ -266,12 +256,12 @@
     <!-- SECCIÓN 2: IDENTIDAD -->
     <section id="identidad-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-20 px-6 z-10 overflow-hidden">
         <!-- FONDO DE LA SEGUNDA IMAGEN REAL -->
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#b91c1c]">
             <img 
                 src="uusudhuhs.png" 
                 alt="Fondo Rojo Gradiente" 
                 class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #780000, #c1121f)';"
+                onerror="this.style.display='none';"
             />
             <div class="absolute inset-0 bg-black/10"></div>
         </div>
@@ -298,7 +288,7 @@
                             src="Untitled.png" 
                             alt="Luizabeth Contreras" 
                             class="w-full h-full object-cover rounded-full border border-white/15"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';"
                         />
                         <div class="hidden w-full h-full rounded-full bg-gradient-to-br from-red-500 to-pink-300 items-center justify-center text-white text-3xl font-bold">
                             LC
@@ -374,14 +364,15 @@
 
     <!-- SECCIÓN 3: METAS -->
     <section id="metas-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-20 px-6 z-10 overflow-hidden">
-        <!-- FONDO DE LA PRIMERA IMAGEN REAL -->
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <!-- FONDO DE LA PRIMERA IMAGEN REAL (Contenedor con color de respaldo preestablecido) -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#79c1f0]">
             <img 
                 src="Where do you want to go_ far, far away_...🌱.jpg" 
                 alt="Fondo Colinas" 
                 class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #79c1f0, #e0f2fe)';"
+                onerror="this.style.display='none';"
             />
+            <!-- Sutil capa oscura/azulada para legibilidad premium sobre el fondo de colinas -->
             <div class="absolute inset-0 bg-slate-950/20 backdrop-blur-[2px]"></div>
         </div>
 
@@ -474,12 +465,12 @@
             <!-- ESTADO 2: LAS DOS OPCIONES -->
             <div id="estudios-choices" class="hidden flex-col gap-6 sm:gap-12 items-center justify-center text-center py-10">
                 <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-16">
-                    <button onclick="selectCareer('abogada')" class="font-kage text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/90 hover:text-red-500 hover:scale-110 transition-all duration-300 tracking-wide">
+                    <button onclick="selectCareer('abogada')" id="btn-choice-abogada" class="font-kage text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/90 hover:text-red-500 hover:scale-110 transition-all duration-300 tracking-wide">
                         Abogada
                     </button>
                     <span class="text-white/20 text-4xl hidden sm:inline">|</span>
-                    <button onclick="selectCareer('internacionalista')" class="font-kage text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/90 hover:text-blue-400 hover:scale-110 transition-all duration-300 tracking-wide">
-                        Internacionalista
+                    <button onclick="selectCareer('agronoma')" id="btn-choice-agronoma" class="font-kage text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/90 hover:text-emerald-400 hover:scale-110 transition-all duration-300 tracking-wide">
+                        Ingeniera Agrónoma
                     </button>
                 </div>
                 
@@ -502,18 +493,17 @@
                         <p id="abogada-text" class="text-base sm:text-lg text-red-50 leading-relaxed font-medium"></p>
                     </div>
 
-                    <!-- Bloque de 3 imágenes de abogacía con fallbacks refinados -->
+                    <!-- Bloque de 3 imágenes debajo -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end justify-center pt-4">
-                        <!-- Imagen 1: Temis -->
+                        <!-- Imagen 1: Themis -->
                         <div class="flex flex-col items-center">
                             <div class="h-64 sm:h-72 w-full flex items-center justify-center p-2 rounded-2xl bg-white/[0.02] border border-white/5 shadow-lg">
                                 <img 
                                     src="Themis-removebg-preview.png" 
                                     alt="Estatua Temis" 
                                     class="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(220,38,38,0.15)]"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                    onerror="this.style.display='none';"
                                 />
-                                <div class="hidden text-center text-4xl">⚖️</div>
                             </div>
                         </div>
 
@@ -524,9 +514,8 @@
                                     src="hhhh-removebg-preview.png" 
                                     alt="Martillo de Justicia" 
                                     class="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(255,255,255,0.1)]"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                    onerror="this.style.display='none';"
                                 />
-                                <div class="hidden text-center text-4xl">🔨</div>
                             </div>
                         </div>
 
@@ -537,18 +526,17 @@
                                     src="Lady_of_Justice_stock_image__Image_of_landmark__hessen_-_24084037-removebg-preview.png" 
                                     alt="Dama de la Justicia" 
                                     class="max-h-full max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(255,255,255,0.15)]"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                    onerror="this.style.display='none';"
                                 />
-                                <div class="hidden text-center text-4xl">🗽</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Detalle de Internacionalista -->
-                <div id="detail-internacionalista" class="hidden flex-col gap-8">
-                    <div class="glass-card rounded-3xl p-8 border-blue-400/20 bg-blue-950/30">
-                        <p id="internacionalista-text" class="text-base sm:text-lg text-blue-50 leading-relaxed font-medium"></p>
+                <!-- Detalle de Ingeniera Agrónoma -->
+                <div id="detail-agronoma" class="hidden flex-col gap-8">
+                    <div class="glass-card rounded-3xl p-8 border-emerald-400/20 bg-emerald-950/20">
+                        <p id="agronoma-text" class="text-base sm:text-lg text-emerald-50 leading-relaxed font-medium"></p>
                     </div>
                 </div>
 
@@ -558,20 +546,22 @@
     </section>
 
 
-    <!-- SECCIÓN 5: COSAS QUE QUIERO HACER ANTES DE GRADUARME -->
+    <!-- SECCIÓN 5: COSAS QUE QUIERO HACER ANTES DE GRADUARME (Fondo de césped natural) -->
     <section id="graduarme-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-24 px-6 z-10 overflow-hidden">
-        <!-- FONDO DE LA NUEVA IMAGEN REAL -->
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        
+        <!-- FONDO DE LA NUEVA IMAGEN REAL (Césped con sombra de árbol - contenedor con color de respaldo preestablecido) -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#15803d]">
             <img 
                 src="1477812373996410.jpg" 
                 alt="Fondo Césped Sombra" 
                 class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #134e5e, #71b280)';"
+                onerror="this.style.display='none';"
             />
+            <!-- Capa protectora para asegurar una legibilidad ideal en el césped -->
             <div class="absolute inset-0 bg-slate-950/20 backdrop-blur-[1px]"></div>
         </div>
 
-        <!-- Contenido del flujo de limones flotantes -->
+        <!-- Contenido del flujo de limones flotantes (Se inyecta con JavaScript) -->
         <div id="lemons-container" class="absolute inset-0 z-20 pointer-events-none overflow-hidden"></div>
 
         <!-- Contenido -->
@@ -588,15 +578,16 @@
                 <div class="w-24 h-1 bg-yellow-400/80 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <!-- TARJETAS DE SUEÑOS Y CURSOS -->
+            <!-- TARJETAS DE SUEÑOS Y CURSOS (Madera / Vidrio Esmerilado) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
                 <!-- Tarjeta 1: Idiomas -->
                 <div id="card-idiomas" onclick="toggleCard('card-idiomas')" class="wood-glass-card rounded-3xl p-6 sm:p-8 text-white cursor-pointer flex flex-col justify-start">
                     <div class="flex items-center gap-4 mb-4">
-                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl">🇬🇧</span>
+                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl"><i class="fa-solid fa-language text-yellow-300"></i></span>
                         <h3 id="idiomas-title" class="text-xl sm:text-2xl font-bold font-kage">Quiero aprender 2 idiomas</h3>
                     </div>
+                    <!-- Contenido que se revela -->
                     <div class="expanded-content hidden transition-all duration-500 pt-2 border-t border-white/20 mt-2">
                         <ul id="idiomas-list" class="space-y-2 font-semibold">
                             <!-- Inyectado dinámicamente -->
@@ -607,9 +598,10 @@
                 <!-- Tarjeta 2: Cursos -->
                 <div id="card-cursos" onclick="toggleCard('card-cursos')" class="wood-glass-card rounded-3xl p-6 sm:p-8 text-white cursor-pointer flex flex-col justify-start">
                     <div class="flex items-center gap-4 mb-4">
-                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl">💻</span>
+                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl"><i class="fa-solid fa-graduation-cap text-yellow-300"></i></span>
                         <h3 id="cursos-title" class="text-xl sm:text-2xl font-bold font-kage">Quiero hacer tantos cursos como pueda</h3>
                     </div>
+                    <!-- Contenido que se revela -->
                     <div class="expanded-content hidden transition-all duration-500 pt-2 border-t border-white/20 mt-2">
                         <ul id="cursos-list" class="space-y-2 font-semibold">
                             <!-- Inyectado dinámicamente -->
@@ -620,9 +612,10 @@
                 <!-- Tarjeta 3: Viajar -->
                 <div id="card-viajar" onclick="toggleCard('card-viajar')" class="wood-glass-card rounded-3xl p-6 sm:p-8 text-white cursor-pointer flex flex-col justify-start">
                     <div class="flex items-center gap-4 mb-4">
-                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl">✈️</span>
+                        <span class="text-3xl bg-yellow-400/20 p-2 rounded-2xl"><i class="fa-solid fa-plane text-yellow-300"></i></span>
                         <h3 id="viajar-title" class="text-xl sm:text-2xl font-bold font-kage">Me gustaría poder viajar lejos</h3>
                     </div>
+                    <!-- Contenido que se revela -->
                     <div class="expanded-content hidden transition-all duration-500 pt-2 border-t border-white/20 mt-2">
                         <p id="viajar-desc" class="text-sm sm:text-base leading-relaxed font-semibold bg-white/10 p-3 rounded-2xl border border-white/10"></p>
                     </div>
@@ -634,48 +627,49 @@
     </section>
 
 
-    <!-- SECCIÓN 6: MI FUTURO TRABAJO -->
+    <!-- SECCIÓN 6: MI FUTURO TRABAJO (Imágenes a pantalla completa, cubriendo todo de extremo a extremo, sin márgenes laterales) -->
     <section id="futuro-trabajo-section" class="relative w-full min-h-screen flex flex-col items-center justify-center py-24 px-6 z-10 overflow-hidden bg-[#fcfaf6]">
         
-        <!-- Diapositivas automáticas de fondo con fallbacks de degradados hermosos -->
-        <div class="absolute inset-0 z-0">
-            <!-- Imagen 1 -->
+        <!-- Imágenes de fondo que cubren toda la sección de extremo a extremo (Slideshow completo - contenedor con color de respaldo preestablecido) -->
+        <div class="absolute inset-0 z-0 bg-[#15803d]">
+            <!-- Imagen 1: Instagram.jpg (Activa por defecto) -->
             <img 
                 src="Instagram.jpg" 
                 alt="Caballo Campo" 
                 class="future-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
-                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #2c3e50, #000000)';"
+                onerror="this.style.display='none';"
             />
-            <!-- Imagen 2 -->
+            <!-- Imagen 2: 633600241371512278.jpg -->
             <img 
                 src="633600241371512278.jpg" 
                 alt="Cerca Campo" 
                 class="future-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
                 onerror="this.style.display='none';"
             />
-            <!-- Imagen 3 -->
+            <!-- Imagen 3: yeehaw.jpg -->
             <img 
                 src="yeehaw.jpg" 
                 alt="Yeehaw Campo" 
                 class="future-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
                 onerror="this.style.display='none';"
             />
-            <div class="absolute inset-0 bg-black/35"></div>
+            <!-- Capa oscura/filtro para asegurar un contraste hermoso y legible -->
+            <div class="absolute inset-0 bg-black/40"></div>
         </div>
 
         <div class="relative z-10 w-full max-w-4xl flex flex-col items-center gap-12">
             
-            <!-- Título de la Sección -->
+            <!-- Título de la Sección (En blanco con sombra para destacar sobre el fondo) -->
             <div class="text-center">
-                <h2 id="futuro-trabajo-title" class="font-kage text-4xl sm:text-6xl md:text-7xl text-white drop-shadow-md leading-tight">
+                <h2 id="futuro-trabajo-title" class="font-kage text-4xl sm:text-6xl md:text-7xl text-white drop-shadow-lg leading-tight">
                     Mi futuro trabajo
                 </h2>
                 <div class="w-24 h-1 bg-yellow-400/80 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <!-- Tarjeta Transparente Esmerilada -->
+            <!-- Tarjeta Transparente Esmerilada (Súper legible para que distinga del fondo de pantalla completa) -->
             <div class="relative z-10 bg-white/80 backdrop-blur-xl border border-white/60 p-8 sm:p-10 rounded-3xl max-w-2xl text-center shadow-2xl transition-all duration-300 hover:scale-[1.01]">
-                <div class="text-amber-600 text-3xl mb-4">🌾</div>
+                <div class="text-amber-600 text-3xl mb-4"><i class="fa-solid fa-wheat-awn"></i></div>
                 <p id="futuro-trabajo-desc" class="text-base sm:text-lg md:text-xl text-slate-800 leading-relaxed font-semibold font-sans-custom">
                     En un futuro me veo trabajando en muchas cosas. Me gustaría trabajar como abogada mercantil desde la comodidad de mi casa, siendo Ingeniera Agrónoma en mi propia finca exportando ganado, maíz, quesos, carne y vivir prósperamente en la naturaleza.
                 </p>
@@ -685,7 +679,7 @@
     </section>
 
 
-    <!-- NUEVA SECCIÓN 7: MIS GUSTOS (Retro Canva con Estrellas Giratorias 3D y Reproductor de Música al pasar el ratón) -->
+    <!-- SECCIÓN 7: MIS GUSTOS (Retro Canva con Estrellas Giratorias 3D y Reproductor de Música al pasar el ratón) -->
     <section id="gustos-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-24 px-6 z-10 overflow-hidden bg-[#faf6eb]">
         
         <!-- ESTRELLA SUPERIOR IZQUIERDA (Giro 3D Rojo) -->
@@ -730,11 +724,11 @@
                 <div class="w-32 h-1.5 bg-slate-950 mt-4 rounded-full"></div>
             </div>
 
-            <!-- Interfaz Principal de Gustos & Reproductor -->
+            <!-- Interfaz Principal de Gustos & Reproductor (Estética Transparente de Vidrio Esmerilado) -->
             <div class="flex flex-col lg:flex-row items-center gap-12 w-full mt-6 justify-center">
                 
-                <!-- REPRODUCTOR DE VINILO RETRO INTERACTIVO -->
-                <div class="flex flex-col items-center gap-4 bg-white border-4 border-slate-900 rounded-3xl p-8 w-full max-w-sm shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+                <!-- REPRODUCTOR DE VINILO RETRO INTERACTIVO TRANSPARENTE -->
+                <div class="flex flex-col items-center gap-4 bg-white/20 backdrop-blur-2xl border-2 border-white/40 rounded-3xl p-8 w-full max-w-sm shadow-xl transition-all duration-300 hover:border-white/60">
                     <span id="player-title" class="font-kage text-2xl text-slate-900 tracking-tight">Sintonizando...</span>
                     
                     <!-- Disco de Vinilo -->
@@ -764,9 +758,9 @@
                     <p id="now-playing" class="text-slate-800 font-bold text-sm tracking-wide mt-2">Silencio</p>
                 </div>
 
-                <!-- LISTA DE ARTISTAS MÚSICA (Configurados exactamente con tus archivos MP3 locales) -->
-                <div class="w-full max-w-xl bg-white border-4 border-slate-900 rounded-3xl p-6 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
-                    <div class="flex items-center gap-3 border-b-4 border-slate-900 pb-4 mb-4">
+                <!-- LISTA DE ARTISTAS MÚSICA TRANSPARENTE -->
+                <div class="w-full max-w-xl bg-white/20 backdrop-blur-2xl border-2 border-white/40 rounded-3xl p-6 shadow-xl transition-all duration-300 hover:border-white/60">
+                    <div class="flex items-center gap-3 border-b-2 border-slate-900/10 pb-4 mb-4">
                         <span class="text-3xl">🎸</span>
                         <h3 id="music-list-header" class="text-2xl font-bold text-slate-900 font-kage">Mi Playlist Favorita</h3>
                     </div>
@@ -774,43 +768,38 @@
                     <!-- Listado dinámico interactivo con scroll suave de seguridad -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
                         
-                        <!-- Lista de Artistas con nombres corregidos y archivos locales exactos -->
-                        
-                        </div>
-
-                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-blue-100 hover:scale-[1.02] transition-all" data-artist="The Cure" data-music="Boys Dont Cry.mp3">
+                        <!-- Lista de Artistas con diseño transparente -->
+                        <div class="artist-item bg-white/40 border border-white/60 rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-blue-100/50 hover:scale-[1.02] transition-all" data-artist="The Cure" data-music="Boys Dont Cry.mp3">
                             <span class="font-bold text-sm text-slate-800">The Cure</span>
                             <span class="text-xs text-blue-500">🎵</span>
                         </div>
 
-                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-yellow-100 hover:scale-[1.02] transition-all animate-none" data-artist="Engelbert Humperdinck" data-music="A Man Without Love LYRICS Video Engelbert Humperdinck 1968 Moon Knight Episode 1.mp3">
+                        <div class="artist-item bg-white/40 border border-white/60 rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-yellow-100/50 hover:scale-[1.02] transition-all" data-artist="Engelbert Humperdinck" data-music="A Man Without Love LYRICS Video Engelbert Humperdinck 1968 Moon Knight Episode 1.mp3">
                             <span class="font-bold text-xs text-slate-800 leading-tight">Engelbert Humperdinck</span>
                             <span class="text-xs text-yellow-500">🎵</span>
                         </div>
 
-                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-purple-100 hover:scale-[1.02] transition-all" data-artist="The Beatles" data-music="Hey Jude Remastered 2015.mp3">
+                        <div class="artist-item bg-white/40 border border-white/60 rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-purple-100/50 hover:scale-[1.02] transition-all" data-artist="The Beatles" data-music="Hey Jude Remastered 2015.mp3">
                             <span class="font-bold text-sm text-slate-800">The Beatles</span>
                             <span class="text-xs text-purple-500">🎵</span>
                         </div>
 
-                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-pink-100 hover:scale-[1.02] transition-all" data-artist="Lou Bega" data-music="Lou Bega - Mambo No 5 A Little Bit of.mp3">
+                        <div class="artist-item bg-white/40 border border-white/60 rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-pink-100/50 hover:scale-[1.02] transition-all" data-artist="Lou Bega" data-music="Lou Bega - Mambo No 5 A Little Bit of.mp3">
                             <span class="font-bold text-sm text-slate-800">Lou Bega</span>
                             <span class="text-xs text-pink-500">🎵</span>
                         </div>
 
-                        
-
-                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-orange-100 hover:scale-[1.02] transition-all" data-artist="esdeekid" data-music="4 Raws.mp3">
+                        <div class="artist-item bg-white/40 border border-white/60 rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-orange-100/50 hover:scale-[1.02] transition-all" data-artist="esdeekid" data-music="4 Raws.mp3">
                             <span class="font-bold text-sm text-slate-800">esdeekid</span>
                             <span class="text-xs text-orange-500">🔥</span>
                         </div>
 
-                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-indigo-100 hover:scale-[1.02] transition-all animate-none" data-artist="The White Stripes" data-music="The White Stripes - Seven Nation Army Official Music Video.mp3">
+                        <div class="artist-item bg-white/40 border border-white/60 rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-indigo-100/50 hover:scale-[1.02] transition-all" data-artist="The White Stripes" data-music="The White Stripes - Seven Nation Army Official Music Video.mp3">
                             <span class="font-bold text-sm text-slate-800">The White Stripes</span>
                             <span class="text-xs text-indigo-500">🎵</span>
                         </div>
 
-                        <div class="artist-item bg-[#faf6eb] border-2 border-slate-900 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-amber-100 hover:scale-[1.02] transition-all col-span-1 sm:col-span-2" data-artist="Billy Joel" data-music="Billy Joel -  Video.mp3">
+                        <div class="artist-item bg-white/40 border border-white/60 rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-amber-100/50 hover:scale-[1.02] transition-all col-span-1 sm:col-span-2" data-artist="Billy Joel" data-music="Billy Joel -  Video.mp3">
                             <span class="font-bold text-sm text-slate-800">Billy Joel</span>
                             <span class="text-xs text-amber-500">🎵</span>
                         </div>
@@ -824,7 +813,7 @@
     </section>
 
 
-    <!-- NUEVA SECCIÓN 8: CONOCE MI EMPRENDIMIENTO (Luizabeth's Studios con logo de fondo, tarjeta clara y estilo Canva Retro) -->
+    <!-- SECCIÓN 8: CONOCE MI EMPRENDIMIENTO (Luizabeth's Studios con logo de fondo, tarjeta clara y estilo Canva Retro) -->
     <section id="emprendimiento-section" class="relative w-full min-h-screen flex flex-col items-center justify-center py-24 px-6 z-10 overflow-hidden bg-[#faf6eb]">
         
         <!-- FONDO DE MARCA DE AGUA GIGANTE DEL LOGO (Sutil, claro y cálido) -->
@@ -833,7 +822,7 @@
                 src="Logo Para Marca de Ropa Moderno Blanco y Negro 8.39.44 a. m..png" 
                 alt="Fondo Luizabeth's Studios" 
                 class="w-full h-full object-contain opacity-[0.20] scale-95"
-                onerror="this.style.display='none'; this.parentElement.style.backgroundImage='linear-gradient(135deg, #faf6eb, #f4efe2)';"
+                onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #faf6eb, #f4efe2)'; }"
             />
         </div>
 
@@ -860,21 +849,21 @@
                         Es mi marca personal donde ofrezco soluciones digitales y creativas hechas a la medida. Me dedico con pasión al desarrollo y diseño de múltiples servicios de alta calidad.
                     </p>
 
-                    <!-- Lista de Servicios en un Grid Interno -->
+                    <!-- Lista de Servicios en un Grid Interno (También con diseño transparente) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 max-w-xl mx-auto w-full">
-                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                        <div class="flex items-center gap-3 bg-white/50 border border-white/60 rounded-2xl p-3 shadow-sm hover:bg-white/80 transition-colors">
                             <span class="text-2xl">💻</span>
                             <span id="service-web" class="text-sm font-bold text-slate-800">Webs</span>
                         </div>
-                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                        <div class="flex items-center gap-3 bg-white/50 border border-white/60 rounded-2xl p-3 shadow-sm hover:bg-white/80 transition-colors">
                             <span class="text-2xl">📱</span>
                             <span id="service-apps" class="text-sm font-bold text-slate-800">Apps</span>
                         </div>
-                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                        <div class="flex items-center gap-3 bg-white/50 border border-white/60 rounded-2xl p-3 shadow-sm hover:bg-white/80 transition-colors">
                             <span class="text-2xl">🤖</span>
                             <span id="service-bots" class="text-sm font-bold text-slate-800">Bots</span>
                         </div>
-                        <div class="flex items-center gap-3 bg-white/60 border-2 border-slate-900/10 rounded-2xl p-3 shadow-sm hover:border-red-500/30 transition-colors">
+                        <div class="flex items-center gap-3 bg-white/50 border border-white/60 rounded-2xl p-3 shadow-sm hover:bg-white/80 transition-colors">
                             <span class="text-2xl">📚</span>
                             <span id="service-school" class="text-sm font-bold text-slate-800">Trabajos escolares</span>
                         </div>
@@ -922,6 +911,192 @@
                 </div>
             </div>
 
+            <!-- BOTÓN DESTACADO TRANSPARENTE PARA VISITAR LA OTRA WEB DEL PROYECTO DE VIDA -->
+            <div class="w-full flex justify-center mt-6">
+                <a href="blog/index.html" target="_blank" 
+                   id="visit-other-web-btn"
+                   class="flex items-center justify-center gap-3 px-8 py-5 rounded-full border-2 border-white/60 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-950 font-black text-lg md:text-xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg backdrop-blur-md">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Visita mi otra web y descubre más a fondo</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- NUEVA SECCIÓN 9: REFLEXIONES DE MI CAMINO (Secuencial - Tarjetas con desvanecimiento una tras otra) -->
+    <section id="reflexiones-section" class="relative w-full min-h-screen flex flex-col items-center justify-start py-24 px-6 z-10 overflow-hidden bg-[#faf6eb]">
+        
+        <div class="relative z-30 w-full max-w-4xl flex flex-col items-center gap-8 text-center select-none">
+            
+            <!-- Título Principal de la Sección -->
+            <div class="flex flex-col items-center gap-2">
+                <h2 id="reflexiones-title" class="font-kage text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-slate-900 drop-shadow-sm tracking-tight leading-none uppercase">
+                    Reflexiones de mi camino
+                </h2>
+                <p id="reflexiones-subtitle" class="text-slate-500 text-xs sm:text-sm md:text-base font-semibold tracking-wider max-w-xl mt-2 uppercase">
+                    Pequeños fragmentos visuales e ideas que guían mi proyecto de vida ✨
+                </p>
+                <div class="w-32 h-1.5 bg-slate-950 mt-4 rounded-full"></div>
+            </div>
+
+            <!-- CONTENEDOR PRINCIPAL DEL REPRODUCTOR SECUENCIAL -->
+            <div class="relative w-full h-[500px] sm:h-[580px] bg-white/20 backdrop-blur-md rounded-[40px] p-4 border-2 border-white/50 shadow-2xl overflow-hidden mt-6 flex items-center justify-center group">
+                
+                <!-- BOTÓN ANTERIOR (Izquierda) -->
+                <button onclick="prevSlide()" class="absolute left-4 sm:left-6 z-40 bg-white/50 hover:bg-white/80 text-slate-900 w-12 h-12 rounded-full flex items-center justify-center border border-white/60 shadow-md backdrop-blur-md transition-all active:scale-95">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+
+                <!-- BOTÓN SIGUIENTE (Derecha) -->
+                <button onclick="nextSlide()" class="absolute right-4 sm:right-6 z-40 bg-white/50 hover:bg-white/80 text-slate-900 w-12 h-12 rounded-full flex items-center justify-center border border-white/60 shadow-md backdrop-blur-md transition-all active:scale-95">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+
+                <!-- BOTÓN PAUSAR / JUGAR AUTO-PLAY (Esquina superior derecha) -->
+                <button onclick="toggleAutoPlay()" id="autoplay-toggle-btn" class="absolute top-6 right-6 z-40 bg-white/40 hover:bg-white/75 text-slate-900 px-4 py-2 rounded-full flex items-center gap-2 border border-white/60 text-xs font-bold backdrop-blur-md transition-all shadow-sm">
+                    <i id="autoplay-icon" class="fa-solid fa-pause"></i>
+                    <span id="autoplay-text">Auto</span>
+                </button>
+
+                <!-- DIAPOSITIVA 1: Imagen 1 (Aesthetic Italia) - SIN LETRAS -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-100 transition-opacity duration-1000 ease-in-out pointer-events-auto flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="tags.jpg" 
+                        alt="Aesthetic Italia" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #fcd34d, #f59e0b)'; }"
+                    />
+                    <div class="absolute inset-0 bg-black/20"></div>
+                </div>
+
+                <!-- DIAPOSITIVA 2: Imagen 2 (Árbol con estrellas) - CENTRADO -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="866450415821234899.jpg" 
+                        alt="Árbol con estrellas" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #fcd34d, #f59e0b)'; }"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10"></div>
+                    <div class="relative z-10 flex flex-col items-center max-w-2xl px-4">
+                        <span class="text-xs font-bold text-yellow-300 uppercase tracking-widest mb-2 block">Inspiración</span>
+                        <p id="quote-1" class="font-kage text-2xl sm:text-3xl md:text-4xl text-white font-extrabold leading-snug drop-shadow-md">
+                            La edad no es ningún límite
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DIAPOSITIVA 3: IMAGEN 3 (Beetle Blanco) - CENTRADO -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="1121888957211653506.jpg" 
+                        alt="Escarabajo Blanco en la Calle" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #a5f3fc, #06b6d4)'; }"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10"></div>
+                    <div class="relative z-10 flex flex-col items-center max-w-2xl px-4">
+                        <span class="text-xs font-bold text-cyan-300 uppercase tracking-widest mb-2 block">Trayectoria</span>
+                        <p id="quote-2" class="font-kage text-2xl sm:text-3xl md:text-4xl text-white font-extrabold leading-snug drop-shadow-md">
+                            Sigue tu camino lento, a paso de tortuga, tu vida ira al maximo
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DIAPOSITIVA 4: IMAGEN 4 (Arcos con Jardín) - CENTRADO -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="690035974178033493.jpg" 
+                        alt="Jardín entre Arcos" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #fbcfe8, #ec4899)'; }"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/15"></div>
+                    <div class="relative z-10 flex flex-col items-center max-w-2xl px-4">
+                        <span class="text-xs font-bold text-pink-300 uppercase tracking-widest mb-2 block">Cuidado Propio</span>
+                        <p id="quote-3" class="font-kage text-2xl sm:text-3xl md:text-4xl text-white font-extrabold leading-snug drop-shadow-md">
+                            Hay que ser dulces con uno mismo
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DIAPOSITIVA 5: IMAGEN 5 (Dos Veleros en el Mar) - CENTRADO -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="gsdbgbch.png" 
+                        alt="Veleros en el Mar" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #93c5fd, #3b82f6)'; }"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10"></div>
+                    <div class="relative z-10 flex flex-col items-center max-w-2xl px-4">
+                        <span class="text-xs font-bold text-blue-300 uppercase tracking-widest mb-2 block">Naturaleza</span>
+                        <p id="quote-4" class="font-kage text-2xl sm:text-3xl md:text-4xl text-white font-extrabold leading-snug drop-shadow-md">
+                            El mar no tiene prisa, pero siempre llega
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DIAPOSITIVA 6: IMAGEN 6 (Tomate con fondo verde) - CENTRADO -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="🍅.jpg" 
+                        alt="Tomate con fondo verde" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #fca5a5, #ef4444)'; }"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"></div>
+                    <div class="relative z-10 flex flex-col items-center max-w-2xl px-4">
+                        <span class="text-xs font-bold text-red-400 uppercase tracking-widest mb-2 block">Lección</span>
+                        <p id="quote-5" class="font-kage text-2xl sm:text-3xl md:text-4xl text-white font-extrabold leading-snug drop-shadow-md">
+                            la gente que se escuza con la vergunza simplemente no tiene ganas 
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DIAPOSITIVA 7: IMAGEN 7 (Mar desde los arcos) - CENTRADO -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="hxnchdsuyvf.png" 
+                        alt="Mar desde arcos de piedra" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #c084fc, #8b5cf6)'; }"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10"></div>
+                    <div class="relative z-10 flex flex-col items-center max-w-2xl px-4">
+                        <span class="text-xs font-bold text-purple-300 uppercase tracking-widest mb-2 block">Cierre I</span>
+                        <p id="quote-6" class="font-kage text-2xl sm:text-3xl md:text-4xl text-white font-extrabold leading-snug drop-shadow-md">
+                            El horizonte nos recuerda que siempre hay un nuevo mañana esperando por nosotros
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DIAPOSITIVA 8: IMAGEN 8 (Césped de Cierre) - CENTRADO -->
+                <div class="reflection-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none flex flex-col justify-center items-center p-8 sm:p-12 text-center">
+                    <img 
+                        src="1477812373996410.jpg" 
+                        alt="Césped y campo" 
+                        class="absolute inset-0 w-full h-full object-cover"
+                        onerror="this.style.display='none'; if(this.parentElement) { this.parentElement.style.backgroundImage='linear-gradient(135deg, #86efac, #22c55e)'; }"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20"></div>
+                    <div class="relative z-10 flex flex-col items-center max-w-2xl px-4">
+                        <span class="text-xs font-bold text-yellow-300 uppercase tracking-widest mb-2 block">Reflexión Final</span>
+                        <p id="quote-7" class="font-kage text-2xl sm:text-3xl md:text-4xl text-white font-extrabold leading-relaxed drop-shadow-lg">
+                            "Cultiva con paciencia cada uno de tus sueños, pues florecerán en el momento perfecto de tu vida"
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- INDICADORES (Bolitas de Navegación) -->
+            <div id="slide-indicators" class="flex gap-3 justify-center items-center mt-2">
+                <!-- Se enlazarán dinámicamente mediante JavaScript -->
+            </div>
+
         </div>
     </section>
 
@@ -962,8 +1137,10 @@
                 discoverHint: "Toca el texto para descubrirlo",
                 backBtn: "← Volver",
                 btnBackToTitle: "Volver al inicio",
+                btnAbogada: "Abogada",
+                btnAgronoma: "Ingeniera Agrónoma",
                 abogadaText: "Ser abogada es increíble porque tienes el poder de hablar por quienes no pueden hacerlo, defender la verdad y hacer que la justicia funcione. Me apasiona resolver problemas complejos, debatir con elegancia y usar las leyes como herramientas para construir un mundo más ordenado y equitativo. ¡Es una profesión llena de liderazgo, fuerza y pasión!",
-                internacionalistaText: "Quiero estudiar Estudios Internacionales y Negocios Internacionales porque me apasiona comprender el funcionamiento del mundo globalizado, conectar culturas y diseñar estrategias comerciales que trasciendan fronteras. Los negocios globales nos permiten unir naciones a través del intercambio y la cooperación, abriendo oportunidades increíbles para innovar, viajar y generar un impacto positivo en la sociedad internacional.",
+                agronomaText: "Quiero estudiar Ingeniería Agrónoma porque me apasiona el campo, la naturaleza y el desarrollo de sistemas de producción de alimentos de manera sostenible. Me visualizo aplicando la ciencia para optimizar las cosechas de maíz, mejorar la cría de ganado de alta calidad en mi propia finca y producir carne y quesos de manera próspera en total armonía con la naturaleza. ¡Es mi vocación soñada!",
                 graduarmeTitle: "Antes de graduarme",
                 graduarmeHint: "¡Toca las tarjetas o los limones cayendo para exprimir y revelar! 🍋",
                 idiomasTitle: "Quiero aprender 2 idiomas:",
@@ -986,13 +1163,21 @@
                 serviceBots: "Bots",
                 serviceSchool: "Trabajos escolares",
                 brandContactTitle: "Contacto & Redes",
-                brandContactSubtitle: "¡Escríbeme para dar vida a tus proyectos!"
+                brandContactSubtitle: "¡Escríbeme para dar vida a tus proyectos!",
+                visitOtherWebBtn: "Visita mi otra web y descubre más a fondo",
+                reflexionesTitle: "Reflexiones de mi camino",
+                reflexionesSubtitle: "Pequeños fragmentos visuales e ideas que guían mi proyecto de vida ✨",
+                quote1: "La edad no es ningún límite",
+                quote2: "Sigue tu camino lento, a paso de tortuga, la vida es una y hay que vivirla al máximo",
+                quote3: "Hay que ser dulces con uno mismo",
+                quote4: "El mar azul no puede ser más bello",
+                quote5: "Cómete al mundo de un bocado y te ahogarás",
+                quote6: "El horizonte nos recuerda que siempre hay un nuevo mañana esperando por nosotros",
+                quote7: "\"Cultiva con paciencia cada uno de tus sueños, pues florecerán en el momento perfecto de tu vida\""
             },
             en: {
                 who: "Who I am",
                 goals: "Goals",
-                likes: "My tastes",
-                brand: "My Studio",
                 welcome: "Welcome!",
                 project: "to my life project",
                 identidadTitle: "Identity",
@@ -1020,8 +1205,10 @@
                 discoverHint: "Tap the text to discover",
                 backBtn: "← Go Back",
                 btnBackToTitle: "Go back to start",
+                btnAbogada: "Lawyer",
+                btnAgronoma: "Agricultural Engineer",
                 abogadaText: "Being a lawyer is amazing because you have the power to speak for those who cannot, defend the truth, and make justice work. I am passionate about solving complex problems, debating elegantly, and using laws as tools to build a more orderly and fair world. It is a profession full of leadership, strength, and passion!",
-                internacionalistaText: "I want to study International Studies and International Business because I am passionate about understanding how our globalized world works, connecting cultures, and designing business strategies that cross borders. Global business allows us to unite nations through exchange and cooperation, opening incredible opportunities to innovate, travel, and make a positive impact on international society.",
+                agronomaText: "I want to study Agricultural Engineering because I am passionate about the countryside, nature, and developing sustainable food production systems. I see myself applying science to optimize corn crops, improving high-quality livestock breeding on my own farm, and producing meat and cheese prosperously in total harmony with nature. It is my dream vocation!",
                 graduarmeTitle: "Before I graduate",
                 graduarmeHint: "Tap the cards or falling lemons to squeeze and reveal! 🍋",
                 idiomasTitle: "I want to learn 2 languages:",
@@ -1044,15 +1231,23 @@
                 serviceBots: "Bots",
                 serviceSchool: "School projects",
                 brandContactTitle: "Contact & Networks",
-                brandContactSubtitle: "Write to me to bring your projects to life!"
+                brandContactSubtitle: "Write to me to bring your projects to life!",
+                visitOtherWebBtn: "Visit my other website and discover more",
+                reflexionesTitle: "Reflections on my path",
+                reflexionesSubtitle: "Small visual fragments and ideas that guide my life project ✨",
+                quote1: "Age is no limit at all",
+                quote2: "Go your path slowly, at a turtle's pace; life is one and you must live it to the fullest",
+                quote3: "We must be gentle with ourselves",
+                quote4: "The blue sea couldn't be more beautiful",
+                quote5: "Eat the world in one bite and you will drown",
+                quote6: "The horizon reminds us that there is always a new tomorrow waiting for us",
+                quote7: "\"Cultivate each of your dreams with patience, for they will bloom at the perfect moment of your life\""
             },
             it: {
                 who: "Chi sono",
                 goals: "Obiettivi",
-                likes: "I miei gusti",
-                brand: "Studio",
                 welcome: "Benvenuto!",
-                project: "al mio progetto di vita",
+                project: "al mio progetto de vida",
                 identidadTitle: "Identità",
                 whoTitle: "Chi Sono",
                 whoDesc: "Ciao, mi chiamo Luizabeth Contreras, studentessa del terzo anno. La mia passione per la creazione mi ha portato a costruire questo sito per mostrare le mie capacità e ciò que vorrei essere da adulta.",
@@ -1078,31 +1273,38 @@
                 discoverHint: "Tocca el testo per scoprirlo",
                 backBtn: "← Indietro",
                 btnBackToTitle: "Torna all'inizio",
-                abogadaText: "Essere un avvocato è fantastico perché hai il potere di parlare per coloro que non possono farlo, difendere la verità e far funzionare la giustizia. Mi appassiona risolvere problemi complessi, dibattere con eleganza e usare le leggi como strumenti per costruire un mondo più ordinato ed equo. È una professione ricca di leadership, fuerza e passione!",
-                internacionalistaText: "Voglio studiare Studi Internazionali e Affari Internazionali perché mi appassiona capire come funciona il mondo globalizzato, connettere culture diverse e progettare strategie commerciali oltre i confini nazionali. Il business globale ci permette di unire le nazioni attraverso lo scambio e la cooperazione, aprendo incredibili opportunità per innovare, viaggiare e generare un impatto positivo nella società internazionale.",
+                btnAbogada: "Avvocato",
+                btnAgronoma: "Ingegnere Agronomo",
+                abogadaText: "Essere un avvocato è fantastico perché hai il potere di parlare per coloro que non possono farlo, difendere la verità e far funzionare la giustizia. Mi appassiona risolvere problemi complessi, dibattere con eleganza e usare le leggi como strumenti per costruire un mondo più ordinato ed equo. È una professione ricca di leadership, forza e passione!",
+                agronomaText: "Voglio studiare Ingegneria Agronoma perché mi appassiona la campagna, la natura e lo sviluppo di sistemi di produzione alimentare in modo sostenibile. Mi vedo applicare la scienza per ottimizzare i raccolti di mais, migliorare l'allevamento di bestiame di alta qualità nella mia fattoria e produrre carne e formaggio con successo in totale armonia con la natura. È la mia vocazione dei sogni!",
                 graduarmeTitle: "Prima di laurearmi",
-                graduarmeHint: "Tocca le carte o i limoni che cadono per spremere e rivelare! 🍋",
+                graduarmeHint: "Tocca le carte o i limoni que cadono per spremere e revelar! 🍋",
                 idiomasTitle: "Voglio imparare 2 lingue:",
                 idiomasList: ["Inglese", "Italiano"],
                 cursosTitle: "Voglio fare quanti più corsi possibile:",
                 cursosList: ["FreeCodeCamp", "Cisco", "Skilo", "Hoy Aprendo", "Conecta Empleo"],
                 viajarTitle: "Mi piacerebbe poter viaggiare lontano:",
-                viajarDesc: "Mi piacerebbe viaggiare di nuovo nella mia terra natale a Barinas 🇻🇪",
-                futuroTrabajoTitle: "Il mio trabajo futuro",
+                viajarDesc: "Mi piacerebbe viaggiare di nuevo nella mia terra natale a Barinas 🇻🇪",
+                futuroTrabajoTitle: "Il mio lavoro futuro",
                 futuroTrabajoDesc: "In futuro mi vedo a lavorare in molte cose. Mi piacerebbe lavorare como avvocato commerciale dalla comodità di casa mia, essendo anche un Ingegnere Agronomo nella mia fattoria, esportando bestiame, mais, formaggi e carne, e vivendo prosperamente nella natura.",
                 likesTitle: "I miei gusti",
-                likesInstruction: "Passa il mouse (o tocca) gli artisti per ascoltare la loro musica 🎵",
-                playerTitle: "Sintonizzazione...",
-                nowPlayingSilence: "Silenzio",
-                playlistHeader: "La mia Playlist Preferita",
-                brandSectionTitle: "Scopri il mio progetto",
-                brandDesc: "È il mio marchio personale in cui offro soluzioni digitali e creative personalizzate. Mi dedico con passione allo sviluppo e alla progettazione di molteplici servizi di alta qualità.",
-                serviceWeb: "Webs",
-                serviceApps: "Apps",
-                serviceBots: "Bots",
-                serviceSchool: "Lavori scolastici",
-                brandContactTitle: "Contatto e Social",
-                brandContactSubtitle: "Scrivimi per dare vita ai tuoi progetti!"
+                likesSubtitle: "Queste sono le cose che preferisco fare nella mia vita quotidiana e que fanno parte di chi sono:",
+                gusto1Title: "Campagna e Cavalli",
+                gusto1Desc: "La mia passione è andare a cavallo, godermi la natura e la vita all'aria aperta in campagna. È il mio posto felice assoluto!",
+                gusto2Title: "Sviluppo Web",
+                gusto2Desc: "Creare siti web con Luizabeth's Studios è divertentissimo. Amo dare vita a idee creative con il codice.",
+                gusto3Title: "Imparare le Lingue",
+                gusto3Desc: "Mi piace aprire la mente a nuove culture studiando l'inglese e l'italiano. Ogni lingua è una nueva avventura!",
+                visitOtherWebBtn: "Visita il mio altro sito e scopri di più",
+                reflexionesTitle: "Riflessioni sul mio percorso",
+                reflexionesSubtitle: "Piccoli frammenti visivi e idee che guidano il mio progetto di vida ✨",
+                quote1: "L'età non è affatto un limite",
+                quote2: "Segui il tuo cammino lentamente, a passo di tartaruga; la vita è una sola e va vissuta al massimo",
+                quote3: "Dobbiamo essere gentili con noi stessi",
+                quote4: "Il mare blu non potrebbe essere più bello",
+                quote5: "Mangia il mondo in un boccone e ti soffocherai",
+                quote6: "L'orizzonte ci ricorda che c'è sempre un nuovo domani che ci aspetta",
+                quote7: "\"Coltiva ciascuno dei tuoi sogni con pazienza, poiché fioriranno nel momento perfetto della tua vita\""
             }
         };
 
@@ -1152,7 +1354,9 @@
         const backBtn = document.getElementById('back-btn');
         const btnBackToTitle = document.getElementById('btn-back-to-title');
         const abogadaText = document.getElementById('abogada-text');
-        const internacionalistaText = document.getElementById('internacionalista-text');
+        const agronomaText = document.getElementById('agronoma-text');
+        const btnChoiceAbogada = document.getElementById('btn-choice-abogada');
+        const btnChoiceAgronoma = document.getElementById('btn-choice-agronoma');
 
         // Elementos de la Sección de Graduarme
         const graduarmeTitle = document.getElementById('graduarme-title');
@@ -1185,6 +1389,20 @@
         const brandContactTitle = document.getElementById('brand-contact-title');
         const brandContactSubtitle = document.getElementById('brand-contact-subtitle');
 
+        // Elementos de la Nueva Sección de Reflexiones
+        const reflexionesTitle = document.getElementById('reflexiones-title');
+        const reflexionesSubtitle = document.getElementById('reflexiones-subtitle');
+        const quote1 = document.getElementById('quote-1');
+        const quote2 = document.getElementById('quote-2');
+        const quote3 = document.getElementById('quote-3');
+        const quote4 = document.getElementById('quote-4');
+        const quote5 = document.getElementById('quote-5');
+        const quote6 = document.getElementById('quote-6');
+        const quote7 = document.getElementById('quote-7');
+
+        // Botón Visitar Otra Web
+        const visitOtherWebBtn = document.getElementById('visit-other-web-btn');
+
         const flags = { es: '🇪🇸', en: '🇺🇸', it: '🇮🇹' };
         const langNames = { es: 'Español', en: 'English', it: 'Italiano' };
 
@@ -1197,6 +1415,7 @@
         langBtn.addEventListener('click', toggleLangMenu);
         langBtn.addEventListener('touchstart', toggleLangMenu);
 
+        // Cerrar el menú al hacer clic o tocar fuera de él
         function closeLangMenu() {
             langMenu.classList.add('hidden');
         }
@@ -1257,7 +1476,9 @@
             backBtn.textContent = data.backBtn;
             btnBackToTitle.textContent = data.btnBackToTitle;
             abogadaText.textContent = data.abogadaText;
-            internacionalistaText.textContent = data.internacionalistaText;
+            agronomaText.textContent = data.agronomaText;
+            btnChoiceAbogada.textContent = data.btnAbogada;
+            btnChoiceAgronoma.textContent = data.btnAgronoma;
 
             // Actualizar contenido de la Sección de Graduarme
             graduarmeTitle.textContent = data.graduarmeTitle;
@@ -1291,11 +1512,27 @@
             brandContactTitle.textContent = data.brandContactTitle;
             brandContactSubtitle.textContent = data.brandContactSubtitle;
 
+            // Actualizar contenido de la Nueva Sección de Reflexiones
+            if (reflexionesTitle) reflexionesTitle.textContent = data.reflexionesTitle;
+            if (reflexionesSubtitle) reflexionesSubtitle.textContent = data.reflexionesSubtitle;
+            if (quote1) quote1.textContent = data.quote1;
+            if (quote2) quote2.textContent = data.quote2;
+            if (quote3) quote3.textContent = data.quote3;
+            if (quote4) quote4.textContent = data.quote4;
+            if (quote5) quote5.textContent = data.quote5;
+            if (quote6) quote6.textContent = data.quote6;
+            if (quote7) quote7.textContent = data.quote7;
+
+            // Actualizar contenido del Botón para visitar la otra web
+            if (visitOtherWebBtn) {
+                visitOtherWebBtn.querySelector('span').textContent = data.visitOtherWebBtn;
+            }
+
             // Reiniciar y arrancar la animación de transición en la portada
             startSequence(data.welcome, data.project);
         }
 
-        // Renderizadores de listas estructuradas
+        // Función auxiliar para renderizar listas de identidad
         function renderList(container, array, bulletIcon) {
             container.innerHTML = '';
             array.forEach(item => {
@@ -1306,7 +1543,7 @@
             });
         }
 
-        // Renderizadores de metas estructuradas
+        // Función auxiliar para renderizar listas de metas
         function renderMetasList(container, array, bulletIcon) {
             container.innerHTML = '';
             array.forEach(item => {
@@ -1354,7 +1591,7 @@
             });
         }
 
-        // Animación de gravedad física de letras
+        // Animación de caída de letras
         function startSequence(welcomeString, projectString) {
             welcomeContainer.innerHTML = '';
             projectContainer.classList.remove('active');
@@ -1408,7 +1645,7 @@
             const choices = document.getElementById('estudios-choices');
             const detail = document.getElementById('estudios-detail');
             const abogada = document.getElementById('detail-abogada');
-            const internacionalista = document.getElementById('detail-internacionalista');
+            const agronoma = document.getElementById('detail-agronoma');
             const earthLayer = document.getElementById('earth-emojis-layer');
             const section = document.getElementById('estudios-section');
 
@@ -1420,15 +1657,15 @@
             if (career === 'abogada') {
                 abogada.classList.remove('hidden');
                 abogada.classList.add('flex');
-                internacionalista.classList.add('hidden');
+                agronoma.classList.add('hidden');
                 section.style.backgroundColor = '#000000';
                 earthLayer.style.opacity = '0';
             } else {
-                internacionalista.classList.remove('hidden');
-                internacionalista.classList.add('flex');
+                agronoma.classList.remove('hidden');
+                agronoma.classList.add('flex');
                 abogada.classList.remove('flex');
                 abogada.classList.add('hidden');
-                section.style.backgroundColor = '#020617';
+                section.style.backgroundColor = '#081c15'; // Fondo verde oscuro elegante
                 earthLayer.style.opacity = '1';
             }
         }
@@ -1437,28 +1674,28 @@
             const choices = document.getElementById('estudios-choices');
             const detail = document.getElementById('estudios-detail');
             const abogada = document.getElementById('detail-abogada');
-            const internacionalista = document.getElementById('detail-internacionalista');
+            const agronoma = document.getElementById('detail-agronoma');
             const earthLayer = document.getElementById('earth-emojis-layer');
             const section = document.getElementById('estudios-section');
 
             detail.classList.add('hidden');
             abogada.classList.add('hidden');
-            internacionalista.classList.add('hidden');
+            agronoma.classList.add('hidden');
             choices.classList.remove('hidden');
             choices.classList.add('flex');
             section.style.backgroundColor = '#0f172a';
             earthLayer.style.opacity = '0';
         }
 
-        // Configuración de planetas en movimiento de fondo para internacionalista
+        // Configuración de elementos en movimiento para Ingeniera Agrónoma (plantas, campo, etc.)
         function setupEarthEmojis() {
             const container = document.getElementById('earth-emojis-layer');
-            const earthTypes = ['🌎', '🌍', '🌏'];
+            const agronomaTypes = ['🌱', '🌾', '🌽', '🚜', '🐄', '🏡'];
             const animationClasses = ['animate-float-slow', 'animate-float-slower', 'animate-float-fast'];
             
             for (let i = 0; i < 32; i++) {
                 const div = document.createElement('div');
-                const randomEarth = earthTypes[Math.floor(Math.random() * earthTypes.length)];
+                const randomEmoji = agronomaTypes[Math.floor(Math.random() * agronomaTypes.length)];
                 const randomAnim = animationClasses[Math.floor(Math.random() * animationClasses.length)];
                 const randomDelay = (Math.random() * 5) + 's';
                 const randomScale = (Math.random() * 0.4 + 0.6);
@@ -1466,7 +1703,7 @@
                 div.className = `text-4xl sm:text-5xl md:text-6xl text-center opacity-25 select-none pointer-events-none ${randomAnim}`;
                 div.style.animationDelay = randomDelay;
                 div.style.transform = `scale(${randomScale})`;
-                div.textContent = randomEarth;
+                div.textContent = randomEmoji;
 
                 container.appendChild(div);
             }
@@ -1519,34 +1756,36 @@
         function startLemonRain() {
             const container = document.getElementById('lemons-container');
             
-            setInterval(() => {
-                if (container.childElementCount > 10) return;
+            if (container) {
+                setInterval(() => {
+                    if (container.childElementCount > 10) return;
 
-                const lemon = document.createElement('div');
-                lemon.className = 'lemon-falling text-3xl sm:text-4xl';
-                lemon.textContent = '🍋';
-                
-                const randomX = Math.random() * 90;
-                lemon.style.left = `${randomX}%`;
-                
-                const duration = (Math.random() * 4 + 5) + 's';
-                const randomScale = Math.random() * 0.4 + 0.8;
-                
-                lemon.style.setProperty('--fall-duration', duration);
-                lemon.style.transform = `scale(${randomScale})`;
-                
-                lemon.addEventListener('click', (e) => squeezeLemon(e, lemon));
-                lemon.addEventListener('touchstart', (e) => squeezeLemon(e, lemon));
+                    const lemon = document.createElement('div');
+                    lemon.className = 'lemon-falling text-3xl sm:text-4xl';
+                    lemon.textContent = '🍋';
+                    
+                    const randomX = Math.random() * 90;
+                    lemon.style.left = `${randomX}%`;
+                    
+                    const duration = (Math.random() * 4 + 5) + 's';
+                    const randomScale = Math.random() * 0.4 + 0.8;
+                    
+                    lemon.style.setProperty('--fall-duration', duration);
+                    lemon.style.transform = `scale(${randomScale})`;
+                    
+                    lemon.addEventListener('click', (e) => squeezeLemon(e, lemon));
+                    lemon.addEventListener('touchstart', (e) => squeezeLemon(e, lemon));
 
-                container.appendChild(lemon);
+                    container.appendChild(lemon);
 
-                setTimeout(() => {
-                    if (lemon.parentElement) {
-                        lemon.remove();
-                    }
-                }, parseFloat(duration) * 1000);
+                    setTimeout(() => {
+                        if (lemon.parentElement) {
+                            lemon.remove();
+                        }
+                    }, parseFloat(duration) * 1000);
 
-            }, 2500);
+                }, 2500);
+            }
         }
 
         // --- DIAPOSITIVAS DE TRABAJO FUTURO ---
@@ -1583,6 +1822,7 @@
             }, 100);
         }
 
+        // Detiene las barras de ecualización
         function stopEqualizer() {
             if (eqInterval) clearInterval(eqInterval);
             for (let i = 1; i <= 6; i++) {
@@ -1626,7 +1866,9 @@
                 currentAudio = null;
             }
             const vinylImg = document.getElementById('vinyl-center').parentElement;
-            vinylImg.classList.remove('spinning-vinyl');
+            if (vinylImg) {
+                vinylImg.classList.remove('spinning-vinyl');
+            }
             document.getElementById('now-playing').textContent = translations[currentLang].nowPlayingSilence;
             document.getElementById('player-title').textContent = translations[currentLang].playerTitle;
             stopEqualizer();
@@ -1655,6 +1897,117 @@
             });
         }
 
+        // --- NUEVA LÓGICA DE DIAPOSITIVAS SECUENCIALES (SLIDESHOW) ---
+        let currentSlideIndex = 0;
+        let isAutoPlayActive = true;
+        let slideTimer = null;
+        const totalSlides = 8; // Ahora tenemos exactamente 8 diapositivas individuales
+
+        // Inicializa y renderiza los puntos indicadores de posición
+        function setupSlideIndicators() {
+            const container = document.getElementById('slide-indicators');
+            if (!container) return;
+            container.innerHTML = '';
+            
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.onclick = () => jumpToSlide(i);
+                dot.className = `w-3 h-3 rounded-full border border-slate-900/40 transition-all duration-300 ${
+                    i === currentSlideIndex 
+                    ? 'bg-emerald-600 scale-125 px-3' 
+                    : 'bg-white hover:bg-emerald-100'
+                }`;
+                dot.setAttribute('aria-label', `Reflexión ${i + 1}`);
+                container.appendChild(dot);
+            }
+        }
+
+        // Muestra de manera secuencial la diapositiva en el índice actual
+        function updateSlideDisplay() {
+            const slides = document.querySelectorAll('.reflection-slide');
+            if (slides.length === 0) return;
+
+            slides.forEach((slide, idx) => {
+                if (idx === currentSlideIndex) {
+                    slide.classList.remove('opacity-0', 'pointer-events-none');
+                    slide.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    slide.classList.remove('opacity-100', 'pointer-events-auto');
+                    slide.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+
+            // Actualizar el estilo activo en las bolitas
+            const indicators = document.getElementById('slide-indicators').children;
+            if (indicators.length > 0) {
+                Array.from(indicators).forEach((dot, idx) => {
+                    if (idx === currentSlideIndex) {
+                        dot.className = 'w-3 h-3 rounded-full border border-slate-900/40 transition-all duration-300 bg-emerald-600 scale-125 px-3';
+                    } else {
+                        dot.className = 'w-3 h-3 rounded-full border border-slate-900/40 transition-all duration-300 bg-white hover:bg-emerald-100';
+                    }
+                });
+            }
+        }
+
+        // Avanzar a la siguiente reflexión
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            updateSlideDisplay();
+            resetSlideInterval();
+        }
+
+        // Retroceder a la reflexión anterior
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            updateSlideDisplay();
+            resetSlideInterval();
+        }
+
+        // Saltar directamente a una diapositiva desde una bolita
+        function jumpToSlide(index) {
+            currentSlideIndex = index;
+            updateSlideDisplay();
+            resetSlideInterval();
+        }
+
+        // Inicia el temporizador de auto-reproducción secuencial cada 8 segundos
+        function startSlideShowInterval() {
+            if (slideTimer) clearInterval(slideTimer);
+            if (isAutoPlayActive) {
+                slideTimer = setInterval(() => {
+                    nextSlide();
+                }, 8000); // Se pasará sola automáticamente cada 8 segundos
+            }
+        }
+
+        // Resetea el temporizador cuando el usuario hace clic o toque manual
+        function resetSlideInterval() {
+            if (isAutoPlayActive) {
+                startSlideShowInterval();
+            }
+        }
+
+        // Pausar o reanudar el juego automático (Auto-play)
+        function toggleAutoPlay() {
+            isAutoPlayActive = !isAutoPlayActive;
+            const btnText = document.getElementById('autoplay-text');
+            const btnIcon = document.getElementById('autoplay-icon');
+            
+            if (isAutoPlayActive) {
+                btnText.textContent = 'Auto';
+                btnIcon.className = 'fa-solid fa-pause';
+                startSlideShowInterval();
+            } else {
+                btnText.textContent = 'Pausa';
+                btnIcon.className = 'fa-solid fa-play';
+                if (slideTimer) {
+                    clearInterval(slideTimer);
+                    slideTimer = null;
+                }
+            }
+        }
+
         // Inicialización al cargar la ventana
         window.onload = () => {
             setupStars();
@@ -1662,6 +2015,8 @@
             setupEarthEmojis();
             startLemonRain();
             setupAudioEvents();
+            setupSlideIndicators();
+            startSlideShowInterval();
         };
     </script>
 </body>
